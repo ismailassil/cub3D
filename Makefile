@@ -6,7 +6,7 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/05 17:53:56 by iassil           ###   ########.fr        #
+#    Updated: 2024/05/05 18:08:54 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIB_HR_H	=	headers/libft.h
 GNL_HR_H	=	headers/get_next_line.h
 
 ##### SOURCE FILES #######################################################################
-SRC_FILES	=	cub3d.c				check_input.c			src_utils.c
+SRC_FILES	=	cub3d.c				ft_check_input.c		src_utils.c
 
 PRS_FILES	=	ft_parse.c			ft_check.c				ft_check_utils.c	\
 				ft_parsing_utils.c
