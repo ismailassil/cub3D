@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   src_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:45:00 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 16:39:20 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/05 17:47:08 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ void	ft_check_allocation(void *ptr)
 		p_error("Allocation failed (malloc)", NULL, 1);
 		exit(FAIL);
 	}
+}
+
+void	ft_free_all(t_data **parse)
+{
+	ft_free_map(&(*parse)->data);
+	free((*parse)->directions);
+	free((*parse)->colors);
+	free(*parse);
+	exit(FAIL);
 }
 
 void	ft_free_map(char ***map)
