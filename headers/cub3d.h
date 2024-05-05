@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 18:00:35 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/05 18:11:07 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ bool	ft_check_input_file(int ac, char **av);
 int		ft_open_file(char *file);
 
 /*	Parsing	functions	*/
-void	ft_parse(int fd, t_list *data);
+void	ft_parse(int fd, t_data *data);
+void	ft_raycasting(t_data *data);
 
 /*	Check functions		*/
 void	ft_check_unnessary_infos(t_data *parse);

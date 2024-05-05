@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:48:38 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 17:55:50 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/05 18:10:47 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ char	**ft_data_to_2d_map(t_list *map);
 void	ft_check_validity(t_data *parse);
 ////////////////////////////////////////////////////////////////
 
-void	ft_parse(int fd, t_list *_map_)
+void	ft_parse(int fd, t_data *parse)
 {
-	t_data	*parse;
+	t_list	*_map_;
 
+	_map_ = NULL;
 	ft_retrieve_data_from_fd(fd, &_map_);
 	parse = malloc(sizeof(t_data));
 	ft_check_allocation(parse);
