@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 18:19:04 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/05 21:28:50 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "stdbool.h"
 # include <stdio.h>
 # include <sys/fcntl.h>
-# include "../lib/minilibX/mlx.h"
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "structs.h"
 # define SUCCESS	0
 # define FAIL		1
 # define NO			1
@@ -27,57 +28,28 @@
 # define F			5
 # define C			6
 # define WHITESPACE	" \t\r\v\n\f"
-
-typedef struct s_directions
-{
-	char	*north;
-	char	*west;
-	char	*south;
-	char	*east;
-}			t_directions;
-
-typedef struct s_colors
-{
-	char	*floor;
-	char	*ceiling;
-}			t_colors;
-
-typedef struct s_data
-{
-	char			**data;
-	char			**map;
-	t_directions	*directions;
-	t_colors		*colors;
-}					t_data;
-
-typedef struct s_tools
-{
-	int	i;
-	int	j;
-	int	no;
-	int	so;
-	int	we;
-	int	ea;
-	int	floor;
-	int	ceiling;
-	int	which;
-	int	error;
-	int	flag;
-}		t_tools;
-
-typedef struct s_list
-{
-	char			*line;
-	struct s_list	*next;
-}					t_list;
+# define PIXEL		32
+#define BLACK		0x000000
+#define WHITE		0xFFFFFF
+#define RED			0xFF0000
+#define GREEN		0x00FF00
+#define BLUE		0x0000FF
+#define YELLOW		0xFFFF00
+#define CYAN		0x00FFFF
+#define MAGENTA		0xFF00FF
 
 /*	Check input		*/
 bool	ft_check_input_file(int ac, char **av);
 int		ft_open_file(char *file);
 
-/*	Parsing	functions	*/
+/*	Main functions	*/
 void	ft_parse(int fd, t_data *data);
 void	ft_raycasting(t_data *data);
+
+/*	Raycasting functions	*/
+
+/*	Raycasting utils functions	*/
+void mlx_error(void);
 
 /*	Check functions		*/
 void	ft_check_unnessary_infos(t_data *parse);

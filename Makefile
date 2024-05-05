@@ -6,15 +6,16 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/05 18:19:37 by iassil           ###   ########.fr        #
+#    Updated: 2024/05/05 20:57:02 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
 CC			+=	-Wall -Wextra -Werror
 CC			+=	-fsanitize=address -fsanitize=undefined -g
-MLX			=	-L./lib/minilibX -lmlx -framework OpenGL -framework AppKit
-INCLUDE		=	-I./lib/minilibX
+MLX			=	-framework Cocoa -framework OpenGL -framework IOKit
+MLX			+=	MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/iassil/.brew/opt/glfw/lib/"
+INCLUDE		=	-I./MLX42
 RM			=	rm -f
 NAME		=	cub3d
 SRC_HR_H	=	headers/cub3d.h
