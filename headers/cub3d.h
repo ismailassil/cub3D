@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 01:48:33 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/05 16:28:52 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,31 @@
 # define SO			2
 # define WE			3
 # define EA			4
+# define F			5
+# define C			6
+# define WHITESPACE	" \t\r\v\n\f"
 
-typedef struct s_map
+typedef struct s_directions
 {
-	char	**data;
-	char	**directions;
-	char	**map;
-}			t_data;
+	char	*north;
+	char	*west;
+	char	*south;
+	char	*east;
+}			t_directions;
 
+typedef struct s_colors
+{
+	char	*floor;
+	char	*ceiling;
+}			t_colors;
+
+typedef struct s_data
+{
+	char			**data;
+	char			**map;
+	t_directions	*directions;
+	t_colors		*colors;
+}					t_data;
 typedef struct s_tools
 {
 	int	i;
@@ -40,11 +57,14 @@ typedef struct s_tools
 	int	so;
 	int	we;
 	int	ea;
+	int	floor;
+	int	ceiling;
 	int	which;
 	int	error;
+	int	flag;
 }		t_tools;
 
-typedef struct s_data
+typedef struct s_list
 {
 	char			*line;
 	struct s_data	*next;

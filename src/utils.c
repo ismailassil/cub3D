@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:45:00 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 00:39:25 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/05 16:39:20 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	p_error(char *str1, char *str2, int newline)
 {
-	write(2, "Error: ", 7);
+	write(2, "Error\n ", 7);
 	if (str1 && *str1)
 		write(2, str1, ft_strlen(str1));
 	if (str2 && *str2)
