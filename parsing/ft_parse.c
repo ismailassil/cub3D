@@ -6,13 +6,13 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:48:38 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 01:46:30 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/05 01:49:14 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-void	ft_free_all(t_map **parse)
+void	ft_free_all(t_data **parse)
 {
 	ft_free_map(&(*parse)->data);
 	free((*parse)->directions);
@@ -20,10 +20,10 @@ void	ft_free_all(t_map **parse)
 	exit(FAIL);
 }
 
-char	**ft_data_to_map(t_data *map)
+char	**ft_data_to_map(t_list *map)
 {
 	char	**ptr;
-	t_data	*head;
+	t_list	*head;
 	int		i;
 
 	i = 0;
@@ -40,7 +40,7 @@ char	**ft_data_to_map(t_data *map)
 	return (ptr);
 }
 
-void	ft_if_surrounded_by_walls(t_map *parse)
+void	ft_if_surrounded_by_walls(t_data *parse)
 {
 	int	i;
 
@@ -69,7 +69,7 @@ void	ft_init_tools(t_tools *t)
 	t->error = 0;
 }
 
-void	ft_add_direction(t_map *parse, t_tools *t, int *dir, int which)
+void	ft_add_direction(t_data *parse, t_tools *t, int *dir, int which)
 {
 	(*dir)++;
 	if ((*dir) >= 2)
@@ -87,7 +87,7 @@ void	ft_add_direction(t_map *parse, t_tools *t, int *dir, int which)
 	parse->directions[t->j++] = parse->data[t->i];
 }
 
-void	ft_check_directions(t_map *parse, t_tools *t)
+void	ft_check_directions(t_data *parse, t_tools *t)
 {
 	if (t->no == 0)
 	{
@@ -113,14 +113,13 @@ void	ft_check_directions(t_map *parse, t_tools *t)
 		ft_free_all(&parse);
 }
 
-void	ft_retrieve_directions(t_map *parse)
+void	ft_retrieve_directions(t_data *parse)
 {
-	char	**directions;
 	t_tools	t;
 
 	ft_init_tools(&t);
 	parse->directions = malloc(sizeof(char *) * 5);
-	ft_check_allocation(directions);
+	ft_check_allocation(parse->directions);
 	while (parse->data && parse->data[t.i])
 	{
 		if (ft_strncmp(parse->data[t.i], "NO", 3))
@@ -133,16 +132,16 @@ void	ft_retrieve_directions(t_map *parse)
 			ft_add_direction(parse, &t, &t.ea, EA);
 		t.i++;
 	}
-	directions[t.j] = 0;
+	parse->directions[t.j] = 0;
 	ft_check_directions(parse, &t);
 }
 
-bool	ft_retrieve_map(t_map *parse)
+void	ft_retrieve_map(t_data *parse)
 {
-	return (false);
+	(void)parse;
 }
 
-void	ft_check_validity(t_map *parse)
+void	ft_check_validity(t_data *parse)
 {
 	ft_retrieve_directions(parse);
 	ft_retrieve_map(parse);
@@ -155,7 +154,7 @@ void	ft_remove_newline(char **line)
 		(*line)[ft_strlen(*line) - 1] = '\0';
 }
 
-void	ft_retrieve_data_from_fd(int fd, t_data **map)
+void	ft_retrieve_data_from_fd(int fd, t_list **map)
 {
 	char	*line;
 
@@ -180,12 +179,12 @@ void	ft_retrieve_data_from_fd(int fd, t_data **map)
 	close(fd);
 }
 
-void	ft_parse(int fd, t_data *_map_)
+void	ft_parse(int fd, t_list *_map_)
 {
-	t_map	*parse;
+	t_data	*parse;
 
 	ft_retrieve_data_from_fd(fd, &_map_);
-	parse = malloc(sizeof(t_map));
+	parse = malloc(sizeof(t_data));
 	ft_check_allocation(parse);
 	parse->map = NULL;
 	parse->data = ft_data_to_map(_map_);

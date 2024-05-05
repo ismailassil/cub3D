@@ -6,7 +6,7 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/05 00:22:49 by iassil           ###   ########.fr        #
+#    Updated: 2024/05/05 01:48:25 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_FILES	=	cub3d.c				check_input.c			utils.c
 
 PRS_FILES	=	ft_parse.c
 
-UTILS_FILES	=	t_data.c
+UTILS_FILES	=	t_list.c
 
 GNL_FILES	=	get_next_line.c		get_next_line_utils.c
 

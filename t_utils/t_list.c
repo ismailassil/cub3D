@@ -6,16 +6,16 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:24 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 01:13:30 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/05 01:48:25 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-int	ft_push_line(char *token, t_data **head)
+int	ft_push_line(char *token, t_list **head)
 {
-	t_data	*newnode;
-	t_data	*last;
+	t_list	*newnode;
+	t_list	*last;
 
 	newnode = ft_new_node(token);
 	if (!head || !(*head))
@@ -28,25 +28,25 @@ int	ft_push_line(char *token, t_data **head)
 	return (1);
 }
 
-t_data	*ft_new_node(char *line)
+t_list	*ft_new_node(char *line)
 {
-	t_data	*new;
+	t_list	*new;
 
-	new = malloc(sizeof(t_data));
+	new = malloc(sizeof(t_list));
 	ft_check_allocation(new);
 	new->line = ft_strdup(line);
 	new->next = NULL;
 	return (new);
 }
 
-t_data	*ft_last_node(t_data *top)
+t_list	*ft_last_node(t_list *top)
 {
 	while (top && top->next)
 		top = top->next;
 	return (top);
 }
 
-int	ft_t_data_len(t_data *head)
+int	ft_t_data_len(t_list *head)
 {
 	int	len;
 
@@ -59,9 +59,9 @@ int	ft_t_data_len(t_data *head)
 	return (len);
 }
 
-void	ft_free_data(t_data **head)
+void	ft_free_data(t_list **head)
 {
-	t_data	*current;
+	t_list	*current;
 
 	current = NULL;
 	while (*head)

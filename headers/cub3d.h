@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 01:40:09 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/05 01:48:33 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_map
 	char	**data;
 	char	**directions;
 	char	**map;
-}			t_map;
+}			t_data;
 
 typedef struct s_tools
 {
@@ -48,21 +48,21 @@ typedef struct s_data
 {
 	char			*line;
 	struct s_data	*next;
-}					t_data;
+}					t_list;
 
 /*	Check input		*/
 bool	ft_check_input_file(int ac, char **av);
 int		ft_open_file(char *file);
 
 /*	Parsing	functions	*/
-void	ft_parse(int fd, t_data *data);
+void	ft_parse(int fd, t_list *data);
 
 /*	t_utils functions	*/
-int		ft_push_line(char *token, t_data **head);
-int		ft_t_data_len(t_data *head);
-t_data	*ft_last_node(t_data *top);
-t_data	*ft_new_node(char *line);
-void	ft_free_data(t_data **head);
+int		ft_push_line(char *token, t_list **head);
+int		ft_t_data_len(t_list *head);
+t_list	*ft_last_node(t_list *top);
+t_list	*ft_new_node(char *line);
+void	ft_free_data(t_list **head);
 
 /*	Utils functions	*/
 void	p_error(char *str1, char *str2, int newline);
