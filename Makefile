@@ -6,14 +6,15 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/05 18:08:54 by iassil           ###   ########.fr        #
+#    Updated: 2024/05/05 18:19:37 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
 CC			+=	-Wall -Wextra -Werror
 CC			+=	-fsanitize=address -fsanitize=undefined -g
-MLX			=	-framework OpenGL -framework AppKit
+MLX			=	-L./lib/minilibX -lmlx -framework OpenGL -framework AppKit
+INCLUDE		=	-I./lib/minilibX
 RM			=	rm -f
 NAME		=	cub3d
 SRC_HR_H	=	headers/cub3d.h
@@ -25,6 +26,8 @@ SRC_FILES	=	cub3d.c				ft_check_input.c		src_utils.c
 
 PRS_FILES	=	ft_parse.c			ft_check.c				ft_check_utils.c	\
 				ft_parsing_utils.c
+
+EXEC_FILES	=	ft_raycasting.c
 
 UTILS_FILES	=	t_list.c			t_tools.c
 
@@ -48,16 +51,18 @@ LIB_SRC		=	$(addprefix lib/libft/,$(LIB_FILES))
 GNL_SRC		=	$(addprefix lib/get_next_line/,$(GNL_FILES))
 SRC_SRC		=	$(addprefix src/,$(SRC_FILES))
 PRS_SRC		=	$(addprefix parsing/,$(PRS_FILES))
+EXEC_SRC	=	$(addprefix raycasting/,$(EXEC_FILES))
 UTILS_SRC	=	$(addprefix t_utils/,$(UTILS_FILES))
 
 LIB_OBJ		=	$(addprefix _object_files/,$(LIB_SRC:.c=.o))
 GNL_OBJ		=	$(addprefix _object_files/,$(GNL_SRC:.c=.o))
 SRC_OBJ		=	$(addprefix _object_files/,$(SRC_SRC:.c=.o))
 PRS_OBJ		=	$(addprefix _object_files/,$(PRS_SRC:.c=.o))
+EXEC_OBJ	=	$(addprefix _object_files/,$(EXEC_SRC:.c=.o))
 UTILS_OBJ	=	$(addprefix _object_files/,$(UTILS_SRC:.c=.o))
 
 OBJ 		=	$(SRC_OBJ) $(GNL_OBJ) $(LIB_OBJ)	\
-				$(PRS_OBJ) $(UTILS_OBJ)
+				$(PRS_OBJ) $(UTILS_OBJ) $(EXEC_OBJ)
 
 ########### Goal Target
 all: $(NAME)
@@ -83,9 +88,13 @@ _object_files/lib/libft/%.o: lib/libft/%.c $(LIB_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 
+_object_files/raycasting/%.o: raycasting/%.c $(SRC_HR_H)
+	@mkdir -p $(dir $@)
+	@$(CC) -c $< -o $@ $(INCLUDE)
+
 $(NAME): $(OBJ)
 	@echo "$(YELLOW)[ ~ ] Compilation of the Objects files...$(RESET)"
-	@$(CC) $(LINKER) $^ -o $@
+	@$(CC) $(MLX) $^ -o $@ 
 	@echo "$(GREEN)[ ✓ ] Executable file Compiled Successfully!$(RESET)"
 
 clean:
