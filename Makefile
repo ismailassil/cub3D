@@ -6,7 +6,7 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/06 21:09:45 by iassil           ###   ########.fr        #
+#    Updated: 2024/05/06 21:28:39 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC_FILES	=	cub3d.c				ft_check_input.c		src_utils.c
 PRS_FILES	=	ft_parse.c			ft_check.c				ft_check_utils.c	\
 				ft_parsing_utils.c
 
-EXEC_FILES	=	ft_raycasting.c		mlx_key_hook.c			mlx_.c				\
+EXEC_FILES	=	ft_raycasting.c		mlx_key_hook.c			ft_mlx.c			\
 				ray_utils.c			ft_fill.c
 
 UTILS_FILES	=	t_list.c			t_tools.c

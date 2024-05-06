@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/06 20:36:01 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/06 21:38:37 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ typedef struct s_tools
 	int	flag;
 	int	x;
 	int	y;
+	int	x_begin;
+	int	y_max;
+	int	x_max;
+	int x_center;
+	int y_center;
 }		t_tools;
 
 typedef struct s_list
