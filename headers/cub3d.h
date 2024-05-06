@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 21:28:50 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/06 08:45:53 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "stdbool.h"
 # include <stdio.h>
 # include <sys/fcntl.h>
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "structs.h"
 # define SUCCESS	0
 # define FAIL		1
