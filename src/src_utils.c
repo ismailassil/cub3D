@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:45:00 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 17:47:08 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/06 15:17:16 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_print_map(char **map)
 	i = 0;
 	while (map && map[i])
 	{
-		printf("%s\n", map[i]);
+		printf("[%d]	{%s} | [%d]\n", i, map[i], (int)ft_strlen(map[i]));
 		i++;
 	}
 	printf("\n");

@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/06 08:45:53 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/06 20:36:01 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "stdbool.h"
 # include <stdio.h>
 # include <sys/fcntl.h>
+# include <math.h>
 # include "../lib/MLX42/include/MLX42/MLX42.h"
-# include "structs.h"
 # define SUCCESS	0
 # define FAIL		1
 # define NO			1
@@ -29,14 +29,85 @@
 # define C			6
 # define WHITESPACE	" \t\r\v\n\f"
 # define PIXEL		32
-#define BLACK		0x000000
-#define WHITE		0xFFFFFF
-#define RED			0xFF0000
-#define GREEN		0x00FF00
-#define BLUE		0x0000FF
-#define YELLOW		0xFFFF00
-#define CYAN		0x00FFFF
-#define MAGENTA		0xFF00FF
+# define WIDTH		1920
+# define HEIGHT		1080
+# define PLAYER_PX	10
+# define BLACK		0x000000
+# define WHITE		0xFFFFFF
+# define RED		0xFF0000
+# define GREEN		0x00FF00
+# define BLUE		0x0000FF
+# define YELLOW		0xFFFF00
+# define CYAN		0x00FFFF
+# define MAGENTA	0xFF00FF
+
+typedef struct s_directions
+{
+	char	*north;
+	char	*west;
+	char	*south;
+	char	*east;
+}			t_directions;
+
+typedef struct s_colors
+{
+	char	*floor;
+	char	*ceiling;
+}			t_colors;
+
+typedef struct s_data
+{
+	char			**data;
+	char			**map;
+	t_directions	*directions;
+	t_colors		*colors;
+	int				ylen;
+}					t_data;
+
+typedef struct s_tools
+{
+	int	i;
+	int	j;
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
+	int	floor;
+	int	ceiling;
+	int	which;
+	int	error;
+	int	flag;
+	int	x;
+	int	y;
+}		t_tools;
+
+typedef struct s_list
+{
+	char			*line;
+	struct s_list	*next;
+}					t_list;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}		t_point;
+
+typedef struct s_pixel
+{
+	int	width;
+	int	height;
+}		t_pixel;
+
+typedef struct s_mlx
+{
+	mlx_t			*mlx;
+	mlx_image_t*	img;
+	t_data			*info;
+	t_point			position;
+	t_pixel			pixel;
+}					t_mlx;
+
 
 /*	Check input		*/
 bool	ft_check_input_file(int ac, char **av);
@@ -47,9 +118,20 @@ void	ft_parse(int fd, t_data *data);
 void	ft_raycasting(t_data *data);
 
 /*	Raycasting functions	*/
+void	ft_hook(mlx_key_data_t keydata, void *param);
+void	ft_render(void *param);
+void	ft_close(void *param);
+void 	_mlx_error_(void);
 
 /*	Raycasting utils functions	*/
-void mlx_error(void);
+void	ft_get_data(t_mlx *data);
+void	ft_fill_square(t_mlx *data, int x, int y, int color);
+void	ft_fill_pixel_player(t_mlx *data, int x, int y, int color);
+void	ft_move_player(t_mlx *data, int key);
+
+/*	Utils functions		*/
+void	ft_get_position_of_player(char **map, t_point *p);
+void	ft_exit(t_mlx *data);
 
 /*	Check functions		*/
 void	ft_check_unnessary_infos(t_data *parse);
