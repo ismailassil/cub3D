@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 12:57:48 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 15:07:29 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ typedef struct s_point
 	int	y_center;
 	int	y_max;
 	int	x_max;
-	int	move_x;
-	int	move_y;
+	int	x_move;
+	int	y_move;
 }		t_point;
 
 typedef struct s_cur_pos

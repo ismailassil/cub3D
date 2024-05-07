@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:10:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 13:05:59 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 14:30:38 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,13 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE)
 		ft_exit(data);
 	else if (keydata.key == MLX_KEY_UP)
-	{
-		data->position.move_y -= PLAYER_MOVE;
-		data->cur_pos.y_pixels -= PLAYER_MOVE;
-	}
+		ft_move_player(data, MLX_KEY_UP);
 	else if (keydata.key == MLX_KEY_DOWN)
-	{
-		data->position.move_y += PLAYER_MOVE;
-		data->cur_pos.y_pixels += PLAYER_MOVE;
-	}
+		ft_move_player(data, MLX_KEY_DOWN);
 	else if (keydata.key == MLX_KEY_RIGHT)
-	{
-		data->cur_pos.x_pixels += PLAYER_MOVE;
-		data->position.move_x += PLAYER_MOVE;
-	}
+		ft_move_player(data, MLX_KEY_RIGHT);
 	else if (keydata.key == MLX_KEY_LEFT)
-	{
-		data->cur_pos.x_pixels -= PLAYER_MOVE;
-		data->position.move_x -= PLAYER_MOVE;
-	}
+		ft_move_player(data, MLX_KEY_LEFT);
 }
 
 void	ft_close(void *param)

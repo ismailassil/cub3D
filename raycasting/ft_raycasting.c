@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:03:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 13:01:00 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 15:07:29 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,16 @@ void	map(t_data *info)
 void	ft_center_player(t_mlx *data)
 {
 	ft_get_position_of_player(data->info->map, &data->position);
-	// data->position.x_center = (data->pixel.width / 2) - (PLAYER_PX / 2);
-	// data->position.y_center = (data->pixel.height / 2) - (PLAYER_PX / 2);
-	data->position.move_x = 0;
-	data->position.move_y = 0;
+	data->position.x_move = 0;
+	data->position.y_move = 0;
 	data->cur_pos.x_map = data->position.x;
 	data->cur_pos.y_map = data->position.y;
 	data->cur_pos.x_pixels = data->position.x * data->pixel.width;
 	data->cur_pos.y_pixels = data->position.y * data->pixel.height;
+	printf("================\n");
+	printf("x_map::{%d}, y_map::{%d}, x_pixel::{%d}, y_pixel::{%d}\n", \
+		data->cur_pos.x_map, data->cur_pos.y_map, data->cur_pos.x_pixels, data->cur_pos.y_pixels);
+	printf("================\n");
 }
 
 void	ft_raycasting(t_data *info)
