@@ -6,36 +6,13 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:10:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 14:30:38 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 21:49:25 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-void	ft_render(void *param)
-{
-	t_mlx	*data;
-	t_tools	t;
-
-	ft_init_tools(&t);
-	data = (t_mlx *)param;
-	while (data->info->map && data->info->map[t.y])
-	{
-		t.x = 0;
-		while (data->info->map[t.y][t.x])
-		{
-			if (data->info->map[t.y][t.x] == '1')
-				ft_fill_square(data, t.x, t.y, BLACK);
-			else
-				ft_fill_square(data, t.x, t.y, WHITE);
-			t.x++;
-		}
-		t.y++;
-	}
-	ft_fill_pixel_player(data, CYAN);
-}
-
-void	ft_hook(mlx_key_data_t keydata, void *param)
+void	ft_key_hook(mlx_key_data_t keydata, void *param)
 {
 	t_mlx	*data;
 
@@ -53,7 +30,30 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 		ft_move_player(data, MLX_KEY_LEFT);
 }
 
-void	ft_close(void *param)
+void	ft_loop_hook(void *param)
+{
+	t_mlx	*data;
+	t_tools	t;
+
+	ft_init_tools(&t);
+	data = (t_mlx *)param;
+	while (data->info->map && data->info->map[t.y])
+	{
+		t.x = 0;
+		while (data->info->map[t.y][t.x])
+		{
+			if (data->info->map[t.y][t.x] == '1')
+				ft_fill_square(data, t.x, t.y, BLACK);
+			else
+				ft_fill_square(data, t.x, t.y, get_rgba(255, 255, 255));
+			t.x++;
+		}
+		t.y++;
+	}
+	ft_fill_pixel_player(data, CYAN);
+}
+
+void	ft_close_hook(void *param)
 {
 	t_mlx	*data;
 
@@ -63,7 +63,7 @@ void	ft_close(void *param)
 	exit(SUCCESS);
 }
 
-void _mlx_error_(void)
+void ft_mlx_error(void)
 {
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
 	exit(EXIT_FAILURE);

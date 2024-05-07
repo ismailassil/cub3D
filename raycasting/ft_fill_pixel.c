@@ -1,16 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fill.c                                          :+:      :+:    :+:   */
+/*   ft_fill_pixel.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:51:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 15:07:29 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 21:48:26 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
+
+void	ft_fill_pixel_player(t_mlx *data, int color)
+{
+	t_tools	t;
+
+	ft_init_tools(&t);
+	t.y = (data->position.y * data->pixel.height) + data->position.y_move;
+	t.x = (data->position.x * data->pixel.width) + data->position.x_move;
+	t.y_max = t.y + PLAYER_PX;
+	t.x_max = t.x + PLAYER_PX;
+	t.x_begin = t.x;
+	while (t.y < t.y_max && t.y < HEIGHT)
+	{
+		t.x = t.x_begin;
+		while (t.x < t.x_max && t.x < WIDTH)
+		{
+			mlx_put_pixel(data->img, t.x, t.y, color);
+			t.x++;
+		}
+		t.y++;
+	}
+}
 
 void	ft_fill_square(t_mlx *data, int x, int y, int color)
 {
@@ -32,27 +54,5 @@ void	ft_fill_square(t_mlx *data, int x, int y, int color)
 			x++;
 		}
 		y++;
-	}
-}
-
-void	ft_fill_pixel_player(t_mlx *data, int color)
-{
-	t_tools	t;
-
-	ft_init_tools(&t);
-	t.y = (data->position.y * data->pixel.height) + data->position.y_move;
-	t.x = (data->position.x * data->pixel.width) + data->position.x_move;
-	t.y_max = t.y + PLAYER_PX;
-	t.x_max = t.x + PLAYER_PX;
-	t.x_begin = t.x;
-	while (t.y < t.y_max && t.y < HEIGHT)
-	{
-		t.x = t.x_begin;
-		while (t.x < t.x_max && t.x < WIDTH)
-		{
-			mlx_put_pixel(data->img, t.x, t.y, color);
-			t.x++;
-		}
-		t.y++;
 	}
 }

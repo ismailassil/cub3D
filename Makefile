@@ -6,7 +6,7 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/06 21:28:39 by iassil           ###   ########.fr        #
+#    Updated: 2024/05/07 21:54:38 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,9 @@ SRC_FILES	=	cub3d.c				ft_check_input.c		src_utils.c
 PRS_FILES	=	ft_parse.c			ft_check.c				ft_check_utils.c	\
 				ft_parsing_utils.c
 
-EXEC_FILES	=	ft_raycasting.c		mlx_key_hook.c			ft_mlx.c			\
-				ray_utils.c			ft_fill.c
+EXEC_FILES	=	ft_raycasting.c		colors.c				ft_fill_pixel.c		\
+				ft_key_hook.c		ft_mlx.c				ft_raycasting.c		\
+				ray_utils.c			projection_of_view.c	
 
 UTILS_FILES	=	t_list.c			t_tools.c
 
@@ -50,7 +51,7 @@ LIB_FILES	=	ft_atoi.c			ft_bzero.c				ft_calloc.c			\
 ##########################################################################################
 
 LIB_SRC		=	$(addprefix lib/libft/,$(LIB_FILES))
-GNL_SRC		=	$(addprefix lib/get_next_line/,$(GNL_FILES))
+GNL_SRC		=	$(addprefix lib/gnl/,$(GNL_FILES))
 SRC_SRC		=	$(addprefix src/,$(SRC_FILES))
 PRS_SRC		=	$(addprefix parsing/,$(PRS_FILES))
 EXEC_SRC	=	$(addprefix raycasting/,$(EXEC_FILES))
@@ -82,7 +83,7 @@ _object_files/t_utils/%.o: t_utils/%.c $(SRC_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 
-_object_files/lib/get_next_line/%.o: lib/get_next_line/%.c $(GNL_HR_H)
+_object_files/lib/gnl/%.o: lib/gnl/%.c $(GNL_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 

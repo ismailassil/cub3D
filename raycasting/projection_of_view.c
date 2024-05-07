@@ -1,19 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.c                                           :+:      :+:    :+:   */
+/*   projection_of_view.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 18:56:10 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 21:24:00 by iassil           ###   ########.fr       */
+/*   Created: 2024/05/07 21:42:43 by iassil            #+#    #+#             */
+/*   Updated: 2024/05/07 21:42:56 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-int get_rgba(int r, int g, int b)
-{
-	return ((unsigned int)r << 24 | (unsigned int)g << 16 \
-		| (unsigned int)b << 8 | 0xFF);
-}

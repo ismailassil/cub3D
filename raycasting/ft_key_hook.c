@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_key_hook.c                                     :+:      :+:    :+:   */
+/*   ft_key_hook.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:11:27 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 17:26:31 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 21:48:46 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,21 @@ void	ft_move_player(t_mlx *data, int key)
 	{
 		data->position.y_move -= PLAYER_MOVE;
 		data->cur_pos.y_pixels -= PLAYER_MOVE;
-		// printf("cur_pos.y_pixels::{%d}\n", data->cur_pos.y_pixels);
 	}
 	else if (key == MLX_KEY_DOWN && ft_check_before_moving(data, MLX_KEY_DOWN))
 	{
 		data->position.y_move += PLAYER_MOVE;
 		data->cur_pos.y_pixels += PLAYER_MOVE;
-		// printf("cur_pos.y_pixels::{%d}\n", data->cur_pos.y_pixels);
 	}
 	else if (key == MLX_KEY_RIGHT && ft_check_before_moving(data, MLX_KEY_RIGHT))
 	{
 		data->position.x_move += PLAYER_MOVE;
 		data->cur_pos.x_pixels += PLAYER_MOVE;
-		// printf("cur_pos.x_pixels::{%d}\n", data->cur_pos.x_pixels);
 	}
 	else if (key == MLX_KEY_LEFT && ft_check_before_moving(data, MLX_KEY_LEFT))
 	{
 		data->position.x_move -= PLAYER_MOVE;
 		data->cur_pos.x_pixels -= PLAYER_MOVE;
-		// printf("cur_pos.x_pixels::{%d}\n", data->cur_pos.x_pixels);
 	}
 }
 
@@ -72,8 +68,6 @@ void	ft_update_data(t_mlx *data, t_tools *t, int key)
 			data->cur_pos.x_map -= 1;
 	}
 }
-
-// printf("DOWN next_y::{%d}, curr_y::{%d}\n", nextpx_y, data->cur_pos.y_pixels + PLAYER_MOVE);
 
 bool	ft_check_before_moving(t_mlx *data, int key)
 {

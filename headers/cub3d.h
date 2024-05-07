@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 17:25:17 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 21:50:39 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ typedef struct s_mlx
 	t_pixel			pixel;
 }					t_mlx;
 
-
 /*	Check input		*/
 bool	ft_check_input_file(int ac, char **av);
 int		ft_open_file(char *file);
@@ -143,10 +142,10 @@ void	ft_parse(int fd, t_data *data);
 void	ft_raycasting(t_data *data);
 
 /*	Raycasting functions	*/
-void	ft_hook(mlx_key_data_t keydata, void *param);
-void	ft_render(void *param);
-void	ft_close(void *param);
-void 	_mlx_error_(void);
+void	ft_key_hook(mlx_key_data_t keydata, void *param);
+void	ft_loop_hook(void *param);
+void	ft_close_hook(void *param);
+void 	ft_mlx_error(void);
 
 /*	Raycasting utils functions	*/
 void	ft_get_data(t_mlx *data);
@@ -154,7 +153,11 @@ void	ft_fill_square(t_mlx *data, int x, int y, int color);
 void	ft_fill_pixel_player(t_mlx *data, int color);
 void	ft_move_player(t_mlx *data, int key);
 
+/*	Color functions		*/
+int 	get_rgba(int r, int g, int b);
+
 /*	Utils functions		*/
+void	ft_get_positions(t_mlx *data);
 void	ft_get_position_of_player(char **map, t_point *p);
 void	ft_exit(t_mlx *data);
 

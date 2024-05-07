@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:03:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 17:14:09 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 21:50:21 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,6 @@ void	map(t_data *info)
 	info->map[i] = 0;
 }
 
-void	ft_get_positions(t_mlx *data)
-{
-	ft_get_position_of_player(data->info->map, &data->position);
-	data->position.x_move = 0;
-	data->position.y_move = 0;
-	data->cur_pos.x_map = data->position.x;
-	data->cur_pos.y_map = data->position.y;
-	data->cur_pos.x_pixels = data->position.x * data->pixel.width;
-	data->cur_pos.y_pixels = data->position.y * data->pixel.height;
-	printf("================\n");
-	printf("x_map::{%d}, y_map::{%d}, x_pixel::{%d}, y_pixel::{%d}\n", \
-		data->cur_pos.x_map, data->cur_pos.y_map, data->cur_pos.x_pixels, data->cur_pos.y_pixels);
-	printf("================\n");
-}
-
 void	ft_raycasting(t_data *info)
 {
 	t_mlx	*data;
@@ -76,17 +61,17 @@ void	ft_raycasting(t_data *info)
 	ft_get_data(data);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "DOOM", false);
 	if (!data->mlx)
-		_mlx_error_();
+		ft_mlx_error();
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img)
-		_mlx_error_();
+		ft_mlx_error();
 	if (mlx_image_to_window(data->mlx, data->img, 0, 0) < 0)
-		_mlx_error_();
+		ft_mlx_error();
 	ft_get_positions(data);
-	mlx_key_hook(data->mlx, &ft_hook, (void *)data);
-	mlx_loop_hook(data->mlx, &ft_render, (void *)data);
+	mlx_key_hook(data->mlx, &ft_key_hook, (void *)data);
+	mlx_loop_hook(data->mlx, &ft_loop_hook, (void *)data);
 	mlx_loop(data->mlx);
-	mlx_close_hook(data->mlx, &ft_close, (void *)data);
+	mlx_close_hook(data->mlx, &ft_close_hook, (void *)data);
 	mlx_delete_image(data->mlx, data->img);
 	mlx_terminate(data->mlx);
 }
