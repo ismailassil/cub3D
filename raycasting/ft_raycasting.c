@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:03:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/06 20:32:05 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 13:01:00 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	map(t_data *info)
 		"      1111110111     110001",
 		"11111111111101011101010010001",
 		"11000000110101011100000010001",
-		"10000000000000001100000000001",
-		"1000P00000000000000010010001",
+		"1P000000000000001100000000001",
+		"1000000000000000000010010001",
 		"110000011101111111110111100111",
 		"11110111011        101101010111",
 		"   1000111111111111111111111111",
@@ -48,31 +48,17 @@ void	map(t_data *info)
 	info->map[i] = 0;
 }
 
-void	ft_initialize_window(t_mlx *data)
+void	ft_center_player(t_mlx *data)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (data->info->map && data->info->map[y])
-	{
-		x = 0;
-		while (data->info->map[y][x])
-		{
-			if (data->info->map[y][x] == '1')
-				ft_fill_square(data, x, y, BLACK);
-			else if (data->info->map[y][x] == 'P')
-			{
-				ft_fill_square(data, x, y, WHITE);
-				ft_fill_pixel_player(data, x, y, CYAN);
-			}
-			else
-				ft_fill_square(data, x, y, WHITE);
-			x++;
-		}
-		y++;
-	}
+	ft_get_position_of_player(data->info->map, &data->position);
+	// data->position.x_center = (data->pixel.width / 2) - (PLAYER_PX / 2);
+	// data->position.y_center = (data->pixel.height / 2) - (PLAYER_PX / 2);
+	data->position.move_x = 0;
+	data->position.move_y = 0;
+	data->cur_pos.x_map = data->position.x;
+	data->cur_pos.y_map = data->position.y;
+	data->cur_pos.x_pixels = data->position.x * data->pixel.width;
+	data->cur_pos.y_pixels = data->position.y * data->pixel.height;
 }
 
 void	ft_raycasting(t_data *info)
@@ -94,9 +80,9 @@ void	ft_raycasting(t_data *info)
 		_mlx_error_();
 	if (mlx_image_to_window(data->mlx, data->img, 0, 0) < 0)
 		_mlx_error_();
-	ft_initialize_window(data);
+	ft_center_player(data);
 	mlx_key_hook(data->mlx, &ft_hook, (void *)data);
-	// mlx_loop_hook(data->mlx, &ft_render, (void *)data);
+	mlx_loop_hook(data->mlx, &ft_render, (void *)data);
 	mlx_loop(data->mlx);
 	mlx_close_hook(data->mlx, &ft_close, (void *)data);
 	mlx_delete_image(data->mlx, data->img);

@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/06 21:38:37 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 12:57:48 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,28 @@
 # include <sys/fcntl.h>
 # include <math.h>
 # include "../lib/MLX42/include/MLX42/MLX42.h"
-# define SUCCESS	0
-# define FAIL		1
-# define NO			1
-# define SO			2
-# define WE			3
-# define EA			4
-# define F			5
-# define C			6
-# define WHITESPACE	" \t\r\v\n\f"
-# define PIXEL		32
-# define WIDTH		1920
-# define HEIGHT		1080
-# define PLAYER_PX	10
-# define BLACK		0x000000
-# define WHITE		0xFFFFFF
-# define RED		0xFF0000
-# define GREEN		0x00FF00
-# define BLUE		0x0000FF
-# define YELLOW		0xFFFF00
-# define CYAN		0x00FFFF
-# define MAGENTA	0xFF00FF
+# define SUCCESS		0
+# define FAIL			1
+# define NO				1
+# define SO				2
+# define WE				3
+# define EA				4
+# define F				5
+# define C				6
+# define WHITESPACE		" \t\r\v\n\f"
+# define PIXEL			32
+# define WIDTH			1920
+# define HEIGHT			1080
+# define PLAYER_PX		10
+# define PLAYER_MOVE	5
+# define BLACK			0x000000
+# define WHITE			0xFFFFFF
+# define RED			0xFF0000
+# define GREEN			0x00FF00
+# define BLUE			0x0000FF
+# define YELLOW			0xFFFF00
+# define CYAN			0x00FFFF
+# define MAGENTA		0xFF00FF
 
 typedef struct s_directions
 {
@@ -96,7 +97,21 @@ typedef struct s_point
 {
 	int	x;
 	int	y;
+	int	x_center;
+	int	y_center;
+	int	y_max;
+	int	x_max;
+	int	move_x;
+	int	move_y;
 }		t_point;
+
+typedef struct s_cur_pos
+{
+	int	x_pixels;
+	int	y_pixels;
+	int	x_map;
+	int	y_map;
+}		t_cur_pos;
 
 typedef struct s_pixel
 {
@@ -110,6 +125,7 @@ typedef struct s_mlx
 	mlx_image_t*	img;
 	t_data			*info;
 	t_point			position;
+	t_cur_pos		cur_pos;
 	t_pixel			pixel;
 }					t_mlx;
 
@@ -131,7 +147,7 @@ void 	_mlx_error_(void);
 /*	Raycasting utils functions	*/
 void	ft_get_data(t_mlx *data);
 void	ft_fill_square(t_mlx *data, int x, int y, int color);
-void	ft_fill_pixel_player(t_mlx *data, int x, int y, int color);
+void	ft_fill_pixel_player(t_mlx *data, int color);
 void	ft_move_player(t_mlx *data, int key);
 
 /*	Utils functions		*/
