@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:03:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 15:07:29 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 17:14:09 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	map(t_data *info)
 	info->map[i] = 0;
 }
 
-void	ft_center_player(t_mlx *data)
+void	ft_get_positions(t_mlx *data)
 {
 	ft_get_position_of_player(data->info->map, &data->position);
 	data->position.x_move = 0;
@@ -82,7 +82,7 @@ void	ft_raycasting(t_data *info)
 		_mlx_error_();
 	if (mlx_image_to_window(data->mlx, data->img, 0, 0) < 0)
 		_mlx_error_();
-	ft_center_player(data);
+	ft_get_positions(data);
 	mlx_key_hook(data->mlx, &ft_hook, (void *)data);
 	mlx_loop_hook(data->mlx, &ft_render, (void *)data);
 	mlx_loop(data->mlx);

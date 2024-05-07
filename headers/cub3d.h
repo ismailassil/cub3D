@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 15:07:29 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/07 17:25:17 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define WIDTH			1920
 # define HEIGHT			1080
 # define PLAYER_PX		10
-# define PLAYER_MOVE	5
+# define PLAYER_MOVE	1
 # define BLACK			0x000000
 # define WHITE			0xFFFFFF
 # define RED			0xFF0000
@@ -85,6 +85,10 @@ typedef struct s_tools
 	int	x_max;
 	int x_center;
 	int y_center;
+	int	nextpx_x;
+	int	current_x;
+	int	nextpx_y;
+	int	current_y;
 }		t_tools;
 
 typedef struct s_list
