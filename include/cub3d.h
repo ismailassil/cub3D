@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 12:31:21 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 19:49:22 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@
 # define PIXEL			32
 # define WIDTH			1920
 # define HEIGHT			1080
-# define PLAYER_PX		10
-# define PLAYER_MOVE	1
+# define PLAYER_PX		6
+# define PLAYER_MOVE	3
+# define LINE			50
 # define BLACK			0x000000
 # define WHITE			0xFFFFFF
 # define RED			0xFF0000
@@ -55,6 +56,14 @@ typedef struct s_colors
 	char	*floor;
 	char	*ceiling;
 }			t_colors;
+
+typedef struct s_line
+{
+	int	x_begin;
+	int	y_begin;
+	int	x_end;
+	int	y_end;
+}		t_line;
 
 typedef struct s_data
 {
@@ -89,8 +98,7 @@ typedef struct s_tools
 	int		current_x;
 	int		nextpx_y;
 	int		current_y;
-	double	opposite;
-	double	hypotenuse;
+	int		move_step;
 }			t_tools;
 
 typedef struct s_list
@@ -117,10 +125,9 @@ typedef struct s_cur_pos
 	int		y_pixels;
 	int		x_map;
 	int		y_map;
-	int		radius;
 	int		turn_direction;
-	int		rotation_speed;
 	int		walk_direction;
+	double	rotation_speed;
 	double	rotation_angle;
 }		t_cur_pos;
 
@@ -157,8 +164,8 @@ void	ft_close_hook(void *param);
 void	ft_mlx_error(void);
 
 /*	Raycasting utils functions	*/
-void	ft_get_data(t_mlx *data);
-void	ft_move_player(t_mlx *data, int key);
+void	ft_get_window_data(t_mlx *data);
+void	ft_move_player(t_mlx *data);
 void	ft_fill_square(t_mlx *data, int x, int y, int color);
 void	ft_fill_pixel_player(t_mlx *data, int color);
 void	ft_draw_line_of_view(t_mlx *data, int color);
@@ -167,7 +174,7 @@ void	ft_draw_line_of_view(t_mlx *data, int color);
 int		get_rgba(int r, int g, int b);
 
 /*	Utils functions		*/
-void	ft_get_positions(t_mlx *data);
+void	ft_init_data(t_mlx *data);
 void	ft_get_position_of_player(char **map, t_point *p);
 void	ft_exit(t_mlx *data);
 

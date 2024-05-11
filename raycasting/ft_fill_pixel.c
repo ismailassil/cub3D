@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:51:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 16:58:55 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_fill_pixel_player(t_mlx *data, int color)
 	t_tools	t;
 
 	ft_init_tools(&t);
-	t.y = (data->position.y * data->pixel.height) + data->position.y_move;
-	t.x = (data->position.x * data->pixel.width) + data->position.x_move;
+	t.y = data->cur_pos.y_pixels;
+	t.x = data->cur_pos.x_pixels;
 	t.y_max = t.y + PLAYER_PX;
 	t.x_max = t.x + PLAYER_PX;
 	t.x_begin = t.x;

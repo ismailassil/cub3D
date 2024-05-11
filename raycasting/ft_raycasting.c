@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:03:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 16:27:59 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	map(t_data *info)
 		"      1111110111     110001",
 		"11111111111101011101010010001",
 		"11000000110101011100000010001",
-		"1P000000000000001100000000001",
-		"1000000000000000000010010001",
+		"101000000000000001100000000001",
+		"10000000000P00000000010010001",
 		"110000011101111111110111100111",
 		"11110111011        101101010111",
 		"   1000111111111111111111111111",
@@ -58,7 +58,7 @@ void	ft_raycasting(t_data *info)
 	ft_check_allocation(info);
 	map(info);
 	data->info = info;
-	ft_get_data(data);
+	ft_get_window_data(data);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "DOOM", false);
 	if (!data->mlx)
 		ft_mlx_error();
@@ -67,7 +67,7 @@ void	ft_raycasting(t_data *info)
 		ft_mlx_error();
 	if (mlx_image_to_window(data->mlx, data->img, 0, 0) < 0)
 		ft_mlx_error();
-	ft_get_positions(data);
+	ft_init_data(data);
 	mlx_key_hook(data->mlx, &ft_key_hook, (void *)data);
 	mlx_loop_hook(data->mlx, &ft_loop_hook, (void *)data);
 	mlx_loop(data->mlx);

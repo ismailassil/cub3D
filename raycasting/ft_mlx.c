@@ -6,28 +6,38 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:10:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 11:29:21 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 17:05:12 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_press_and_release_key(mlx_key_data_t keydata, int *data, int value)
+{
+	if (keydata.action == MLX_RELEASE)
+		*data = 0;
+	else
+		*data = value;
+}
 
 void	ft_key_hook(mlx_key_data_t keydata, void *param)
 {
 	t_mlx	*data;
 
 	data = (t_mlx *)param;
-	ft_get_position_of_player(data->info->map, &data->position);
 	if (keydata.key == MLX_KEY_ESCAPE)
 		ft_exit(data);
 	else if (keydata.key == MLX_KEY_UP)
-		ft_move_player(data, MLX_KEY_UP);
+		ft_press_and_release_key(keydata, &data->cur_pos.walk_direction, 1);
 	else if (keydata.key == MLX_KEY_DOWN)
-		ft_move_player(data, MLX_KEY_DOWN);
+		ft_press_and_release_key(keydata, &data->cur_pos.walk_direction, -1);
 	else if (keydata.key == MLX_KEY_RIGHT)
-		ft_move_player(data, MLX_KEY_RIGHT);
+		ft_press_and_release_key(keydata, &data->cur_pos.turn_direction, 1);
 	else if (keydata.key == MLX_KEY_LEFT)
-		ft_move_player(data, MLX_KEY_LEFT);
+		ft_press_and_release_key(keydata, &data->cur_pos.turn_direction, -1);
+	else
+		return ;
+	ft_move_player(data);
 }
 
 void	ft_loop_hook(void *param)
@@ -51,7 +61,7 @@ void	ft_loop_hook(void *param)
 		t.y++;
 	}
 	ft_fill_pixel_player(data, CYAN);
-	ft_draw_line_of_view(data, YELLOW);
+	ft_draw_line_of_view(data, get_rgba(255, 0, 0));
 }
 
 void	ft_close_hook(void *param)
