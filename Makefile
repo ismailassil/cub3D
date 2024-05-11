@@ -6,7 +6,7 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/07 21:54:38 by iassil           ###   ########.fr        #
+#    Updated: 2024/05/11 11:33:57 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,10 @@ MLX			+=	-framework Cocoa -framework OpenGL -framework IOKit
 INCLUDE		=	-I./lib/MLX42
 RM			=	rm -f
 NAME		=	cub3d
-SRC_HR_H	=	headers/cub3d.h
-LIB_HR_H	=	headers/libft.h
-GNL_HR_H	=	headers/get_next_line.h
+SRC_HR_H	=	include/cub3d.h
+LIB_HR_H	=	include/libft.h
+GNL_HR_H	=	include/get_next_line.h
+FLD_NAME	=	._object_files
 
 ##### SOURCE FILES #######################################################################
 SRC_FILES	=	cub3d.c				ft_check_input.c		src_utils.c
@@ -28,9 +29,9 @@ SRC_FILES	=	cub3d.c				ft_check_input.c		src_utils.c
 PRS_FILES	=	ft_parse.c			ft_check.c				ft_check_utils.c	\
 				ft_parsing_utils.c
 
-EXEC_FILES	=	ft_raycasting.c		colors.c				ft_fill_pixel.c		\
-				ft_key_hook.c		ft_mlx.c				ft_raycasting.c		\
-				ray_utils.c			projection_of_view.c	
+EXEC_FILES	=	ft_raycasting.c		ray_utils.c				ft_mlx.c			\
+				colors.c			ft_key_hook_utils.c		ft_fill_pixel.c		\
+				projection_of_view.c
 
 UTILS_FILES	=	t_list.c			t_tools.c
 
@@ -57,12 +58,12 @@ PRS_SRC		=	$(addprefix parsing/,$(PRS_FILES))
 EXEC_SRC	=	$(addprefix raycasting/,$(EXEC_FILES))
 UTILS_SRC	=	$(addprefix t_utils/,$(UTILS_FILES))
 
-LIB_OBJ		=	$(addprefix _object_files/,$(LIB_SRC:.c=.o))
-GNL_OBJ		=	$(addprefix _object_files/,$(GNL_SRC:.c=.o))
-SRC_OBJ		=	$(addprefix _object_files/,$(SRC_SRC:.c=.o))
-PRS_OBJ		=	$(addprefix _object_files/,$(PRS_SRC:.c=.o))
-EXEC_OBJ	=	$(addprefix _object_files/,$(EXEC_SRC:.c=.o))
-UTILS_OBJ	=	$(addprefix _object_files/,$(UTILS_SRC:.c=.o))
+LIB_OBJ		=	$(addprefix $(FLD_NAME)/,$(LIB_SRC:.c=.o))
+GNL_OBJ		=	$(addprefix $(FLD_NAME)/,$(GNL_SRC:.c=.o))
+SRC_OBJ		=	$(addprefix $(FLD_NAME)/,$(SRC_SRC:.c=.o))
+PRS_OBJ		=	$(addprefix $(FLD_NAME)/,$(PRS_SRC:.c=.o))
+EXEC_OBJ	=	$(addprefix $(FLD_NAME)/,$(EXEC_SRC:.c=.o))
+UTILS_OBJ	=	$(addprefix $(FLD_NAME)/,$(UTILS_SRC:.c=.o))
 
 OBJ 		=	$(SRC_OBJ) $(GNL_OBJ) $(LIB_OBJ)	\
 				$(PRS_OBJ) $(UTILS_OBJ) $(EXEC_OBJ)
@@ -71,27 +72,27 @@ OBJ 		=	$(SRC_OBJ) $(GNL_OBJ) $(LIB_OBJ)	\
 all: $(NAME)
 
 # Define a pattern rule for compiling object files
-_object_files/src/%.o: src/%.c $(SRC_HR_H)
+$(FLD_NAME)/src/%.o: src/%.c $(SRC_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 
-_object_files/parsing/%.o: parsing/%.c $(SRC_HR_H)
+$(FLD_NAME)/parsing/%.o: parsing/%.c $(SRC_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 
-_object_files/t_utils/%.o: t_utils/%.c $(SRC_HR_H)
+$(FLD_NAME)/t_utils/%.o: t_utils/%.c $(SRC_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 
-_object_files/lib/gnl/%.o: lib/gnl/%.c $(GNL_HR_H)
+$(FLD_NAME)/lib/gnl/%.o: lib/gnl/%.c $(GNL_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 
-_object_files/lib/libft/%.o: lib/libft/%.c $(LIB_HR_H)
+$(FLD_NAME)/lib/libft/%.o: lib/libft/%.c $(LIB_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@
 
-_object_files/raycasting/%.o: raycasting/%.c $(SRC_HR_H)
+$(FLD_NAME)/raycasting/%.o: raycasting/%.c $(SRC_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@ $(INCLUDE)
 

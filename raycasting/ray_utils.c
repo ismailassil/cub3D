@@ -6,11 +6,12 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 21:52:28 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 12:33:11 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../include/cub3d.h"
+#include <math.h>
 
 void	ft_get_position_of_player(char **map, t_point *p)
 {
@@ -38,6 +39,10 @@ void	ft_get_positions(t_mlx *data)
 	data->cur_pos.y_map = data->position.y;
 	data->cur_pos.x_pixels = data->position.x * data->pixel.width;
 	data->cur_pos.y_pixels = data->position.y * data->pixel.height;
+	data->cur_pos.turn_direction = 0;
+	data->cur_pos.walk_direction = 0;
+	data->cur_pos.rotation_angle = M_PI_2;
+	data->cur_pos.rotation_angle = 2 * (M_PI / 180);
 	// printf("================\n");
 	// printf("x_map::{%d}, y_map::{%d}, x_pixel::{%d}, y_pixel::{%d}\n", \
 	// 	data->cur_pos.x_map, data->cur_pos.y_map, data->cur_pos.x_pixels, data->cur_pos.y_pixels);
@@ -61,7 +66,9 @@ void	ft_get_data(t_mlx *data)
 		y++;
 	}
 	data->pixel.width = round(((double)WIDTH / (double)x));
+	data->pixel.win_width = round(WIDTH * data->pixel.width);
 	data->pixel.height =  round(((double)HEIGHT / (double)y));
+	data->pixel.win_height = round(HEIGHT * data->pixel.height);
 }
 
 void	ft_exit(t_mlx *data)

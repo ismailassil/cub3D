@@ -6,11 +6,11 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:39:20 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 17:59:05 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../include/cub3d.h"
 
 bool	ft_isonly_whitespace(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:38:09 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 17:07:13 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 11:45:13 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../include/cub3d.h"
 
 void	ft_init_tools(t_tools *t)
 {
@@ -31,4 +31,6 @@ void	ft_init_tools(t_tools *t)
 	t->nextpx_y = 0;
 	t->current_x = 0;
 	t->current_y = 0;
+	t->opposite = 0;
+	t->hypotenuse = 0;
 }

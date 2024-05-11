@@ -6,11 +6,11 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:35:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 00:17:05 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libft.h"
+#include "../../include/libft.h"
 
 static char	**ft_free(char **big_ptr, size_t big_index)
 {

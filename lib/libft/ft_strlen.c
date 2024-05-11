@@ -6,11 +6,11 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:16:21 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 00:17:05 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libft.h"
+#include "../../include/libft.h"
 
 size_t	ft_strlen(const char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:55:49 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 01:30:25 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libft.h"
+#include "../../include/libft.h"
 
 char	*ft_strnstr(const char *stack, const char *needle, size_t len)
 {

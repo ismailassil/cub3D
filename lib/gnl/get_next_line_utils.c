@@ -6,11 +6,11 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:30:29 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/05 17:59:36 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 10:39:57 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/get_next_line.h"
+#include "../../include/get_next_line.h"
 
 size_t	_ft_strlen_(char *str)
 {

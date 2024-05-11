@@ -6,11 +6,11 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:03:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 21:50:21 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../include/cub3d.h"
 
 void	map(t_data *info)
 {

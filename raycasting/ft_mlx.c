@@ -6,11 +6,11 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:10:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 21:49:25 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 11:29:21 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../include/cub3d.h"
 
 void	ft_key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -51,6 +51,7 @@ void	ft_loop_hook(void *param)
 		t.y++;
 	}
 	ft_fill_pixel_player(data, CYAN);
+	ft_draw_line_of_view(data, YELLOW);
 }
 
 void	ft_close_hook(void *param)

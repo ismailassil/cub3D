@@ -1,2 +1,4 @@
 .vscode
-_object_files
+._object_files
+lib/MLX42
+.cache

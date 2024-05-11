@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 21:50:39 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/11 12:31:21 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,31 @@ typedef struct s_data
 
 typedef struct s_tools
 {
-	int	i;
-	int	j;
-	int	no;
-	int	so;
-	int	we;
-	int	ea;
-	int	floor;
-	int	ceiling;
-	int	which;
-	int	error;
-	int	flag;
-	int	x;
-	int	y;
-	int	x_begin;
-	int	y_max;
-	int	x_max;
-	int x_center;
-	int y_center;
-	int	nextpx_x;
-	int	current_x;
-	int	nextpx_y;
-	int	current_y;
-}		t_tools;
+	int		i;
+	int		j;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		floor;
+	int		ceiling;
+	int		which;
+	int		error;
+	int		flag;
+	int		x;
+	int		y;
+	int		x_begin;
+	int		y_max;
+	int		x_max;
+	int		x_center;
+	int		y_center;
+	int		nextpx_x;
+	int		current_x;
+	int		nextpx_y;
+	int		current_y;
+	double	opposite;
+	double	hypotenuse;
+}			t_tools;
 
 typedef struct s_list
 {
@@ -111,22 +113,29 @@ typedef struct s_point
 
 typedef struct s_cur_pos
 {
-	int	x_pixels;
-	int	y_pixels;
-	int	x_map;
-	int	y_map;
+	int		x_pixels;
+	int		y_pixels;
+	int		x_map;
+	int		y_map;
+	int		radius;
+	int		turn_direction;
+	int		rotation_speed;
+	int		walk_direction;
+	double	rotation_angle;
 }		t_cur_pos;
 
 typedef struct s_pixel
 {
 	int	width;
 	int	height;
+	int	win_width;
+	int	win_height;
 }		t_pixel;
 
 typedef struct s_mlx
 {
 	mlx_t			*mlx;
-	mlx_image_t*	img;
+	mlx_image_t		*img;
 	t_data			*info;
 	t_point			position;
 	t_cur_pos		cur_pos;
@@ -145,16 +154,17 @@ void	ft_raycasting(t_data *data);
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
 void	ft_loop_hook(void *param);
 void	ft_close_hook(void *param);
-void 	ft_mlx_error(void);
+void	ft_mlx_error(void);
 
 /*	Raycasting utils functions	*/
 void	ft_get_data(t_mlx *data);
+void	ft_move_player(t_mlx *data, int key);
 void	ft_fill_square(t_mlx *data, int x, int y, int color);
 void	ft_fill_pixel_player(t_mlx *data, int color);
-void	ft_move_player(t_mlx *data, int key);
+void	ft_draw_line_of_view(t_mlx *data, int color);
 
 /*	Color functions		*/
-int 	get_rgba(int r, int g, int b);
+int		get_rgba(int r, int g, int b);
 
 /*	Utils functions		*/
 void	ft_get_positions(t_mlx *data);
