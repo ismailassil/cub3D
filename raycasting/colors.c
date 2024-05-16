@@ -6,14 +6,14 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:56:10 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/13 17:02:40 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int get_rgba(int r, int g, int b)
+int get_rgba(int red, int green, int blue, int alpha)
 {
-	return ((unsigned int)r << 24 | (unsigned int)g << 16 \
-		| (unsigned int)b << 8 | 0xFF);
+	return ((unsigned int)red << 24 | (unsigned int)green << 16 \
+		| (unsigned int)blue << 8 | (unsigned int)alpha);
 }

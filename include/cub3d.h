@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 19:49:22 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/13 18:22:41 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@
 # define WIDTH			1920
 # define HEIGHT			1080
 # define PLAYER_PX		6
-# define PLAYER_MOVE	3
-# define LINE			50
+# define PLAYER_SPEED	5
+# define ROT_SPEED		5
+# define LINE			80
+# define VIEW			60
 # define BLACK			0x000000
 # define WHITE			0xFFFFFF
 # define RED			0xFF0000
@@ -111,43 +113,54 @@ typedef struct s_point
 {
 	int	x;
 	int	y;
-	int	x_center;
-	int	y_center;
 	int	y_max;
 	int	x_max;
-	int	x_move;
-	int	y_move;
 }		t_point;
 
-typedef struct s_cur_pos
+typedef struct s_player
 {
-	int		x_pixels;
-	int		y_pixels;
-	int		x_map;
-	int		y_map;
+	int		x;
+	int		y;
 	int		turn_direction;
 	int		walk_direction;
+	int		num_of_rays;
+	int		wall_strip_width;
 	double	rotation_speed;
 	double	rotation_angle;
-}		t_cur_pos;
+	double	fov_angle;
+}			t_player;
 
-typedef struct s_pixel
+typedef struct s_ray
+{
+	float	ray_angle;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	float	distance;
+	int		was_hit_vert;
+	int		is_ray_facing_up;
+	int		is_ray_facing_down;
+	int		is_ray_facing_left;
+	int		is_ray_facing_right;
+	int		wall_hit_content;
+}			t_ray;
+
+typedef struct s_size
 {
 	int	width;
 	int	height;
 	int	win_width;
 	int	win_height;
-}		t_pixel;
+}		t_size;
 
-typedef struct s_mlx
+typedef struct s_cube
 {
+	t_data			*info;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	t_data			*info;
-	t_point			position;
-	t_cur_pos		cur_pos;
-	t_pixel			pixel;
-}					t_mlx;
+	t_player		player;
+	t_size			size;
+	t_ray			*ray;
+}					t_cube;
 
 /*	Check input		*/
 bool	ft_check_input_file(int ac, char **av);
@@ -161,22 +174,23 @@ void	ft_raycasting(t_data *data);
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
 void	ft_loop_hook(void *param);
 void	ft_close_hook(void *param);
-void	ft_mlx_error(void);
+void	ft_cube_error(void);
 
 /*	Raycasting utils functions	*/
-void	ft_get_window_data(t_mlx *data);
-void	ft_move_player(t_mlx *data);
-void	ft_fill_square(t_mlx *data, int x, int y, int color);
-void	ft_fill_pixel_player(t_mlx *data, int color);
-void	ft_draw_line_of_view(t_mlx *data, int color);
+void	ft_get_window_data(t_cube *data);
+void	ft_move_player(t_cube *data);
+void	ft_fill_square(t_cube *data, int x, int y, int color);
+void	ft_fill_pixel_player(t_cube *data, int color);
+void	ft_draw_line_of_view(t_cube *data, int color);
+void	ft_draw_line(t_cube *data, t_line line, int color);
 
 /*	Color functions		*/
-int		get_rgba(int r, int g, int b);
+int		get_rgba(int red, int green, int blue, int alpha);
 
 /*	Utils functions		*/
-void	ft_init_data(t_mlx *data);
+void	ft_init_data(t_cube *data);
 void	ft_get_position_of_player(char **map, t_point *p);
-void	ft_exit(t_mlx *data);
+void	ft_exit(t_cube *data);
 
 /*	Check functions		*/
 void	ft_check_unnessary_infos(t_data *parse);

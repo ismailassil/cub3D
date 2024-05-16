@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:03:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 16:27:59 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/13 17:04:02 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	map(t_data *info)
 
 	i = 0;
 	char	*map[] = {
-		"   1111111111111111111111",
-		"1110000000110000000000001",
-		"   101100000111000000001111111111",
+		"           1111111111111111111111",
+		"11100011111110000000000001",
+		"   111100000111000000001111111111",
 		" 1111000000000000000000001000000011",
 		"111111111011000001110000011111111",
 		"100000000011000001110111111111111",
@@ -29,8 +29,8 @@ void	map(t_data *info)
 		"      1111110111     110001",
 		"11111111111101011101010010001",
 		"11000000110101011100000010001",
-		"101000000000000001100000000001",
-		"10000000000P00000000010010001",
+		"1P1000000000000001100000000001",
+		"10000000000000000000010010001",
 		"110000011101111111110111100111",
 		"11110111011        101101010111",
 		"   1000111111111111111111111111",
@@ -50,9 +50,9 @@ void	map(t_data *info)
 
 void	ft_raycasting(t_data *info)
 {
-	t_mlx	*data;
+	t_cube	*data;
 
-	data = malloc(sizeof(t_mlx));
+	data = malloc(sizeof(t_cube));
 	ft_check_allocation(data);
 	info = malloc(sizeof(t_data));
 	ft_check_allocation(info);
@@ -61,12 +61,12 @@ void	ft_raycasting(t_data *info)
 	ft_get_window_data(data);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "DOOM", false);
 	if (!data->mlx)
-		ft_mlx_error();
+		ft_cube_error();
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img)
-		ft_mlx_error();
+		ft_cube_error();
 	if (mlx_image_to_window(data->mlx, data->img, 0, 0) < 0)
-		ft_mlx_error();
+		ft_cube_error();
 	ft_init_data(data);
 	mlx_key_hook(data->mlx, &ft_key_hook, (void *)data);
 	mlx_loop_hook(data->mlx, &ft_loop_hook, (void *)data);
