@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/13 18:22:41 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/20 19:32:15 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <stdio.h>
 # include <sys/fcntl.h>
 # include <math.h>
-# include "../lib/MLX42/include/MLX42/MLX42.h"
+# include <float.h>
+# include "/Users/iassil/.MLX42/include/MLX42/MLX42.h"
 # define SUCCESS		0
 # define FAIL			1
 # define NO				1
@@ -35,7 +36,7 @@
 # define PLAYER_SPEED	5
 # define ROT_SPEED		5
 # define LINE			80
-# define VIEW			60
+# define NUM_RAYS		WIDTH
 # define BLACK			0x000000
 # define WHITE			0xFFFFFF
 # define RED			0xFF0000
@@ -132,16 +133,16 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	float	ray_angle;
-	float	wall_hit_x;
-	float	wall_hit_y;
-	float	distance;
-	int		was_hit_vert;
-	int		is_ray_facing_up;
-	int		is_ray_facing_down;
-	int		is_ray_facing_left;
-	int		is_ray_facing_right;
-	int		wall_hit_content;
+	double	ray_angle;
+	double	wall_hit_x;
+	double	wall_hit_y;
+	double	distance;
+	bool	is_up;
+	bool	is_down;
+	bool	is_left;
+	bool	is_right;
+	bool	wall_hit_content;
+	bool	was_hit_vert;
 }			t_ray;
 
 typedef struct s_size
@@ -159,16 +160,59 @@ typedef struct s_cube
 	mlx_image_t		*img;
 	t_player		player;
 	t_size			size;
-	t_ray			*ray;
+	t_ray			*rays;
 }					t_cube;
+
+typedef struct s_info
+{
+	// Windows
+	int			win_width;
+	int			win_height;
+	// Player Coordinates
+	int			px;
+	int			py;
+	// Tile
+	int			xtile;
+	int			ytile;
+	// The intersection
+	double		x_intersection;
+	double		y_intersection;
+	// The steps deltaX and deltaY
+	long long	xstep;
+	long long	ystep;
+	// Angle
+	double		ray_angle;
+	// Ray directions
+	bool		is_right;
+	bool		is_down;
+	bool		is_up;
+	bool		is_left;
+	// The next Horizantal Touch with X and Y
+	double		next_horz_x;
+	double		next_horz_y;
+	// To check if hit wall
+	bool		found_horz_wall;
+	double		horz_wall_x;
+	double		horz_wall_y;
+	// The next Vertical Touch with X and Y
+	double		next_vert_x;
+	double		next_vert_y;
+	// To check if hit wall
+	bool		found_vert_wall;
+	double		vertwallx;
+	double		vertwally;
+	/// Calculate the Vert and Horz distances and get the smallest value
+	double		horz_dist;
+	double		vert_dist;
+}				t_info;
 
 /*	Check input		*/
 bool	ft_check_input_file(int ac, char **av);
 int		ft_open_file(char *file);
 
 /*	Main functions	*/
-void	ft_parse(int fd, t_data *data);
-void	ft_raycasting(t_data *data);
+void	ft_parse(int fd, t_data *cube);
+void	ft_raycasting(t_data *cube);
 
 /*	Raycasting functions	*/
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
@@ -177,20 +221,20 @@ void	ft_close_hook(void *param);
 void	ft_cube_error(void);
 
 /*	Raycasting utils functions	*/
-void	ft_get_window_data(t_cube *data);
-void	ft_move_player(t_cube *data);
-void	ft_fill_square(t_cube *data, int x, int y, int color);
-void	ft_fill_pixel_player(t_cube *data, int color);
-void	ft_draw_line_of_view(t_cube *data, int color);
-void	ft_draw_line(t_cube *data, t_line line, int color);
+void	ft_get_window_data(t_cube *cube);
+void	ft_move_player(t_cube *cube);
+void	ft_fill_square(t_cube *cube, int x, int y, int color);
+void	ft_fill_pixel_player(t_cube *cube, int color);
+void	ft_draw_line_of_view(t_cube *cube, int color);
+void	ft_draw_line(t_cube *cube, t_line line, int color);
 
 /*	Color functions		*/
-int		get_rgba(int red, int green, int blue, int alpha);
+int		rgba(int red, int green, int blue, int alpha);
 
 /*	Utils functions		*/
-void	ft_init_data(t_cube *data);
+void	ft_init_data(t_cube *cube);
 void	ft_get_position_of_player(char **map, t_point *p);
-void	ft_exit(t_cube *data);
+void	ft_exit(t_cube *cube);
 
 /*	Check functions		*/
 void	ft_check_unnessary_infos(t_data *parse);
