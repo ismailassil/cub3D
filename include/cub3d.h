@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/20 19:32:15 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/22 23:16:55 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define ROT_SPEED		5
 # define LINE			80
 # define NUM_RAYS		WIDTH
+# define TILE			64
 # define BLACK			0x000000
 # define WHITE			0xFFFFFF
 # define RED			0xFF0000
@@ -75,6 +76,7 @@ typedef struct s_data
 	t_directions	*directions;
 	t_colors		*colors;
 	int				ylen;
+	int				xlen;
 }					t_data;
 
 typedef struct s_tools
@@ -120,8 +122,8 @@ typedef struct s_point
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	double	x;
+	double	y;
 	int		turn_direction;
 	int		walk_direction;
 	int		num_of_rays;
@@ -169,8 +171,8 @@ typedef struct s_info
 	int			win_width;
 	int			win_height;
 	// Player Coordinates
-	int			px;
-	int			py;
+	double		px;
+	double		py;
 	// Tile
 	int			xtile;
 	int			ytile;
@@ -178,8 +180,8 @@ typedef struct s_info
 	double		x_intersection;
 	double		y_intersection;
 	// The steps deltaX and deltaY
-	long long	xstep;
-	long long	ystep;
+	double	xstep;
+	double	ystep;
 	// Angle
 	double		ray_angle;
 	// Ray directions
@@ -192,8 +194,8 @@ typedef struct s_info
 	double		next_horz_y;
 	// To check if hit wall
 	bool		found_horz_wall;
-	double		horz_wall_x;
-	double		horz_wall_y;
+	double		horzwallx;
+	double		horzwally;
 	// The next Vertical Touch with X and Y
 	double		next_vert_x;
 	double		next_vert_y;
@@ -218,7 +220,7 @@ void	ft_raycasting(t_data *cube);
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
 void	ft_loop_hook(void *param);
 void	ft_close_hook(void *param);
-void	ft_cube_error(void);
+void 	ft_mlx_error(void);
 
 /*	Raycasting utils functions	*/
 void	ft_get_window_data(t_cube *cube);

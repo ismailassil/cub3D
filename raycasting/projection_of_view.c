@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 21:42:43 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/20 16:31:00 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/22 23:08:32 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void ft_draw_line(t_cube *data, t_line line, int color)
 
 	while (line.x_begin != line.x_end || line.y_begin != line.y_end)
 	{
-		if (line.y_begin >= 0 && line.y_begin < data->size.win_height
-			&& line.x_begin >= 0 && line.x_begin < data->size.win_width)
+		if (line.y_begin >= 0 && line.y_begin < (data->info->ylen * TILE)
+			&& line.x_begin >= 0 && line.x_begin < (data->info->xlen * TILE))
 			mlx_put_pixel(data->img, line.x_begin, line.y_begin, color);
 		int err2 = 2 * err;
 		if (err2 > -dy)
@@ -43,8 +43,8 @@ void	ft_draw_line_of_view(t_cube *data, int color)
 {
 	t_line		l;
 
-	l.x_begin = data->player.x + (PLAYER_PX / 2);
-	l.y_begin = data->player.y + (PLAYER_PX / 2);
+	l.x_begin = data->player.x + ((double)PLAYER_PX / 2);
+	l.y_begin = data->player.y + ((double)PLAYER_PX / 2);
 	l.x_end = l.x_begin + cos(data->player.rotation_angle) * LINE;
 	l.y_end = l.y_begin + sin(data->player.rotation_angle) * LINE;
 	ft_draw_line(data, l, color);
@@ -64,8 +64,8 @@ void	ft_draw_line_of_view_60deg(t_cube *data, int color)
 		ra -= 2 * M_PI;
 	while (i <= NUM_RAYS)
 	{
-		l.x_begin = data->player.x + (PLAYER_PX / 2);
-		l.y_begin = data->player.y + (PLAYER_PX / 2);
+		l.x_begin = data->player.x + ((double)PLAYER_PX / 2);
+		l.y_begin = data->player.y + ((double)PLAYER_PX / 2);
 		l.x_end = l.x_begin + cos(ra) * LINE;
 		l.y_end = l.y_begin + sin(ra) * LINE;
 		ft_draw_line(data, l, color);
