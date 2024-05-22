@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:46:12 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/23 00:04:58 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ static void	ft_check_rest(t_data *parse, char *str, int *flag)
 			exit(FAIL);
 		}
 	}
-	else if (!ft_is_info(str, "NO") && !ft_is_info(str, "SO") && !ft_is_info(str, "WE")
-				&& !ft_is_info(str, "EA") && !ft_is_info(str, "F") && !ft_is_info(str, "C")
-				&& !ft_is_info(str, "1") && !ft_is_info(str, "0") && !ft_is_info(str, "N")
-				&& !ft_is_info(str, "S") && !ft_is_info(str, "E") && !ft_is_info(str, "W"))
+	else if (!ft_is_info(str, "NO") && !ft_is_info(str, "SO")
+		&& !ft_is_info(str, "WE") && !ft_is_info(str, "EA")
+		&& !ft_is_info(str, "F") && !ft_is_info(str, "C")
+		&& !ft_is_info(str, "1") && !ft_is_info(str, "0")
+		&& !ft_is_info(str, "N") && !ft_is_info(str, "S")
+		&& !ft_is_info(str, "E") && !ft_is_info(str, "W"))
 	{
 		p_error("unnecessary information has been found", NULL, 1);
 		ft_free_map(&parse->data);

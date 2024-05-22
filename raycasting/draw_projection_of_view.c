@@ -1,40 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projection_of_view.c                               :+:      :+:    :+:   */
+/*   draw_projection_of_view.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 21:42:43 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/22 23:08:32 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/23 00:15:02 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void ft_draw_line(t_cube *data, t_line line, int color)
+static void	ft_init_draw_line(t_draw_line *l, t_line line)
 {
-	int dx = abs(line.x_end - line.x_begin);
-	int dy = abs(line.y_end - line.y_begin);
-	int sx = (line.x_begin < line.x_end) ? 1 : -1;
-	int sy = (line.y_begin < line.y_end) ? 1 : -1;
-	int err = dx - dy;
+	l->dx = abs(line.x_end - line.x_begin);
+	l->dy = abs(line.y_end - line.y_begin);
+	if (line.x_begin < line.x_end)
+		l->sx = 1;
+	else
+		l->sx = -1;
+	if (line.y_begin < line.y_end)
+		l->sy = 1;
+	else
+		l->sy = -1;
+	l->err = l->dx - l->dy;
+}
 
+void	ft_draw_line(t_cube *data, t_line line, int color)
+{
+	t_draw_line	l;
+
+	ft_init_draw_line(&l, line);
 	while (line.x_begin != line.x_end || line.y_begin != line.y_end)
 	{
 		if (line.y_begin >= 0 && line.y_begin < (data->info->ylen * TILE)
 			&& line.x_begin >= 0 && line.x_begin < (data->info->xlen * TILE))
 			mlx_put_pixel(data->img, line.x_begin, line.y_begin, color);
-		int err2 = 2 * err;
-		if (err2 > -dy)
+		l.err2 = 2 * l.err;
+		if (l.err2 > -l.dy)
 		{
-			err -= dy;
-			line.x_begin += sx;
+			l.err -= l.dy;
+			line.x_begin += l.sx;
 		}
-		if (err2 < dx)
+		if (l.err2 < l.dx)
 		{
-			err += dx;
-			line.y_begin += sy;
+			l.err += l.dx;
+			line.y_begin += l.sy;
 		}
 	}
 }

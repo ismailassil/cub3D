@@ -6,30 +6,13 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/22 22:48:50 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/23 00:06:24 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_get_position_of_player(char **map, t_point *p)
-{
-	p->y = 0;
-	p->x = 0;
-	while (map && map[p->y])
-	{
-		p->x = 0;
-		while (map[p->y][p->x])
-		{
-			if (map[p->y][p->x] == 'P')
-				return ;
-			p->x++;
-		}
-		p->y++;
-	}
-}
-
-void	ft_init_data(t_cube *cube)
+void	ft_initialize_data(t_cube *cube)
 {
 	t_point	position;
 
@@ -38,9 +21,11 @@ void	ft_init_data(t_cube *cube)
 	cube->player.y = (position.y * TILE) + ((double)TILE / 2);
 	cube->player.turn_direction = 0;
 	cube->player.walk_direction = 0;
-	cube->player.rotation_angle = M_PI_4; // Which direction the player will be facing (N, S, W, E)
+	// Which direction the player will be facing (N, S, W, E)
+	cube->player.rotation_angle = M_PI_4;
 	cube->player.rotation_speed = ROT_SPEED * (M_PI / 180);
-	cube->player.fov_angle = 60 * (M_PI / 180); // formula to convert degree to radian
+	// formula to convert degree to radian
+	cube->player.fov_angle = 60 * (M_PI / 180);
 	cube->player.wall_strip_width = 1;
 	cube->player.num_of_rays = TILE / cube->player.wall_strip_width;
 	cube->rays = malloc(sizeof(t_ray) * NUM_RAYS);
@@ -67,7 +52,7 @@ void	ft_get_window_data(t_cube *data)
 	data->info->xlen = x;
 	data->size.width = round(((double)WIDTH / (double)x));
 	data->size.win_width = round(WIDTH * data->size.width);
-	data->size.height =  round(((double)HEIGHT / (double)y));
+	data->size.height = round(((double)HEIGHT / (double)y));
 	data->size.win_height = round(HEIGHT * data->size.height);
 }
 

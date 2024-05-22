@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:32 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/22 23:56:42 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	main(int ac, char **av)
 		exit(FAIL);
 	fd = ft_open_file(av[1]);
 	// ft_parse(fd, data);
-	ft_raycasting(data);
+	ft_execute(data);
 }

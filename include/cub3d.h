@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/22 23:16:55 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/23 00:09:05 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,16 @@ typedef struct s_point
 	int	x_max;
 }		t_point;
 
+typedef struct s_draw_line
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	err2;
+}		t_draw_line;
+
 typedef struct s_player
 {
 	double	x;
@@ -180,8 +190,8 @@ typedef struct s_info
 	double		x_intersection;
 	double		y_intersection;
 	// The steps deltaX and deltaY
-	double	xstep;
-	double	ystep;
+	double		xstep;
+	double		ystep;
 	// Angle
 	double		ray_angle;
 	// Ray directions
@@ -208,23 +218,44 @@ typedef struct s_info
 	double		vert_dist;
 }				t_info;
 
+/*	To be deleted	*/
+void	ft_map(t_data *info);
+
 /*	Check input		*/
 bool	ft_check_input_file(int ac, char **av);
 int		ft_open_file(char *file);
 
 /*	Main functions	*/
 void	ft_parse(int fd, t_data *cube);
-void	ft_raycasting(t_data *cube);
+void	ft_execute(t_data *cube);
 
-/*	Raycasting functions	*/
+/*	MLX functions	*/
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
 void	ft_loop_hook(void *param);
 void	ft_close_hook(void *param);
-void 	ft_mlx_error(void);
+void	ft_destroy_mlx(t_cube *data);
+void	ft_mlx_error(void);
+
+/*	Player Movements functions	*/
+void	ft_move_player(t_cube *cube);
+void	ft_press_and_release_key(mlx_key_data_t keycube, int *cube, int value);
+
+/*	Ray Computation functions	*/
+void	ft_render_rays(t_cube *cube);
+void	ft_cast_all_rays(t_cube *cube);
+void	ft_cast_ray(t_cube *cube, int id, double rayangle);
+void	ft_init_directions(t_cube *cube, t_info *f, double rayangle);
+double	ft_get_horizontal_dist(t_cube *cube, t_info *f);
+double	ft_get_vertical_dist(t_cube *cube, t_info *f);
+void	ft_fill_ray_data(t_cube *cube, t_info *f, int id);
+void	ft_check_horizontal_wall_collision(t_cube *cube, t_info *f);
+void	ft_check_vertical_wall_collision(t_cube *cube, t_info *f);
+bool	ft_is_a_wall(t_cube *cube, double x, double y);
+double	ft_get_point_to_point_distance(double x1, double y1, \
+	double x2, double y2);
 
 /*	Raycasting utils functions	*/
 void	ft_get_window_data(t_cube *cube);
-void	ft_move_player(t_cube *cube);
 void	ft_fill_square(t_cube *cube, int x, int y, int color);
 void	ft_fill_pixel_player(t_cube *cube, int color);
 void	ft_draw_line_of_view(t_cube *cube, int color);
@@ -234,7 +265,7 @@ void	ft_draw_line(t_cube *cube, t_line line, int color);
 int		rgba(int red, int green, int blue, int alpha);
 
 /*	Utils functions		*/
-void	ft_init_data(t_cube *cube);
+void	ft_initialize_data(t_cube *cube);
 void	ft_get_position_of_player(char **map, t_point *p);
 void	ft_exit(t_cube *cube);
 

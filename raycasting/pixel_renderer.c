@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fill_pixel.c                                    :+:      :+:    :+:   */
+/*   pixel_renderer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:51:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/22 23:12:03 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/22 23:47:09 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,21 @@ void	ft_fill_square(t_cube *data, int x, int y, int color)
 			x++;
 		}
 		y++;
+	}
+}
+
+void	ft_render_rays(t_cube *cube)
+{
+	t_line	l;
+	int		i;
+
+	i = -1;
+	while (++i < NUM_RAYS)
+	{
+		l.x_begin = cube->player.x + ((double)PLAYER_PX / 2);
+		l.y_begin = cube->player.y + ((double)PLAYER_PX / 2);
+		l.x_end = cube->rays[i].wall_hit_x;
+		l.y_end = cube->rays[i].wall_hit_y;
+		ft_draw_line(cube, l, rgba(255, 0, 0, 255));
 	}
 }

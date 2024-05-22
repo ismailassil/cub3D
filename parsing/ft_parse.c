@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:48:38 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/23 00:04:28 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_retrieve_data_from_fd(int fd, t_list **map)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		ft_remove_newline(&line);
 		ft_push_line(line, map);
 		free(line);

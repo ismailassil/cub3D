@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:41:04 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/23 00:04:46 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	ft_add_data(t_data *parse, t_tools *t, int which)
 	else if (which == F)
 		parse->colors->floor = parse->data[t->i];
 	else if (which == C)
-		parse->colors->ceiling = parse->data[t->i];	
+		parse->colors->ceiling = parse->data[t->i];
 }
 
 void	ft_add_information(t_data *parse, t_tools *t, int *dir, int which)
