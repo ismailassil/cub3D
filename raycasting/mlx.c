@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:05:25 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:05:40 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/24 15:33:09 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_loop_hook(void *param)
 	ft_fill_pixel_player(cube, CYAN);
 	ft_cast_all_rays(cube);
 	ft_render_rays(cube);
-	ft_draw_line_of_view(cube, rgba(0, 0, 255, 200));
+	// ft_draw_line_of_view(cube, rgba(0, 0, 255, 200));
 }
 
 void	ft_close_hook(void *param)

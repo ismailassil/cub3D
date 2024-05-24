@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:09:05 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/24 15:36:31 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define LINE			80
 # define NUM_RAYS		WIDTH
 # define TILE			64
+# define MINIMAP		0.2
 # define BLACK			0x000000
 # define WHITE			0xFFFFFF
 # define RED			0xFF0000
