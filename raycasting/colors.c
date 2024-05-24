@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:56:10 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:04:13 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/24 20:36:04 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	rgba(int red, int green, int blue, int alpha)
 {
-	return ((unsigned int)red << 24 | (unsigned int)green << 16 \
-		| (unsigned int)blue << 8 | (unsigned int)alpha);
+	return ((uint)red << 24 | (uint)green << 16 \
+		| (uint)blue << 8 | (uint)alpha);
 }

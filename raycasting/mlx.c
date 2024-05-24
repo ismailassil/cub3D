@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:05:25 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/24 15:33:09 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/24 21:45:11 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ void	ft_key_hook(mlx_key_data_t keycube, void *param)
 	ft_move_player(cube);
 }
 
-void	ft_loop_hook(void *param)
+void	ft_render_grid_map(t_cube *cube)
 {
-	t_cube	*cube;
 	t_tools	t;
 
 	ft_init_tools(&t);
-	cube = (t_cube *)param;
 	while (cube->info->map && cube->info->map[t.y])
 	{
 		t.x = 0;
@@ -53,9 +51,30 @@ void	ft_loop_hook(void *param)
 		t.y++;
 	}
 	ft_fill_pixel_player(cube, CYAN);
-	ft_cast_all_rays(cube);
-	ft_render_rays(cube);
+}
+
+void	ft_reinit_mlx_window(t_cube *cube)
+{
+	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
+	if (!cube->img)
+		ft_mlx_error();
+	if (mlx_image_to_window(cube->mlx, cube->img, 0, 0) < 0)
+		ft_mlx_error();
+}
+
+void	ft_loop_hook(void *param)
+{
+	t_cube	*cube;
+	cube = (t_cube *)param;
+
+	mlx_delete_image(cube->mlx, cube->img);
+	ft_reinit_mlx_window(cube);
+	ft_cast_walls(cube);
+	ft_render_grid_map(cube);
+	/******************************/
+	// ft_cast_all_rays(cube);
 	// ft_draw_line_of_view(cube, rgba(0, 0, 255, 200));
+	/******************************/
 }
 
 void	ft_close_hook(void *param)

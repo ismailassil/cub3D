@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/24 15:36:31 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/24 21:48:17 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@
 # define YELLOW			0xFFFF00
 # define CYAN			0x00FFFF
 # define MAGENTA		0xFF00FF
+
+typedef unsigned int uint;
 
 typedef struct s_directions
 {
@@ -133,23 +135,23 @@ typedef struct s_draw_line
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 	int		turn_direction;
 	int		walk_direction;
 	int		num_of_rays;
 	int		wall_strip_width;
-	double	rotation_speed;
-	double	rotation_angle;
-	double	fov_angle;
+	float	rotation_speed;
+	float	rotation_angle;
+	float	fov_angle;
 }			t_player;
 
 typedef struct s_ray
 {
-	double	ray_angle;
-	double	wall_hit_x;
-	double	wall_hit_y;
-	double	distance;
+	float	ray_angle;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	float	distance;
 	bool	is_up;
 	bool	is_down;
 	bool	is_left;
@@ -182,41 +184,41 @@ typedef struct s_info
 	int			win_width;
 	int			win_height;
 	// Player Coordinates
-	double		px;
-	double		py;
+	float		px;
+	float		py;
 	// Tile
 	int			xtile;
 	int			ytile;
 	// The intersection
-	double		x_intersection;
-	double		y_intersection;
+	float		x_intersection;
+	float		y_intersection;
 	// The steps deltaX and deltaY
-	double		xstep;
-	double		ystep;
+	float		xstep;
+	float		ystep;
 	// Angle
-	double		ray_angle;
+	float		ray_angle;
 	// Ray directions
 	bool		is_right;
 	bool		is_down;
 	bool		is_up;
 	bool		is_left;
 	// The next Horizantal Touch with X and Y
-	double		next_horz_x;
-	double		next_horz_y;
+	float		next_horz_x;
+	float		next_horz_y;
 	// To check if hit wall
 	bool		found_horz_wall;
-	double		horzwallx;
-	double		horzwally;
+	float		horzwallx;
+	float		horzwally;
 	// The next Vertical Touch with X and Y
-	double		next_vert_x;
-	double		next_vert_y;
+	float		next_vert_x;
+	float		next_vert_y;
 	// To check if hit wall
 	bool		found_vert_wall;
-	double		vertwallx;
-	double		vertwally;
+	float		vertwallx;
+	float		vertwally;
 	/// Calculate the Vert and Horz distances and get the smallest value
-	double		horz_dist;
-	double		vert_dist;
+	float		horz_dist;
+	float		vert_dist;
 }				t_info;
 
 /*	To be deleted	*/
@@ -242,18 +244,19 @@ void	ft_move_player(t_cube *cube);
 void	ft_press_and_release_key(mlx_key_data_t keycube, int *cube, int value);
 
 /*	Ray Computation functions	*/
+void	ft_cast_walls(t_cube *cube);
 void	ft_render_rays(t_cube *cube);
 void	ft_cast_all_rays(t_cube *cube);
-void	ft_cast_ray(t_cube *cube, int id, double rayangle);
-void	ft_init_directions(t_cube *cube, t_info *f, double rayangle);
-double	ft_get_horizontal_dist(t_cube *cube, t_info *f);
-double	ft_get_vertical_dist(t_cube *cube, t_info *f);
+void	ft_cast_ray(t_cube *cube, int id, float rayangle);
+void	ft_init_directions(t_cube *cube, t_info *f, float rayangle);
+float	ft_get_horizontal_distance(t_cube *cube, t_info *f);
+float	ft_get_vertical_distance(t_cube *cube, t_info *f);
 void	ft_fill_ray_data(t_cube *cube, t_info *f, int id);
 void	ft_check_horizontal_wall_collision(t_cube *cube, t_info *f);
 void	ft_check_vertical_wall_collision(t_cube *cube, t_info *f);
-bool	ft_is_a_wall(t_cube *cube, double x, double y);
-double	ft_get_point_to_point_distance(double x1, double y1, \
-	double x2, double y2);
+bool	ft_is_a_wall(t_cube *cube, float x, float y);
+float	ft_get_point_to_point_distance(float x1, float y1, \
+	float x2, float y2);
 
 /*	Raycasting utils functions	*/
 void	ft_get_window_data(t_cube *cube);

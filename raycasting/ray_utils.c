@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:06:24 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/24 21:48:17 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_initialize_data(t_cube *cube)
 	t_point	position;
 
 	ft_get_position_of_player(cube->info->map, &position);
-	cube->player.x = (position.x * TILE) + ((double)TILE / 2);
-	cube->player.y = (position.y * TILE) + ((double)TILE / 2);
+	cube->player.x = (position.x * TILE) + ((float)TILE / 2);
+	cube->player.y = (position.y * TILE) + ((float)TILE / 2);
 	cube->player.turn_direction = 0;
 	cube->player.walk_direction = 0;
 	// Which direction the player will be facing (N, S, W, E)
@@ -50,9 +50,9 @@ void	ft_get_window_data(t_cube *data)
 	}
 	data->info->ylen = y;
 	data->info->xlen = x;
-	data->size.width = round(((double)WIDTH / (double)x));
+	data->size.width = round(((float)WIDTH / (float)x));
 	data->size.win_width = round(WIDTH * data->size.width);
-	data->size.height = round(((double)HEIGHT / (double)y));
+	data->size.height = round(((float)HEIGHT / (float)y));
 	data->size.win_height = round(HEIGHT * data->size.height);
 }
 

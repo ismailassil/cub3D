@@ -6,16 +6,16 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 23:41:57 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:12:12 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/24 21:48:17 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 // Its purpose is to let the angle between 0_deg and 360_deg
-static double	ft_normalize_angle(double ray_angle)
+static float	ft_normalize_angle(float ray_angle)
 {
-	double	new_angle;
+	float	new_angle;
 
 	new_angle = fmod(ray_angle, (2.0 * M_PI));
 	if (new_angle < 0)
@@ -23,13 +23,13 @@ static double	ft_normalize_angle(double ray_angle)
 	return (new_angle);
 }
 
-double	ft_get_point_to_point_distance(double x1, double y1, 
-	double x2, double y2)
+float	ft_get_point_to_point_distance(float x1, float y1, 
+	float x2, float y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-bool	ft_is_a_wall(t_cube *cube, double x, double y)
+bool	ft_is_a_wall(t_cube *cube, float x, float y)
 {
 	int	grid_x;
 	int	grid_y;
@@ -48,7 +48,7 @@ bool	ft_is_a_wall(t_cube *cube, double x, double y)
 	return (false);
 }
 
-void	ft_init_directions(t_cube *cube, t_info *f, double rayangle)
+void	ft_init_directions(t_cube *cube, t_info *f, float rayangle)
 {
 	f->found_horz_wall = false;
 	f->found_vert_wall = false;

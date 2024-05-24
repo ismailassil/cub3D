@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:05:10 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:05:10 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/24 21:44:47 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	ft_init_mlx_window(t_cube *cube)
 	s.win_height = cube->info->ylen * TILE;
 	s.win_width = cube->info->xlen * TILE;
 	// This declaration is for the fixed size for WIDTH and HEIGHT
-	// cube->mlx = mlx_init(WIDTH, HEIGHT, "DOOM", false);
-	cube->mlx = mlx_init(s.win_width, s.win_height, "DOOM", false);
+	// cube->mlx = mlx_init(s.win_width, s.win_height, "DOOM", false);
+	cube->mlx = mlx_init(WIDTH, HEIGHT, "DOOM", false);
 	if (!cube->mlx)
 		ft_mlx_error();
 	// This declaration is for the fixed size for WIDTH and HEIGHT
-	// cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
-	cube->img = mlx_new_image(cube->mlx, s.win_width, s.win_height);
+	// cube->img = mlx_new_image(cube->mlx, s.win_width, s.win_height);
+	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
 	if (!cube->img)
 		ft_mlx_error();
 	if (mlx_image_to_window(cube->mlx, cube->img, 0, 0) < 0)

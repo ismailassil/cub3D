@@ -6,23 +6,23 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 23:35:41 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:11:42 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/24 21:48:17 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-double	ft_get_horizontal_dist(t_cube *cube, t_info *f)
+float	ft_get_horizontal_distance(t_cube *cube, t_info *f)
 {
 	f->y_intersection = floor(f->py / f->ytile) * f->ytile;
 	if (f->is_down)
 		f->y_intersection += f->ytile;
 	f->x_intersection = f->px + ((f->y_intersection - f->py) 
 			/ tan(f->ray_angle));
-	f->ystep = (double)f->ytile;
+	f->ystep = (float)f->ytile;
 	if (f->is_up)
 		f->ystep *= -1;
-	f->xstep = (double)f->ystep / tan(f->ray_angle);
+	f->xstep = (float)f->ystep / tan(f->ray_angle);
 	if (f->is_left && f->xstep > 0)
 		f->xstep *= -1;
 	if (f->is_right && f->xstep < 0)
@@ -38,8 +38,8 @@ double	ft_get_horizontal_dist(t_cube *cube, t_info *f)
 
 void	ft_check_horizontal_wall_collision(t_cube *cube, t_info *f)
 {
-	double	xtocheck;
-	double	ytocheck;
+	float	xtocheck;
+	float	ytocheck;
 
 	while (f->next_horz_x >= 0 && f->next_horz_x <= cube->size.win_width
 		&& f->next_horz_y >= 0 && f->next_horz_y <= cube->size.win_height)
@@ -62,17 +62,17 @@ void	ft_check_horizontal_wall_collision(t_cube *cube, t_info *f)
 	}
 }
 
-double	ft_get_vertical_dist(t_cube *cube, t_info *f)
+float	ft_get_vertical_distance(t_cube *cube, t_info *f)
 {
 	f->x_intersection = floor(f->px / f->xtile) * f->xtile;
 	if (f->is_right)
 		f->x_intersection += f->xtile;
 	f->y_intersection = f->py + ((f->x_intersection - f->px) 
 			* tan(f->ray_angle));
-	f->xstep = (double)f->xtile;
+	f->xstep = (float)f->xtile;
 	if (f->is_left)
 		f->xstep *= -1;
-	f->ystep = (double)f->xstep * tan(f->ray_angle);
+	f->ystep = (float)f->xstep * tan(f->ray_angle);
 	if (f->is_up && f->ystep > 0)
 		f->ystep *= -1;
 	if (f->is_down && f->ystep < 0)
@@ -88,8 +88,8 @@ double	ft_get_vertical_dist(t_cube *cube, t_info *f)
 
 void	ft_check_vertical_wall_collision(t_cube *cube, t_info *f)
 {
-	double	xtocheck;
-	double	ytocheck;
+	float	xtocheck;
+	float	ytocheck;
 
 	while (f->next_vert_x >= 0 && f->next_vert_x <= f->win_width
 		&& f->next_vert_y >= 0 && f->next_vert_y <= f->win_height)
