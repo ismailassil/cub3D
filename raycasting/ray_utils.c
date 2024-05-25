@@ -6,11 +6,27 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/24 21:48:17 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/25 17:37:07 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+float	ft_check_pl_direction(char direction)
+{
+	float	angle;
+
+	angle = 0.0;
+	if (direction == 'N')
+		angle = (3.0 * M_PI) / 2.0;
+	else if (direction == 'W')
+		angle = M_PI;
+	else if (direction == 'E')
+		angle = 0.0;
+	else if (direction == 'S')
+		angle = M_PI / 2.0;
+	return (angle);
+}
 
 void	ft_initialize_data(t_cube *cube)
 {
@@ -20,9 +36,12 @@ void	ft_initialize_data(t_cube *cube)
 	cube->player.x = (position.x * TILE) + ((float)TILE / 2);
 	cube->player.y = (position.y * TILE) + ((float)TILE / 2);
 	cube->player.turn_direction = 0;
-	cube->player.walk_direction = 0;
+	cube->player.up_down_direction = 0;
+	cube->player.left_right_direction = 0;
 	// Which direction the player will be facing (N, S, W, E)
-	cube->player.rotation_angle = M_PI_4;
+	// cube->player.rotation_angle = ft_check_pl_direction(cube->info->direction);
+	// This is north
+	cube->player.rotation_angle = (3.0 * M_PI) / 2.0;
 	cube->player.rotation_speed = ROT_SPEED * (M_PI / 180);
 	// formula to convert degree to radian
 	cube->player.fov_angle = 60 * (M_PI / 180);

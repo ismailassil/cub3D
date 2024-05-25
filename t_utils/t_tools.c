@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:38:09 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 13:06:26 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/25 18:35:10 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	ft_init_tools(t_tools *t)
 	t->current_x = 0;
 	t->current_y = 0;
 	t->move_step = 0;
+	t->color = 0;
 }

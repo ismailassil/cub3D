@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:41:04 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:04:46 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/25 17:36:16 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ bool	ft_is_info(char *str, char *inf)
 static void	ft_add_data(t_data *parse, t_tools *t, int which)
 {
 	if (which == NO)
-		parse->directions->north = parse->data[t->i];
+		parse->path->north = parse->data[t->i];
 	else if (which == SO)
-		parse->directions->south = parse->data[t->i];
+		parse->path->south = parse->data[t->i];
 	else if (which == EA)
-		parse->directions->east = parse->data[t->i];
+		parse->path->east = parse->data[t->i];
 	else if (which == WE)
-		parse->directions->west = parse->data[t->i];
+		parse->path->west = parse->data[t->i];
 	else if (which == F)
 		parse->colors->floor = parse->data[t->i];
 	else if (which == C)

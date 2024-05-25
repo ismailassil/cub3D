@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:46:12 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:04:58 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/25 17:35:52 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	ft_retrieve_and_check_directions(t_data *parse)
 	t_tools	t;
 
 	ft_init_tools(&t);
-	parse->directions = malloc(sizeof(t_directions));
-	ft_check_allocation(parse->directions);
+	parse->path = malloc(sizeof(t_path));
+	ft_check_allocation(parse->path);
 	parse->colors = malloc(sizeof(t_colors));
 	ft_check_allocation(parse->colors);
 	while (parse->data && parse->data[t.i])

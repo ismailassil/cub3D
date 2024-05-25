@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 23:37:15 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/23 00:18:10 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/25 17:01:21 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,26 @@ void	ft_press_and_release_key(mlx_key_data_t keycube, int *click, int value)
 /*	This functions checks the player's movements, if their is a wall or not */
 void	ft_move_player(t_cube *cube)
 {
-	int	current_y;
-	int	current_x;
-	int	current_yy;
-	int	current_xx;
+	int	new_x;
+	int	new_y;
+	int	new_xx;
+	int	new_yy;
 
-	cube->player.rotation_angle += cube->player.turn_direction 
-		* cube->player.rotation_speed;
-	current_x = cube->player.x + (cos(cube->player.rotation_angle) 
-			* cube->player.walk_direction * PLAYER_SPEED);
-	current_xx = (cube->player.x + PLAYER_PX) 
-		+ (cos(cube->player.rotation_angle)
-			* cube->player.walk_direction * PLAYER_SPEED);
-	current_y = cube->player.y + (sin(cube->player.rotation_angle) 
-			* cube->player.walk_direction * PLAYER_SPEED);
-	current_yy = (cube->player.y + PLAYER_PX) 
-		+ (sin(cube->player.rotation_angle) 
-			* cube->player.walk_direction * PLAYER_SPEED);
-	if (cube->info->map[current_y / TILE][current_x / TILE] != '1'
-		&& cube->info->map[current_yy / TILE][current_xx / TILE] != '1')
+	cube->player.rotation_angle += cube->player.turn_direction * cube->player.rotation_speed;
+	new_x = cube->player.x + cos(cube->player.rotation_angle)
+		* cube->player.up_down_direction * PLAYER_SPEED;
+	new_y = cube->player.y + sin(cube->player.rotation_angle)
+		* cube->player.up_down_direction * PLAYER_SPEED;
+	new_x += cos(cube->player.rotation_angle + M_PI_2)
+		* cube->player.left_right_direction * PLAYER_SPEED;
+	new_y += sin(cube->player.rotation_angle + M_PI_2)
+		* cube->player.left_right_direction * PLAYER_SPEED;
+	new_xx = new_x + PLAYER_PX;
+	new_yy = new_y + PLAYER_PX;
+	if (cube->info->map[new_y / TILE][new_x / TILE] != '1' &&
+		cube->info->map[new_yy / TILE][new_xx / TILE] != '1')
 	{
-		cube->player.x = current_x;
-		cube->player.y = current_y;
+		cube->player.x = new_x;
+		cube->player.y = new_y;
 	}
 }

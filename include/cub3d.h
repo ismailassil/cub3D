@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/24 21:48:17 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/25 19:10:03 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "get_next_line.h"
 # include "libft.h"
 # include "stdbool.h"
+#include <stdint.h>
 # include <stdio.h>
 # include <sys/fcntl.h>
 # include <math.h>
@@ -32,31 +33,31 @@
 # define PIXEL			32
 # define WIDTH			1920
 # define HEIGHT			1080
-# define PLAYER_PX		6
-# define PLAYER_SPEED	5
-# define ROT_SPEED		5
+# define PLAYER_PX		10
+# define PLAYER_SPEED	10
+# define ROT_SPEED		10
 # define LINE			80
 # define NUM_RAYS		WIDTH
 # define TILE			64
 # define MINIMAP		0.2
-# define BLACK			0x000000
-# define WHITE			0xFFFFFF
-# define RED			0xFF0000
-# define GREEN			0x00FF00
-# define BLUE			0x0000FF
-# define YELLOW			0xFFFF00
-# define CYAN			0x00FFFF
-# define MAGENTA		0xFF00FF
+# define MAPWIDTH		400
+# define MAPHEIGHT		300
 
-typedef unsigned int uint;
+typedef struct s_rgba
+{
+	int32_t	a;
+	int32_t	r;
+	int32_t	g;
+	int32_t	b;	
+}			t_rgba;
 
-typedef struct s_directions
+typedef struct s_path
 {
 	char	*north;
 	char	*west;
 	char	*south;
 	char	*east;
-}			t_directions;
+}			t_path;
 
 typedef struct s_colors
 {
@@ -76,7 +77,8 @@ typedef struct s_data
 {
 	char			**data;
 	char			**map;
-	t_directions	*directions;
+	char			direction;
+	t_path			*path;
 	t_colors		*colors;
 	int				ylen;
 	int				xlen;
@@ -84,29 +86,30 @@ typedef struct s_data
 
 typedef struct s_tools
 {
-	int		i;
-	int		j;
-	int		no;
-	int		so;
-	int		we;
-	int		ea;
-	int		floor;
-	int		ceiling;
-	int		which;
-	int		error;
-	int		flag;
-	int		x;
-	int		y;
-	int		x_begin;
-	int		y_max;
-	int		x_max;
-	int		x_center;
-	int		y_center;
-	int		nextpx_x;
-	int		current_x;
-	int		nextpx_y;
-	int		current_y;
-	int		move_step;
+	int			i;
+	int			j;
+	int			no;
+	int			so;
+	int			we;
+	int			ea;
+	int			floor;
+	int			ceiling;
+	int			which;
+	int			error;
+	int			flag;
+	int			x;
+	int			y;
+	int			x_begin;
+	int			y_max;
+	int			x_max;
+	int			x_center;
+	int			y_center;
+	int			nextpx_x;
+	int			current_x;
+	int			nextpx_y;
+	int			current_y;
+	int			move_step;
+	uint32_t	color;
 }			t_tools;
 
 typedef struct s_list
@@ -138,7 +141,8 @@ typedef struct s_player
 	float	x;
 	float	y;
 	int		turn_direction;
-	int		walk_direction;
+	int		up_down_direction;
+	int		left_right_direction;
 	int		num_of_rays;
 	int		wall_strip_width;
 	float	rotation_speed;
@@ -168,6 +172,16 @@ typedef struct s_size
 	int	win_height;
 }		t_size;
 
+typedef struct s_textures
+{
+	mlx_texture_t	*north;
+	mlx_texture_t	*west;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
+	mlx_texture_t	*gun;
+	mlx_image_t		*gun_text;
+}					t_textures;
+
 typedef struct s_cube
 {
 	t_data			*info;
@@ -176,6 +190,7 @@ typedef struct s_cube
 	t_player		player;
 	t_size			size;
 	t_ray			*rays;
+	t_textures		textures;
 }					t_cube;
 
 typedef struct s_info
@@ -266,7 +281,7 @@ void	ft_draw_line_of_view(t_cube *cube, int color);
 void	ft_draw_line(t_cube *cube, t_line line, int color);
 
 /*	Color functions		*/
-int		rgba(int red, int green, int blue, int alpha);
+uint32_t	rgba(int red, int green, int blue, int alpha);
 
 /*	Utils functions		*/
 void	ft_initialize_data(t_cube *cube);

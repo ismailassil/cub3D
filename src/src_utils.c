@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:45:00 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/25 17:36:09 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_check_allocation(void *ptr)
 void	ft_free_all(t_data **parse)
 {
 	ft_free_map(&(*parse)->data);
-	free((*parse)->directions);
+	free((*parse)->path);
 	free((*parse)->colors);
 	free(*parse);
 	exit(FAIL);

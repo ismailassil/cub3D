@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 23:41:57 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/24 21:48:17 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/25 19:15:30 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	ft_is_a_wall(t_cube *cube, float x, float y)
 		return (false);
 	grid_x = floor(x / TILE);
 	grid_y = floor(y / TILE);
-	if (grid_y > 16)
+	if (grid_y > cube->info->ylen)
 		grid_y = cube->info->ylen - 1;
 	if (grid_x > (int)ft_strlen(cube->info->map[grid_y]) - 1)
 		grid_x = ft_strlen(cube->info->map[grid_y]) - 1;
