@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 16:34:42 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/26 17:05:19 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_get_window_data(t_cube *data)
 	data->size.win_height = round(HEIGHT * data->size.height);
 }
 
-static float	ft_check_pl_direction(char direction)
+float	ft_check_pl_direction(char direction)
 {
 	float	angle;
 

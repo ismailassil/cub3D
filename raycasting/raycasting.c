@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:03:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 16:40:11 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/26 17:11:44 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_3dprojection(t_cube *cube, t_ray ray, int strip_id)
 	p.strip_wall_height = ((TILE) / p.corrected_angle) * p.ply_to_proj_plane;
 	p.strip_height = p.strip_wall_height;
 	ft_get_wall_measurement(&p);
-	p.img = ft_get_texture(cube, ray);
+	ft_get_texture(cube, &p, ray);
 	p.img_px = (int32_t *)p.img->pixels;
 	p.offset = (float)(p.img->height / p.strip_wall_height);
 	p.xcord = get_xcord(ray, p.img);

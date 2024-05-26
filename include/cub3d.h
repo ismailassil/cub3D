@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 16:54:07 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/26 17:06:56 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ typedef struct s_info
 }				t_info;
 
 /*	To be deleted	*/
-void	ft_map(t_data *info);
+void		ft_map(t_data *info);
 
 /*	Check input		*/
 bool		ft_check_input_file(int ac, char **av);
@@ -295,73 +295,74 @@ t_ray		ft_get_distance(t_cube *cube, float ray_angle);
 void		ft_3dprojection(t_cube *cube, t_ray ray, int strip_id);
 
 /*	3d Projection utils functions	*/
-void			ft_get_wall_measurement(t_3dprojection *p);
-mlx_texture_t	*ft_get_texture	(t_cube *cube, t_ray ray);
-float			get_xcord(t_ray ray, mlx_texture_t *img);
+void		ft_get_wall_measurement(t_3dprojection *p);
+void		ft_get_texture(t_cube *cube, t_3dprojection	*p, t_ray ray);
+float		get_xcord(t_ray ray, mlx_texture_t *img);
 
 /*	Ray Computation functions	*/
-void			ft_walls_projection(t_cube *cube);
-void			ft_render_rays(t_cube *cube);
-void			ft_cast_all_rays(t_cube *cube);
-void			ft_cast_ray(t_cube *cube, int id, float rayangle);
-void			ft_init_directions(t_cube *cube, t_info *f, float rayangle);
-float			ft_get_horizontal_distance(t_cube *cube, t_info *f);
-float			ft_get_vertical_distance(t_cube *cube, t_info *f);
-t_ray			ft_fill_ray_data(t_info *f);
-void			ft_check_horizontal_wall_collision(t_cube *cube, t_info *f);
-void			ft_check_vertical_wall_collision(t_cube *cube, t_info *f);
-bool			ft_is_a_wall(t_cube *cube, float x, float y);
-float			ft_get_point_to_point_distance(float x1, float y1, \
-					float x2, float y2);
+void		ft_walls_projection(t_cube *cube);
+void		ft_render_rays(t_cube *cube);
+void		ft_cast_all_rays(t_cube *cube);
+void		ft_cast_ray(t_cube *cube, int id, float rayangle);
+void		ft_init_directions(t_cube *cube, t_info *f, float rayangle);
+float		ft_get_horizontal_distance(t_cube *cube, t_info *f);
+float		ft_get_vertical_distance(t_cube *cube, t_info *f);
+t_ray		ft_fill_ray_data(t_info *f);
+void		ft_check_horizontal_wall_collision(t_cube *cube, t_info *f);
+void		ft_check_vertical_wall_collision(t_cube *cube, t_info *f);
+bool		ft_is_a_wall(t_cube *cube, float x, float y);
+float		ft_get_point_to_point_distance(float x1, float y1, \
+				float x2, float y2);
 
 /*	Raycasting utils functions	*/
-void	ft_get_window_data(t_cube *cube);
-void	ft_fill_square(t_cube *cube, int x, int y, int color);
-void	ft_fill_pixel_player(t_cube *cube, int color);
-void	ft_draw_line_of_view(t_cube *cube, int color);
-void	ft_draw_line(t_cube *cube, t_line line, int color);
-void	ft_draw_floor_and_ceiling(t_cube *cube);
+void		ft_get_window_data(t_cube *cube);
+void		ft_fill_square(t_cube *cube, int x, int y, int color);
+void		ft_fill_pixel_player(t_cube *cube, int color);
+void		ft_draw_line_of_view(t_cube *cube, int color);
+void		ft_draw_line(t_cube *cube, t_line line, int color);
+void		ft_draw_floor_and_ceiling(t_cube *cube);
 
 /*	Color functions	*/
 uint32_t	rgba(int red, int green, int blue, int alpha);
-int32_t	ft_reverse_color(int32_t colors);
+int32_t		ft_reverse_color(int32_t colors);
 
 /*	Utils functions	*/
-void	ft_initialize_data(t_cube *cube);
-void	ft_get_position_of_player(char **map, t_point *p);
-void	ft_exit(t_cube *cube);
+void		ft_initialize_data(t_cube *cube);
+void		ft_get_position_of_player(char **map, t_point *p);
+void		ft_exit(t_cube *cube);
 
 /*	Check functions	*/
-void	ft_check_unnessary_infos(t_data *parse);
-void	ft_retrieve_and_check_directions(t_data *parse);
-void	ft_retrieve_and_check_map(t_data *parse);
-void	ft_check_if_surrounded_by_walls(t_data *parse);
+void		ft_check_unnessary_infos(t_data *parse);
+void		ft_retrieve_and_check_directions(t_data *parse);
+void		ft_retrieve_and_check_map(t_data *parse);
+void		ft_check_if_surrounded_by_walls(t_data *parse);
 
 /*	Check utils functions	*/
-void	ft_check_directions(t_data *parse, t_tools *t);
-void	ft_check_colors(t_data *parse, t_tools *t);
-bool	ft_is_info(char *str, char *inf);
-void	ft_add_information(t_data *parse, t_tools *t, int *dir, int which);
+void		ft_check_directions(t_data *parse, t_tools *t);
+void		ft_check_colors(t_data *parse, t_tools *t);
+bool		ft_is_info(char *str, char *inf);
+void		ft_add_information(t_data *parse, t_tools *t, \
+				int *dir, int which);
 
 /*	Parsing utils functions	*/
-bool	ft_isonly_whitespace(char *str);
-void	ft_del_whitespace(char *str);
-void	ft_remove_newline(char **line);
+bool		ft_isonly_whitespace(char *str);
+void		ft_del_whitespace(char *str);
+void		ft_remove_newline(char **line);
 
 /*	t_utils functions	*/
-int		ft_push_line(char *token, t_list **head);
-int		ft_t_data_len(t_list *head);
-t_list	*ft_last_node(t_list *top);
-t_list	*ft_new_node(char *line);
-void	ft_free_data(t_list **head);
-void	ft_init_tools(t_tools *t);
+int			ft_push_line(char *token, t_list **head);
+int			ft_t_data_len(t_list *head);
+t_list		*ft_last_node(t_list *top);
+t_list		*ft_new_node(char *line);
+void		ft_free_data(t_list **head);
+void		ft_init_tools(t_tools *t);
 
 /*	Utils functions	*/
-void	p_error(char *str1, char *str2, int newline);
-void	ft_check_allocation(void *ptr);
-void	ft_free_all(t_data **parse);
-void	ft_free_map(char ***map);
+void		p_error(char *str1, char *str2, int newline);
+void		ft_check_allocation(void *ptr);
+void		ft_free_all(t_data **parse);
+void		ft_free_map(char ***map);
 //////////////////////////////////////////////
-void	ft_print_map(char **map);
+void		ft_print_map(char **map);
 //////////////////////////////////////////////
 #endif
