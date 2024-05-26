@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:40:20 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 17:16:36 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/26 17:42:14 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ void	ft_get_texture(t_cube *cube, t_3dprojection	*p, t_ray ray)
 	{
 		if (ray.ray_angle < 0.5 * M_PI || ray.ray_angle > 1.5 * M_PI)
 			p->img = cube->textures.east;
-		p->img = cube->textures.west;
+		else
+			p->img = cube->textures.west;
 	}
 	else
 	{
 		if (ray.ray_angle > 0 && ray.ray_angle < M_PI)
 			p->img = cube->textures.south;
-		p->img = cube->textures.north;
+		else
+			p->img = cube->textures.north;
 	}
 }
 
