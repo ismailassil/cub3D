@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/25 19:10:03 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/26 16:54:07 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include "get_next_line.h"
 # include "libft.h"
 # include "stdbool.h"
-#include <stdint.h>
 # include <stdio.h>
 # include <sys/fcntl.h>
 # include <math.h>
@@ -35,13 +34,16 @@
 # define HEIGHT			1080
 # define PLAYER_PX		10
 # define PLAYER_SPEED	10
-# define ROT_SPEED		10
+# define ROT_SPEED		5
 # define LINE			80
 # define NUM_RAYS		WIDTH
 # define TILE			64
 # define MINIMAP		0.2
-# define MAPWIDTH		400
-# define MAPHEIGHT		300
+# define MAPWIDTH		300
+# define MAPHEIGHT		200
+# define SPACE			15
+# define BORDER			5
+# define MC				255
 
 typedef struct s_rgba
 {
@@ -59,11 +61,17 @@ typedef struct s_path
 	char	*east;
 }			t_path;
 
-typedef struct s_colors
+typedef struct s_colors_id
 {
 	char	*floor;
 	char	*ceiling;
-}			t_colors;
+}			t_colors_id;
+
+typedef struct s_colors
+{
+	uint32_t	floor;
+	uint32_t	ceiling;
+}				t_colors;
 
 typedef struct s_line
 {
@@ -79,7 +87,7 @@ typedef struct s_data
 	char			**map;
 	char			direction;
 	t_path			*path;
-	t_colors		*colors;
+	t_colors_id		*colors;
 	int				ylen;
 	int				xlen;
 }					t_data;
@@ -112,6 +120,20 @@ typedef struct s_tools
 	uint32_t	color;
 }			t_tools;
 
+typedef struct s_grid
+{
+	int		center_x;
+	int		center_y;
+	int		diff_x;
+	int		diff_y;
+	int		map_x;
+	int		map_y;
+	int		tile_x;
+	int		tile_y;
+	int		x;
+	int		y;
+}			t_grid;
+
 typedef struct s_list
 {
 	char			*line;
@@ -136,17 +158,32 @@ typedef struct s_draw_line
 	int	err2;
 }		t_draw_line;
 
+typedef struct s_3dprojection
+{
+	mlx_texture_t	*img;
+	int32_t			*img_px;
+	float			ply_to_proj_plane;
+	float			strip_wall_height;
+	float			corrected_angle;
+	float			offset;
+	float			xcord;
+	float			ycord;
+	int				wall_top;
+	int				wall_bottom;
+	int				strip_height;
+}					t_3dprojection;
+
 typedef struct s_player
 {
 	float	x;
 	float	y;
 	int		turn_direction;
-	int		up_down_direction;
-	int		left_right_direction;
+	int		ud_direction;
+	int		lr_direction;
 	int		num_of_rays;
 	int		wall_strip_width;
 	float	rotation_speed;
-	float	rotation_angle;
+	float	rot_angle;
 	float	fov_angle;
 }			t_player;
 
@@ -178,8 +215,6 @@ typedef struct s_textures
 	mlx_texture_t	*west;
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
-	mlx_texture_t	*gun;
-	mlx_image_t		*gun_text;
 }					t_textures;
 
 typedef struct s_cube
@@ -188,50 +223,38 @@ typedef struct s_cube
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	t_player		player;
+	t_colors		colors;
 	t_size			size;
-	t_ray			*rays;
 	t_textures		textures;
 }					t_cube;
 
 typedef struct s_info
 {
-	// Windows
 	int			win_width;
 	int			win_height;
-	// Player Coordinates
 	float		px;
 	float		py;
-	// Tile
 	int			xtile;
 	int			ytile;
-	// The intersection
 	float		x_intersection;
 	float		y_intersection;
-	// The steps deltaX and deltaY
 	float		xstep;
 	float		ystep;
-	// Angle
 	float		ray_angle;
-	// Ray directions
 	bool		is_right;
 	bool		is_down;
 	bool		is_up;
 	bool		is_left;
-	// The next Horizantal Touch with X and Y
 	float		next_horz_x;
 	float		next_horz_y;
-	// To check if hit wall
 	bool		found_horz_wall;
 	float		horzwallx;
 	float		horzwally;
-	// The next Vertical Touch with X and Y
 	float		next_vert_x;
 	float		next_vert_y;
-	// To check if hit wall
 	bool		found_vert_wall;
 	float		vertwallx;
 	float		vertwally;
-	/// Calculate the Vert and Horz distances and get the smallest value
 	float		horz_dist;
 	float		vert_dist;
 }				t_info;
@@ -240,38 +263,56 @@ typedef struct s_info
 void	ft_map(t_data *info);
 
 /*	Check input		*/
-bool	ft_check_input_file(int ac, char **av);
-int		ft_open_file(char *file);
+bool		ft_check_input_file(int ac, char **av);
+int			ft_open_file(char *file);
 
 /*	Main functions	*/
-void	ft_parse(int fd, t_data *cube);
-void	ft_execute(t_data *cube);
+void		ft_parse(int fd, t_data *cube);
+void		ft_execute(t_data *cube);
 
 /*	MLX functions	*/
-void	ft_key_hook(mlx_key_data_t keydata, void *param);
-void	ft_loop_hook(void *param);
-void	ft_close_hook(void *param);
-void	ft_destroy_mlx(t_cube *data);
-void	ft_mlx_error(void);
+void		ft_key_hook(mlx_key_data_t keydata, void *param);
+void		ft_loop_hook(void *param);
+void		ft_close_hook(void *param);
+void		ft_destroy_cube(t_cube *cube);
+void		ft_mlx_error(void);
 
 /*	Player Movements functions	*/
-void	ft_move_player(t_cube *cube);
-void	ft_press_and_release_key(mlx_key_data_t keycube, int *cube, int value);
+void		ft_move_player(t_cube *cube);
+void		ft_press_and_release_key(mlx_key_data_t keycube, \
+				int *cube, int value);
+
+/*	MiniMap function	*/
+void		ft_render_minimap(t_cube *cube);
+
+/*	Execution functions	*/
+void		ft_init_mlx_window(t_cube *cube);
+void		ft_get_window_data(t_cube *data);
+void		ft_initialize_data(t_cube *cube);
+
+/*	3d Projection functions	*/
+t_ray		ft_get_distance(t_cube *cube, float ray_angle);
+void		ft_3dprojection(t_cube *cube, t_ray ray, int strip_id);
+
+/*	3d Projection utils functions	*/
+void			ft_get_wall_measurement(t_3dprojection *p);
+mlx_texture_t	*ft_get_texture	(t_cube *cube, t_ray ray);
+float			get_xcord(t_ray ray, mlx_texture_t *img);
 
 /*	Ray Computation functions	*/
-void	ft_cast_walls(t_cube *cube);
-void	ft_render_rays(t_cube *cube);
-void	ft_cast_all_rays(t_cube *cube);
-void	ft_cast_ray(t_cube *cube, int id, float rayangle);
-void	ft_init_directions(t_cube *cube, t_info *f, float rayangle);
-float	ft_get_horizontal_distance(t_cube *cube, t_info *f);
-float	ft_get_vertical_distance(t_cube *cube, t_info *f);
-void	ft_fill_ray_data(t_cube *cube, t_info *f, int id);
-void	ft_check_horizontal_wall_collision(t_cube *cube, t_info *f);
-void	ft_check_vertical_wall_collision(t_cube *cube, t_info *f);
-bool	ft_is_a_wall(t_cube *cube, float x, float y);
-float	ft_get_point_to_point_distance(float x1, float y1, \
-	float x2, float y2);
+void			ft_walls_projection(t_cube *cube);
+void			ft_render_rays(t_cube *cube);
+void			ft_cast_all_rays(t_cube *cube);
+void			ft_cast_ray(t_cube *cube, int id, float rayangle);
+void			ft_init_directions(t_cube *cube, t_info *f, float rayangle);
+float			ft_get_horizontal_distance(t_cube *cube, t_info *f);
+float			ft_get_vertical_distance(t_cube *cube, t_info *f);
+t_ray			ft_fill_ray_data(t_info *f);
+void			ft_check_horizontal_wall_collision(t_cube *cube, t_info *f);
+void			ft_check_vertical_wall_collision(t_cube *cube, t_info *f);
+bool			ft_is_a_wall(t_cube *cube, float x, float y);
+float			ft_get_point_to_point_distance(float x1, float y1, \
+					float x2, float y2);
 
 /*	Raycasting utils functions	*/
 void	ft_get_window_data(t_cube *cube);
@@ -279,16 +320,18 @@ void	ft_fill_square(t_cube *cube, int x, int y, int color);
 void	ft_fill_pixel_player(t_cube *cube, int color);
 void	ft_draw_line_of_view(t_cube *cube, int color);
 void	ft_draw_line(t_cube *cube, t_line line, int color);
+void	ft_draw_floor_and_ceiling(t_cube *cube);
 
-/*	Color functions		*/
+/*	Color functions	*/
 uint32_t	rgba(int red, int green, int blue, int alpha);
+int32_t	ft_reverse_color(int32_t colors);
 
-/*	Utils functions		*/
+/*	Utils functions	*/
 void	ft_initialize_data(t_cube *cube);
 void	ft_get_position_of_player(char **map, t_point *p);
 void	ft_exit(t_cube *cube);
 
-/*	Check functions		*/
+/*	Check functions	*/
 void	ft_check_unnessary_infos(t_data *parse);
 void	ft_retrieve_and_check_directions(t_data *parse);
 void	ft_retrieve_and_check_map(t_data *parse);

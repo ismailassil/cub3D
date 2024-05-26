@@ -6,13 +6,13 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/25 19:33:55 by iassil           ###   ########.fr        #
+#    Updated: 2024/05/26 16:08:42 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
 CC			+=	-Wall -Wextra -Werror
-CC			+=	-fsanitize=address -fsanitize=undefined -g
+CC			+=	-fsanitize=address -g
 MLX			=	/Users/iassil/.MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 MLX			+=	-framework Cocoa -framework OpenGL -framework IOKit
 INCLUDE		=	-I./lib/MLX42
@@ -29,10 +29,10 @@ SRC_FILES	=	cub3d.c				ft_check_input.c		src_utils.c
 PRS_FILES	=	ft_parse.c			ft_check.c				ft_check_utils.c	\
 				ft_parsing_utils.c
 
-EXEC_FILES	=	raycasting.c		colors.c				mlx.c					\
-				executing.c			player_movements.c		ray_computation.c		\
-				pixel_renderer.c	draw_projection_of_view.c						\
-				ray_utils.c			ray_computation_utils.c		utils.c
+EXEC_FILES	=	raycasting.c				colors.c				mlx.c				\
+				execution.c					player_movements.c		ray_computation.c	\
+				render_pixel.c				minimap.c				draw.c				\
+				ray_utils.c					ray_computation_utils.c		utils.c
 
 UTILS_FILES	=	t_list.c			t_tools.c
 
@@ -96,6 +96,7 @@ $(FLD_NAME)/lib/libft/%.o: lib/libft/%.c $(LIB_HR_H)
 $(FLD_NAME)/raycasting/%.o: raycasting/%.c $(SRC_HR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) -c $< -o $@ $(INCLUDE)
+######################################################
 
 $(NAME): $(OBJ)
 	@echo "$(YELLOW)[ ~ ] Compilation of the Objects files...$(RESET)"
