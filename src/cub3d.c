@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:32 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/22 23:56:42 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/26 17:42:48 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	leaks(void)
 	system("leaks cub3d");
 }
 
-// atexit(leaks);
 int	main(int ac, char **av)
 {
 	int		fd;
