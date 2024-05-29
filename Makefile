@@ -6,7 +6,7 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/26 17:05:01 by iassil           ###   ########.fr        #
+#    Updated: 2024/05/29 02:03:55 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,7 @@ $(NAME): $(OBJ)
 clean:
 	@echo "$(YELLOW)[ ~ ] Removing Object files $(RESET)"
 	@$(RM) $(OBJ)
-	@$(RM) -rf _object_files
+	@$(RM) -rf $(FLD_NAME)
 	@echo "$(GREEN)[ ✓ ] Object files removed successfully!$(RESET)"
 	
 fclean: clean
