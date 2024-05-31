@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 15:58:12 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 15:58:40 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/31 21:22:02 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static void	ft_render_player(t_cube *cube)
 {
-	int	pl_x;
-	int	pl_y;
 	int	i;
 	int	j;
+	int	pl_x;
+	int	pl_y;
 
 	i = 0;
-	pl_y = SPACE + ((MAPHEIGHT / 2) - (PLAYER_PX / 2));
+	pl_y = SPACE + ((MAPHEIGHT / 2) - PLAYER_PX);
 	while (i < PLAYER_PX)
 	{
-		pl_x = SPACE + ((MAPWIDTH / 2) - (PLAYER_PX));
+		pl_x = SPACE + ((MAPWIDTH / 2) - (PLAYER_PX * 2));
 		j = 0;
 		while (j < PLAYER_PX)
 		{

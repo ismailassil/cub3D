@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:05:25 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 16:36:55 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/31 19:31:54 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_reinit_mlx_window(t_cube *cube)
 	mlx_delete_image(cube->mlx, cube->img);
 	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
 	if (!cube->img)
-		ft_mlx_error();
+		ft_mlx_error(cube);
 	if (mlx_image_to_window(cube->mlx, cube->img, 0, 0) < 0)
-		ft_mlx_error();
+		ft_mlx_error(cube);
 }

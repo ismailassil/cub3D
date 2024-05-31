@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 17:05:19 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/31 18:29:14 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,52 @@ static void	ft_load_textures(t_cube *cube)
 		(p_error("East texture failed to load", NULL, 1), exit(FAIL));
 }
 
+static char	*ft_get_path(int i)
+{
+	char	*num;
+	char	*tmp;
+	char	*path;
+
+	num = ft_itoa(i + 1);
+	ft_check_allocation(num);
+	tmp = ft_strjoin("./textures/csgo/", num);
+	free(num);
+	ft_check_allocation(tmp);
+	path = ft_strjoin(tmp, ".png");
+	free(tmp);
+	ft_check_allocation(path);
+	return (path);
+}
+
+static void	ft_load_images(t_cube *cube)
+{
+	int		i;
+	char	*path;
+
+	i = 0;
+	while (i < 42)
+	{
+		path = ft_get_path(i);
+		cube->textures.weapon[i] = mlx_load_png(path);
+		if (!cube->textures.weapon[i])
+			(p_error(path, " - Failed to load", 1), exit(1));
+		free(path);
+		i++;
+	}
+}
+
 void	ft_init_mlx_window(t_cube *cube)
 {
 	ft_load_textures(cube);
+	ft_load_images(cube);
 	cube->mlx = mlx_init(WIDTH, HEIGHT, "DOOM", false);
 	if (!cube->mlx)
-		ft_mlx_error();
+		(ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2), exit(FAIL));
 	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
 	if (!cube->img)
-		ft_mlx_error();
+		ft_mlx_error(cube);
 	if (mlx_image_to_window(cube->mlx, cube->img, 0, 0) < 0)
-		ft_mlx_error();
+		ft_mlx_error(cube);
 }
 
 void	ft_get_window_data(t_cube *data)

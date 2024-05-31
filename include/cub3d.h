@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 17:06:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/31 23:02:26 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define LINE			80
 # define NUM_RAYS		WIDTH
 # define TILE			64
+# define RANGE			5
 # define MINIMAP		0.2
 # define MAPWIDTH		300
 # define MAPHEIGHT		200
@@ -185,6 +186,7 @@ typedef struct s_player
 	float	rotation_speed;
 	float	rot_angle;
 	float	fov_angle;
+	bool	is_vertical;
 }			t_player;
 
 typedef struct s_ray
@@ -215,6 +217,8 @@ typedef struct s_textures
 	mlx_texture_t	*west;
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
+	mlx_texture_t	*weapon[42];
+	mlx_image_t		*weapon_img[42];
 }					t_textures;
 
 typedef struct s_cube
@@ -275,7 +279,7 @@ void		ft_key_hook(mlx_key_data_t keydata, void *param);
 void		ft_loop_hook(void *param);
 void		ft_close_hook(void *param);
 void		ft_destroy_cube(t_cube *cube);
-void		ft_mlx_error(void);
+void		ft_mlx_error(t_cube *cube);
 
 /*	Player Movements functions	*/
 void		ft_move_player(t_cube *cube);
