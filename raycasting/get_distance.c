@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_computation.c                                  :+:      :+:    :+:   */
+/*   get_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 23:35:41 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 15:13:22 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/31 10:43:24 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_check_horizontal_wall_collision(t_cube *cube, t_info *f)
 	float	xtocheck;
 	float	ytocheck;
 
-	while (f->next_horz_x >= 0 && f->next_horz_x <= cube->size.win_width
-		&& f->next_horz_y >= 0 && f->next_horz_y <= cube->size.win_height)
+	while (f->next_horz_x >= 0 && f->next_horz_x <= f->win_width
+		&& f->next_horz_y >= 0 && f->next_horz_y <= f->win_height)
 	{
 		xtocheck = f->next_horz_x;
 		ytocheck = f->next_horz_y;

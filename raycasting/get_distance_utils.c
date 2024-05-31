@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_computation_utils.c                            :+:      :+:    :+:   */
+/*   get_distance_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 23:41:57 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 16:12:50 by iassil           ###   ########.fr       */
+/*   Updated: 2024/05/31 10:43:02 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	ft_init_directions(t_cube *cube, t_info *f, float rayangle)
 	f->ray_angle = ft_normalize_angle(rayangle);
 	f->ytile = TILE;
 	f->xtile = TILE;
-	f->win_width = cube->info->xlen * TILE;
-	f->win_height = cube->info->ylen * TILE;
+	f->win_width = WIDTH * TILE;
+	f->win_height = HEIGHT * TILE;
 	f->is_down = false;
 	if (f->ray_angle > 0 && f->ray_angle < M_PI)
 		f->is_down = true;
