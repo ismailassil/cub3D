@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 23:37:15 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/31 23:01:08 by iassil           ###   ########.fr       */
+/*   Updated: 2024/06/02 14:18:45 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_press_and_release_key(mlx_key_data_t keycube, int *click, int value)
 	else
 		*click = value;
 }
+
 // Its Purpose is to let the angle between 0_deg and 360_deg
 static float	ft_normalizee_angle(float ray_angle)
 {
@@ -95,9 +96,9 @@ void	ft_move_player(t_cube *cube)
 	new_y = cube->player.y + sin(cube->player.rot_angle)
 		* cube->player.ud_direction * PLAYER_SPEED;
 	new_x += (cos(cube->player.rot_angle + M_PI_2)
-		* cube->player.lr_direction * (PLAYER_SPEED - 5));
+			* cube->player.lr_direction * (PLAYER_SPEED - 5));
 	new_y += (sin(cube->player.rot_angle + M_PI_2)
-		* cube->player.lr_direction * (PLAYER_SPEED - 5));
+			* cube->player.lr_direction * (PLAYER_SPEED - 5));
 	if (ft_is_wall(cube, new_x, new_y))
 	{
 		cube->player.x = new_x;

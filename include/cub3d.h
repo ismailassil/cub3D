@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/31 23:02:26 by iassil           ###   ########.fr       */
+/*   Updated: 2024/06/02 14:23:52 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "get_next_line.h"
 # include "libft.h"
 # include "stdbool.h"
+# include <stdint.h>
 # include <stdio.h>
 # include <sys/fcntl.h>
 # include <math.h>
@@ -45,6 +46,9 @@
 # define SPACE			15
 # define BORDER			5
 # define MC				255
+# define SECND			36
+# define BAR			218
+# define TURN			1
 
 typedef struct s_rgba
 {
@@ -181,13 +185,29 @@ typedef struct s_player
 	int		turn_direction;
 	int		ud_direction;
 	int		lr_direction;
+	int		reload;
 	int		num_of_rays;
 	int		wall_strip_width;
 	float	rotation_speed;
 	float	rot_angle;
 	float	fov_angle;
 	bool	is_vertical;
+	int32_t	mouse_x;
+	int32_t	mouse_y;
 }			t_player;
+
+typedef struct s_weapon
+{
+	mlx_texture_t	*img;
+	int32_t			*img_px;
+	float			xcord;
+	float			ycord;
+	int32_t			color;
+	unsigned int	x;
+	unsigned int	y;
+	unsigned int	nx;
+	unsigned int	ny;
+}					t_weapon;
 
 typedef struct s_ray
 {
@@ -218,7 +238,7 @@ typedef struct s_textures
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
 	mlx_texture_t	*weapon[42];
-	mlx_image_t		*weapon_img[42];
+	mlx_texture_t	*bar[218];
 }					t_textures;
 
 typedef struct s_cube
@@ -302,6 +322,17 @@ void		ft_3dprojection(t_cube *cube, t_ray ray, int strip_id);
 void		ft_get_wall_measurement(t_3dprojection *p);
 void		ft_get_texture(t_cube *cube, t_3dprojection	*p, t_ray ray);
 float		get_xcord(t_ray ray, mlx_texture_t *img);
+
+/*	Texture functions			*/
+void		ft_load_wall_textures(t_cube *cube);
+void		ft_load_weapon_textures(t_cube *cube);
+void		ft_load_bar_textures(t_cube *cube);
+
+/*	Animation functions			*/
+void		ft_put_weapon(t_cube *cube, mlx_texture_t *img);
+void		ft_render_weapon(t_cube *cube);
+void		ft_put_bar(t_cube *cube, mlx_texture_t *img);
+void		ft_render_stat_bar(t_cube *cube);
 
 /*	Ray Computation functions	*/
 void		ft_walls_projection(t_cube *cube);
