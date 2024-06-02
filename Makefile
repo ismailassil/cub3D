@@ -6,7 +6,7 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/05/29 02:03:55 by iassil           ###   ########.fr        #
+#    Updated: 2024/06/02 16:15:56 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ EXEC_FILES	=	colors.c			execution_utils.c		minimap.c			\
 				player_mv.c			render_pixel.c			draw.c				\
 				get_distance.c		mlx.c					raycasting.c		\
 				execution.c			get_distance_utils.c	mlx_destroy.c		\
-				raycasting_utils.c	utils.c
+				animation.c			textures.c				raycasting_utils.c	\
+				utils.c
 
 UTILS_FILES	=	t_list.c			t_tools.c
 
