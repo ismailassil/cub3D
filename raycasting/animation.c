@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:20:26 by iassil            #+#    #+#             */
-/*   Updated: 2024/06/02 14:20:40 by iassil           ###   ########.fr       */
+/*   Updated: 2024/06/02 18:39:47 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	ft_put_weapon(t_cube *cube, mlx_texture_t *img)
 
 	w.img = img;
 	w.img_px = (int32_t *)w.img->pixels;
-	w.xcord = 0;
-	w.ycord = 0;
 	w.y = 0;
 	while (w.y < w.img->height)
 	{
@@ -28,10 +26,9 @@ void	ft_put_weapon(t_cube *cube, mlx_texture_t *img)
 		{
 			w.nx = w.x + WIDTH - (WIDTH * 0.65);
 			w.ny = w.y + HEIGHT - w.img->height;
-			w.color = w.img_px[((int)w.ycord * w.img->width) + (int)w.xcord];
+			w.color = w.img_px[((int)w.y * w.img->width) + (int)w.x];
 			if ((w.color & 0xFF000000) != 0 && (w.color & 0xD0D0D0) != 0xD0D0D0)
 				mlx_put_pixel(cube->img, w.nx, w.ny, ft_reverse_color(w.color));
-			w.xcord++;
 			w.x++;
 		}
 		w.y++;
@@ -62,22 +59,19 @@ void	ft_put_bar(t_cube *cube, mlx_texture_t *img)
 
 	w.img = img;
 	w.img_px = (int32_t *)w.img->pixels;
-	w.xcord = 0;
-	w.ycord = 0;
 	w.y = 0;
 	while (w.y < w.img->height)
 	{
 		w.x = 0;
 		while (w.x < w.img->width)
 		{
-			w.nx = w.x + WIDTH - w.img->width - 20;
+			w.nx = w.x + WIDTH - w.img->width;
 			w.ny = w.y + HEIGHT - (HEIGHT * 0.65);
-			w.color = w.img_px[((int)w.ycord * w.img->width) + (int)w.xcord];
+			w.color = w.img_px[((int)w.y * w.img->width) + (int)w.x];
 			if ((w.color & 0xFF000000) != 0
 				&& (w.color & 0x00FFFFFF) != 0x00FFFFFF
 				&& (w.color & 0xF8F8F8) != 0xF8F8F8)
 				mlx_put_pixel(cube->img, w.nx, w.ny, ft_reverse_color(w.color));
-			w.xcord++;
 			w.x++;
 		}
 		w.y++;

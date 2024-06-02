@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/06/02 14:23:52 by iassil           ###   ########.fr       */
+/*   Updated: 2024/06/02 18:40:31 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define MC				255
 # define SECND			36
 # define BAR			218
+# define HEART			41
 # define TURN			1
 
 typedef struct s_rgba
