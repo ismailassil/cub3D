@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/06/02 18:40:31 by iassil           ###   ########.fr       */
+/*   Updated: 2024/06/05 22:33:43 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,6 @@ typedef struct s_player
 	int		ud_direction;
 	int		lr_direction;
 	int		reload;
-	int		num_of_rays;
-	int		wall_strip_width;
 	float	rotation_speed;
 	float	rot_angle;
 	float	fov_angle;

@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/06/02 18:40:28 by iassil           ###   ########.fr       */
+/*   Updated: 2024/06/05 22:33:41 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,5 @@ void	ft_initialize_data(t_cube *cube)
 	cube->player.rot_angle = (3.0 * M_PI) / 2.0;
 	cube->player.rotation_speed = ROT_SPEED * (M_PI / 180);
 	cube->player.fov_angle = 60 * (M_PI / 180);
-	cube->player.wall_strip_width = 1;
-	cube->player.num_of_rays = TILE / cube->player.wall_strip_width;
 	cube->player.reload = 0;
 }
