@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_list.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:04:24 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/14 09:04:20 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ void	ft_free_data(t_list **head)
 		free(current);
 		current = NULL;
 	}
-	free(*head);
+	// free(*head);
 	*head = NULL;
 }

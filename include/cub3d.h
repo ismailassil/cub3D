@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/06/05 22:33:43 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/14 10:35:44 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/fcntl.h>
 # include <math.h>
 # include <float.h>
-# include "/Users/iassil/.MLX42/include/MLX42/MLX42.h"
+# include "/Users/ybellakr/MLX42/include/MLX42/MLX42.h"
 # define SUCCESS		0
 # define FAIL			1
 # define NO				1
@@ -67,17 +67,19 @@ typedef struct s_path
 	char	*east;
 }			t_path;
 
-typedef struct s_colors_id
+typedef struct s_colorss
 {
-	char	*floor;
-	char	*ceiling;
-}			t_colors_id;
+	int	blue;
+	int	red;
+	int	green;
+} t_colorss;
 
 typedef struct s_colors
 {
-	uint32_t	floor;
-	uint32_t	ceiling;
-}				t_colors;
+	int	blue;
+	int	red;
+	int	green;
+}			t_colors;
 
 typedef struct s_line
 {
@@ -93,7 +95,8 @@ typedef struct s_data
 	char			**map;
 	char			direction;
 	t_path			*path;
-	t_colors_id		*colors;
+	t_colors		ceiling;
+	t_colors		floor;
 	int				ylen;
 	int				xlen;
 }					t_data;
@@ -399,4 +402,11 @@ void		ft_free_map(char ***map);
 //////////////////////////////////////////////
 void		ft_print_map(char **map);
 //////////////////////////////////////////////
+//parsing
+t_list	*ft_get_map(int fd);
+char	**ft_to_2d(t_list *list);
+int	ft_check_parse(t_data *data);
+int		ft_my_strlen(char *str);
+int		ft_my_strl2(char *str);
+void	ft_free_data_utils(t_data *data);
 #endif
