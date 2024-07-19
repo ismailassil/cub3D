@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/14 10:35:44 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/17 11:39:27 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define WIDTH			1920
 # define HEIGHT			1080
 # define PLAYER_PX		10
-# define PLAYER_SPEED	10
-# define ROT_SPEED		5
+# define PLAYER_SPEED	20
+# define ROT_SPEED		10
 # define LINE			80
 # define NUM_RAYS		WIDTH
 # define TILE			64
@@ -50,6 +50,25 @@
 # define BAR			218
 # define HEART			41
 # define TURN			1
+// #include <libc.h>
+
+// FILE*gfp;
+
+// static void *__malloc(size_t size, int line, const char *file)
+// {
+//     void *ptr = malloc(size);
+//     fprintf(gfp, "dct[%p] = ['malloc', '%p', %i, '%s']\n", ptr, ptr, line, file);fflush(gfp);
+//     return (ptr);
+// }
+
+
+// static void __free(void *ptr, int line, const char *file)
+// {
+//     fprintf(gfp, "dct[%p] = ['free', '%p', %i, '%s']\n", ptr, ptr, line, file);fflush(gfp);
+//     free(ptr);
+// }
+// #define malloc(x) __malloc(x, __LINE__, __FILE__)
+// #define free(x) __free(x, __LINE__, __FILE__)
 
 typedef struct s_rgba
 {
@@ -409,4 +428,5 @@ int	ft_check_parse(t_data *data);
 int		ft_my_strlen(char *str);
 int		ft_my_strl2(char *str);
 void	ft_free_data_utils(t_data *data);
+void	ft_free_list(t_list *tmp);
 #endif

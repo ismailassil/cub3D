@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:37:35 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/15 13:07:47 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/17 11:36:32 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**ft_to_2d(t_list *list)
 	p = malloc((ft_size_list(list) + 1) * sizeof(char *));
 	i = 0;
 	if (!p)
-		return (perror("allocation failled"), NULL);
+		return (NULL);
 	while (tmp)
 	{
 		p[i++] = tmp->line;
@@ -106,7 +106,7 @@ int	ft_check_path(char *str, t_data *data)
 	int	j;
 
 	i = 2;
-	while (str && (str[i] == ' ' || str[i] == '\t'))
+	while (str && (str[i] == ' '))
 		i++;
 	j = i;
 	if (str[i] == '\n' || str[i] == '\0')
@@ -123,21 +123,37 @@ int	ft_check_path(char *str, t_data *data)
 				return (0);
 			if (str[i] == ' ' || str[i] == '\t')
 			{
-				while (str && (str[i] == ' ' || str[i] == '\t'))
+				while (str && (str[i] == ' '))
 					i++;
 				if (str[i] == '\n' || str[i] == '\0')
 					return (0);
 			}
 		}	
 	}
-	if (my_strcmp(str, "NO ") || my_strcmp(str, "NO	"))
+	if (my_strcmp(str, "NO "))
+	{
 		data->path->north = ft_strdup(&str[j]);
-	else if (my_strcmp(str, "SO ") || my_strcmp(str, "SO	"))
+		if (!data->path->north)
+			return (0);
+	}
+	else if (my_strcmp(str, "SO "))
+	{
 		data->path->south = ft_strdup(&str[j]);
-	else if (my_strcmp(str, "WE ") || my_strcmp(str, "WE	"))
+		if (!data->path->south)
+			return (0);
+	}
+	else if (my_strcmp(str, "WE "))
+	{
 		data->path->west = ft_strdup(&str[j]);
-	else if (my_strcmp(str, "EA ") || my_strcmp(str, "EA	"))
+		if (!data->path->west)
+			return (0);
+	}
+	else if (my_strcmp(str, "EA "))
+	{
 		data->path->east = ft_strdup(&str[j]);
+		if (!data->path->east)
+			return (0);
+	}
 	return (1);
 }
 
@@ -183,8 +199,8 @@ int	ft_check_range(char *str, t_data *data, int flag)
 	i = 0;
 	z = 1;
 	t = 0;
-	printf("str == %s\n", str);
-	while (str && (str[i] == ' ' || str[i] == '\t'))
+	// printf("str == %s\n", str);
+	while (str && (str[i] == ' '))
 		i++;
 	if (str[i] == '\0')
 		return (printf("got here\n"), 0);
@@ -196,9 +212,9 @@ int	ft_check_range(char *str, t_data *data, int flag)
 	}
 	while (str && str[i])
 	{
-		if (str[i] == ' ' || str[i] == '\t')
+		if (str[i] == ' ')
 		{
-			while (str[i] == ' ' || str[i] == '\t')
+			while (str[i] == ' ')
 				i++;
 			if (str[i] == '\0')
 				break ;
@@ -245,7 +261,7 @@ int	ft_num(char *str)
 		return (0); 
 	while (str && str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != '\t' && str[i] != '+' && str[i] != '-')
+		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != '+' && str[i] != '-')
 			return (printf("from here\n"), 0);
 		i++;
 	}
@@ -278,9 +294,11 @@ int	ft_is_num(char *str, t_data *data)
 	int		w;
 
 	1 && (i = 1, w = 0);
-	while (str && (str[i] == ' ' || str[i] == '\t'))
+	while (str && (str[i] == ' '))
 		i++;
 	ar = ft_split(&str[i], ',');
+	if (!ar)
+		return (0);
 	while (w <= 2)
 	{
 		if (w == 2)
@@ -307,7 +325,7 @@ int	ft_is_num(char *str, t_data *data)
 				ar[w][i - 1] = '\0';
 		}
 		int k = 0;
-		while (str && (str[k] == ' ' || str[k] == '\t'))
+		while (str && (str[k] == ' '))
 			k++;
 		if (str && str[k] == 'C')
 			k = 0;
@@ -362,7 +380,7 @@ int ft_get_last_line(t_data *data, int count)
 {
 	while (data->data && data->data[count + 1])
 		count++;
-	if (!ft_find_char(data->data[count], '1') && !ft_find_char(data->data[count], ' '))
+	if (!ft_find_char(data->data[count], '1'))
 		return (-1337);
 	return (count);
 }
@@ -423,16 +441,17 @@ int	ft_check_map_borders(t_data *data, int count)
 	int	i;
 
 	i = 0;
+	int a = count;
 	int	last_line = ft_get_last_line(data, count);
 	if ((last_line == -1337 && last_line != 0 && last_line != 1) || data->data[last_line - 1][0] == '\n')
 		return (0);
 	i = ft_size(data->data[last_line]) - 1;
-	while (data->data[last_line][i] == ' ' || data->data[last_line][i] == '\t')
+	while (data->data[last_line][i] == ' ')
 		i--;
 	if (data->data[last_line][i] == '\n')
 		return (0);
 	if (!ft_find_char(data->data[count], '1') && !ft_find_char(data->data[count], ' ')
-		&& !ft_find_char(data->data[count], '\n') && !ft_find_char(data->data[count], '\t'))
+		&& !ft_find_char(data->data[count], '\n'))
 		return (0);
 
 	i = 0;
@@ -442,7 +461,7 @@ int	ft_check_map_borders(t_data *data, int count)
 		while (data->data[count][i])
 		{
 			if (data->data[count][i] == ' ' && data->data[count + 1]
-				&& i <= ft_my_strl2(data->data[count + 1]) && (data->data[count + 1][i] == ' ' || data->data[count + 1][i] == '\t'))
+				&& i <= ft_my_strl2(data->data[count + 1]) && (data->data[count + 1][i] == ' '))
 				{
 					int k = i;
 					int a = count;
@@ -468,13 +487,13 @@ int	ft_check_map_borders(t_data *data, int count)
 	if (!ft_check2(data, count))
 		return (0);
 	i = 0;
-	while (data->data && data->data[last_line] && last_line > 1)
+	while (data->data && data->data[last_line] && last_line > a)
 	{
 		i = 0;
 		while (data->data[last_line][i])
 		{
 			if (data->data[last_line][i] == ' ' && data->data[last_line - 1]
-				&& i <= ft_my_strl2(data->data[last_line - 1]) && (data->data[last_line - 1][i] == ' ' || data->data[last_line - 1][i] == '\t'))
+				&& i <= ft_my_strl2(data->data[last_line - 1]) && (data->data[last_line - 1][i] == ' '))
 			{
 				int k = i;
 				int a = last_line;
@@ -491,8 +510,8 @@ int	ft_check_map_borders(t_data *data, int count)
 			}
 			if (i <= ft_my_strl2(data->data[last_line - 1]) && data->data[last_line][i] == ' ' && data->data[last_line - 1] && 
 				 (data->data[last_line - 1][i] == '0'|| data->data[last_line - 1][i] == 'N' || data->data[last_line - 1][i] == 'S'
-							|| data->data[last_line - 1][i] == 'E' || data->data[last_line - 1][i] == 'W'))
-				return (printf("here2?\n"), 0);
+				|| data->data[last_line - 1][i] == 'E' || data->data[last_line - 1][i] == 'W'))
+				return (printf("here2?%s\n", data->data[last_line]), 0);
 			i++;
 		}
 		last_line--;
@@ -511,11 +530,9 @@ int	ft_borders_utils(t_data *data, int count)
 	i = 0, a = 0;
 
 	int kk = ft_get_last_line(data, count);
-	// printf("last line %s\n", data->data[kk]);
 	while (data->data[kk][a])
 	{
-		if (data->data[kk][a] != '1' && data->data[kk][a] != ' ' && data->data[kk][a] != '\t'
-			&& data->data[kk][a] != '\n')
+		if (data->data[kk][a] != '1' && data->data[kk][a] != ' ' && data->data[kk][a] != '\n')
 			return (0);
 		a++;
 	}
@@ -523,14 +540,14 @@ int	ft_borders_utils(t_data *data, int count)
 	while (data->data && data->data[count])
 	{
 		i = 0;
-		while (data->data[count][i] == ' ' || data->data[count][i] == '\t')
+		while (data->data[count][i] == ' ')
 			i++;
 		if (data->data[count][i] == '1')
 		{
 			l = ft_strlen(data->data[count]) - 1;
 			if (data->data[count][l] && data->data[count][l] == '\n')
 				l--;
-			while (data->data[count][l] && (data->data[count][l] == ' ' || data->data[count][l] == '\t') && l >= 0)
+			while (data->data[count][l] && (data->data[count][l] == ' ') && l >= 0)
 				l--;
 			if (data->data[count][l] != '1')
 				return (0);
@@ -561,8 +578,7 @@ int	ft_map_validity(t_data	*data, int count)
 		if (!ft_find_char(data->data[count], 'N') && !ft_find_char(data->data[count], 'S') 
 			&& !ft_find_char(data->data[count], 'E') && !ft_find_char(data->data[count], 'W')
 			&& !ft_find_char(data->data[count], '1') && !ft_find_char(data->data[count], '0')
-			&& !ft_find_char(data->data[count], ' ') && !ft_find_char(data->data[count], '\n')
-			&& !ft_find_char(data->data[count], '\t'))
+			&& !ft_find_char(data->data[count], ' ') && !ft_find_char(data->data[count], '\n'))
 				return (printf("here\n"), 0);
 		count++;
 	}
@@ -589,8 +605,7 @@ int	ft_find_chr(char *str)
 		if ((str[i] == '0' || str[i] == '1'))
 			flag1 = 1;
 		if (str[i] != 'N' && str[i] != 'W' && str[i] != 'S' && str[i] != 'E'
-			&& str[i] != '0' && str[i] != '1' && str[i] != ' ' && str[i] != '\t'
-			&& str[i] != '\n')
+			&& str[i] != '0' && str[i] != '1' && str[i] != ' ' && str[i] != '\n')
 				return (0);
 		if (str[i])
 			i++;
@@ -848,9 +863,8 @@ int	ft_check_parse(t_data *data)
 	count = 0;
 	flag = 0;
 	while (data && data->data[i] &&(ft_strcmp(data->data[i], "\n")
-			|| ft_strcmp(data->data[i], " ") || ft_strcmp(data->data[i], "\t")))
+			|| ft_strcmp(data->data[i], " ")))
 	{
-		printf("%d\n", i);
 		i++;
 	}
 	int k = i + 5;
@@ -858,9 +872,7 @@ int	ft_check_parse(t_data *data)
 	{
 		flag = 0;
 		if (my_strcmp(data->data[i], "NO ") || my_strcmp(data->data[i], "SO ")
-			|| my_strcmp(data->data[i], "WE ") || my_strcmp(data->data[i], "EA ")
-			|| my_strcmp(data->data[i], "NO	") || my_strcmp(data->data[i], "SO	")
-			|| my_strcmp(data->data[i], "WE	") || my_strcmp(data->data[i], "EA	"))
+			|| my_strcmp(data->data[i], "WE ") || my_strcmp(data->data[i], "EA "))
 		{
 			flag = 1;
 			if (!ft_check_path(data->data[i], data))
@@ -873,8 +885,7 @@ int	ft_check_parse(t_data *data)
 		}
 		if (count == 6)
 			break ;
-		else if (my_strcmp(data->data[i], "F ") || my_strcmp(data->data[i], "C ")
-			|| my_strcmp(data->data[i], "F	") || my_strcmp(data->data[i], "C	"))
+		else if (my_strcmp(data->data[i], "F ") || my_strcmp(data->data[i], "C "))
 		{
 			flag = 1;
 			if (!ft_check_color(data->data[i], data))
@@ -891,10 +902,6 @@ int	ft_check_parse(t_data *data)
 		!ft_strcmp2(data->data[i], "SO ") && !ft_strcmp2(data->data[i], "\n")
 		&& !ft_strcmp2(data->data[i], "WE ") && !ft_strcmp2(data->data[i], "EA ") && 
 		!ft_strcmp2(data->data[i], "F ") && !ft_strcmp2(data->data[i], "C ") 
-		&& !ft_strcmp2(data->data[i], "NO	") && 
-		!ft_strcmp2(data->data[i], "SO	") && !ft_strcmp2(data->data[i], "\n")
-		&& !ft_strcmp2(data->data[i], "WE	") && !ft_strcmp2(data->data[i], "EA	") && 
-		!ft_strcmp2(data->data[i], "F	") && !ft_strcmp2(data->data[i], "C	") 
 		 && count < 6)
 			break ;
 		i++;
@@ -904,16 +911,13 @@ int	ft_check_parse(t_data *data)
 	{
 		if (is_there(data->data[a], "NO ") || is_there(data->data[a], "SO ")
 		|| is_there(data->data[a], "WE ") || is_there(data->data[a], "EA ") 
-		|| is_there(data->data[a], "F ") || is_there(data->data[a], "C ")
-		|| is_there(data->data[a], "NO	") || is_there(data->data[a], "SO	")
-		|| is_there(data->data[a], "WE	") || is_there(data->data[a], "EA	") 
-		|| is_there(data->data[a], "F	") || is_there(data->data[a], "C	"))
+		|| is_there(data->data[a], "F ") || is_there(data->data[a], "C "))
 		{
 			kk++;
 		}
 		a++;
 	}
-	if (count > 6 || kk != 6 || count < 6)
+	if (count > 6 || kk != 6)
 	{
 		printf("error duplicate element in map2\n");
 		return (0);
@@ -934,10 +938,7 @@ int	ft_check_parse(t_data *data)
 	{
 		if (is_there(data->data[i], "NO ") || is_there(data->data[i], "SO ")
 		|| is_there(data->data[i], "WE ") || is_there(data->data[i], "EA ") 
-		|| is_there(data->data[i], "F ") || is_there(data->data[i], "C ")
-		|| is_there(data->data[i], "NO	") || is_there(data->data[i], "SO	")
-		|| is_there(data->data[i], "WE	") || is_there(data->data[i], "EA	") 
-		|| is_there(data->data[i], "F	") || is_there(data->data[i], "C	"))
+		|| is_there(data->data[i], "F ") || is_there(data->data[i], "C "))
 		{
 			kk++;
 		}
@@ -959,5 +960,3 @@ int	ft_check_parse(t_data *data)
 	}
 	return (1);
 }
-
-//ba9i khasni ntcheki west lmap mn 2 tal lkher - 1 wach valid map

@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 09:45:29 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/14 10:34:06 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/17 09:33:14 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ t_list	*ft_add_list(t_list *lst, char *str)
 			tmp = tmp->next;
 		tmp->next = ft_new_node(str);
 		if (tmp->next == NULL)
+		{
 			ft_free_list(tmp);
+			return (NULL);
+		}
 	}
 	return (lst);
 }
@@ -70,6 +73,8 @@ t_list	*ft_get_map(int fd)
 	if (!str)
 		return (perror("empty file"), NULL);
 	lst = ft_add_list(lst, str);
+	if (!lst)
+		return (free(str), NULL);
 	free(str);
 	while (str)
 	{
