@@ -6,7 +6,7 @@
 #    By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/07/17 11:16:23 by ybellakr         ###   ########.fr        #
+#    Updated: 2024/07/19 11:20:19 by ybellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ FLD_NAME	=	._object_files
 ##### SOURCE FILES #######################################################################
 SRC_FILES	=	cub3d.c				ft_check_input.c		src_utils.c
 
-PRS_FILES	=	ft_parse.c			ft_to_2d.c				ft_free.c
+PRS_FILES	=	ft_parse.c			ft_to_2d.c	ft_map_utils3.c ft_map_utils4.c ft_free.c	ft_map_utils.c	ft_map_utils2.c\
+				ft_map_utils4.c ft_map_utils5.c ft_map_utils6.c ft_map_utils7.c ft_map_utils8.c ft_map_utils9.c
 
 EXEC_FILES	=	colors.c			execution_utils.c		minimap.c			\
 				player_mv.c			render_pixel.c			draw.c				\

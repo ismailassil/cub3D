@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/17 11:39:27 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:15:15 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,20 @@ typedef struct s_rgba
 	int32_t	g;
 	int32_t	b;	
 }			t_rgba;
+
+typedef struct s_map_utils
+{
+	int	k;
+	int j;
+	int	l;
+	int last;
+}			t_map_utils;
+
+typedef struct s_prase
+{
+	int	flag;
+	int k;
+}			t_parse;
 
 typedef struct s_path
 {
@@ -424,9 +438,46 @@ void		ft_print_map(char **map);
 //parsing
 t_list	*ft_get_map(int fd);
 char	**ft_to_2d(t_list *list);
-int	ft_check_parse(t_data *data);
+int		ft_check_parse(t_data *data);
 int		ft_my_strlen(char *str);
 int		ft_my_strl2(char *str);
 void	ft_free_data_utils(t_data *data);
 void	ft_free_list(t_list *tmp);
+int		ft_size_list(t_list	*lst);
+char	**ft_to_2d(t_list *list);
+int		my_strcmp(char *str, char *str1);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_strcmp2(char *s1, char *s2);
+int		ft_count_semi(char *str);
+int		ft_check_num(char *str);
+int		ft_num(char *str);
+int		is_alpha(char c);
+void	ft_free_array(char **ar);
+int		ft_check_color(char *str, t_data *data);
+int		ft_find_char(char *str, char c);
+int		ft_put_direction(char *str);
+int		ft_get_last_line(t_data *data, int count);
+int		ft_size(char *str);
+int		ft_is_num(char *str, t_data *data);
+int		ft_find_chr(char *str);
+int		ft_map_validity(t_data	*data, int count);
+int		ft_borders_utils(t_data *data, int count);
+int		ft_check3(t_data *data, int count);
+int		ft_check2(t_data *data, int count);
+int		ft_check_map_borders(t_data *data, int count);
+int		ft_size_map(t_data *data, int i);
+int		ft_my_strl(char *str);
+int		is_there(char *str, char *str1);
+int		ft_my_strlen(char *str);
+int		ft_my_strl2(char *str);
+int		ft_chr(char *str, char c);
+int		ft_is_surounded(t_data *data, int count);
+int		ft_borders(t_data *data, int i);
+int		ft_put_path(t_data *data, char *str, int j);
+int		ft_check_path_utils(t_data *data, char *str, int i);
+int		ft_check_path(char *str, t_data *data);
+int		ft_is_strange_utils(t_data *data, int count, int i);
+int		ft_is_strange(t_data *data, int count);
+int		inside_map_validity(t_data *data, int line);
+int		ft_check_range(char *str, t_data *data, int flag);
 #endif
