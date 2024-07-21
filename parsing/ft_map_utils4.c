@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:32:09 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 11:23:31 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:00:38 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int	ft_check2(t_data *data, int count)
 {
-	int k;
-	int i;
+	int	k;
+	int	i;
 
 	k = 0;
 	i = ft_my_strl2(data->data[count]);
-	if (data->data[count + 1] && (ft_strlen (data->data[count]) < ft_strlen(data->data[count + 1])))
+	if (data->data[count + 1] && 
+		(ft_strlen (data->data[count]) < ft_strlen(data->data[count + 1])))
 	{
 		k = ft_my_strl2(data->data[count + 1]);
 		while (k > i)
@@ -34,13 +35,14 @@ int	ft_check2(t_data *data, int count)
 
 int	ft_check3(t_data *data, int count)
 {
-	int k;
-	int i;
+	int	k;
+	int	i;
 
 	k = 0;
 	count--;
 	i = ft_my_strl2(data->data[count]);
-	if (data->data[count + 1] && (ft_strlen(data->data[count]) > ft_strlen(data->data[count + 1])))
+	if (data->data[count + 1] 
+		&& (ft_strlen(data->data[count]) > ft_strlen(data->data[count + 1])))
 	{
 		k = ft_my_strl2(data->data[count + 1]);
 		while (i > k)
@@ -53,97 +55,75 @@ int	ft_check3(t_data *data, int count)
 	return (1);
 }
 
-int	ft_borders_utils(t_data *data, int count)
+int	ft_borders_utils1(t_data *data, int count)
 {
-	int	l;
-	int a;
-	int	i;
+	int	kk;
+	int	a;
 
-	i = 0, a = 0;
-
-	int kk = ft_get_last_line(data, count);
+	kk = ft_get_last_line(data, count);
+	a = 0;
 	while (data->data[kk][a])
 	{
-		if (data->data[kk][a] != '1' && data->data[kk][a] != ' ' && data->data[kk][a] != '\n')
+		if (data->data[kk][a] != '1' 
+			&& data->data[kk][a] != ' ' && data->data[kk][a] != '\n')
 			return (0);
 		a++;
-	}
-	
-	while (data->data && data->data[count])
-	{
-		i = 0;
-		while (data->data[count][i] == ' ')
-			i++;
-		if (data->data[count][i] == '1')
-		{
-			l = ft_strlen(data->data[count]) - 1;
-			if (data->data[count][l] && data->data[count][l] == '\n')
-				l--;
-			while (data->data[count][l] && (data->data[count][l] == ' ') && l >= 0)
-				l--;
-			if (data->data[count][l] != '1')
-				return (0);
-		}
-		else
-			return (0);
-		count++;
 	}
 	return (1);
 }
 
-int	ft_map_validity(t_data	*data, int count)
+int	ft_borders_utils(t_data *data, int a)
 {
-	int	prev_line;
-	int	line, i = 0, j = 0, player = 0;
+	int	l;
+	int	i;
 
-	line = count;
-	while (data->data && data->data[count])
+	if (!ft_borders_utils1(data, a))
+		return (0);
+	while (data->data && data->data[a])
 	{
-		if (ft_find_char(data->data[count], 'N') || ft_find_char(data->data[count], 'S') 
-			|| ft_find_char(data->data[count], 'E') || ft_find_char(data->data[count], 'W'))
+		i = 0;
+		while (data->data[a][i] == ' ')
+			i++;
+		if (data->data[a][i] == '1')
 		{
-			player++;
-			data->direction = ft_put_direction(data->data[count]);
+			l = ft_strlen(data->data[a]) - 1;
+			if (data->data[a][l] && data->data[a][l] == '\n')
+				l--;
+			while (data->data[a][l] && (data->data[a][l] == ' ') && l >= 0)
+				l--;
+			if (data->data[a][l] != '1')
+				return (0);
 		}
-		if (!ft_find_char(data->data[count], 'N') && !ft_find_char(data->data[count], 'S') 
-			&& !ft_find_char(data->data[count], 'E') && !ft_find_char(data->data[count], 'W')
-			&& !ft_find_char(data->data[count], '1') && !ft_find_char(data->data[count], '0')
-			&& !ft_find_char(data->data[count], ' ') && !ft_find_char(data->data[count], '\n'))
-				return (printf("here\n"), 0);
-		count++;
+		else
+			return (0);
+		a++;
 	}
-	if (player == 1 && ft_check_map_borders(data, line)
-		&& ft_borders_utils(data, line))
-		return (printf("got here\n"), 1);
-	else
-	 	return (printf("test111\n"), 0);
+	return (1);
 }
 
-int	ft_find_chr(char *str)
+int	ft_map_validity(t_data	*data, int c)
 {
-	int	i, flag, flag1;
+	t_utils	t;
 
-	i = 0;
-	while (str && str[i])
+	(1) && (t.player = 0, t.j = 0, t.i = 0, t.line = c);
+	while (data->data && data->data[c])
 	{
-		flag = 0;
-		flag = 0;
-		if (str[0] == '\n')
-			return (1);
-		if (str[i] == 'N' || str[i] == 'W' || str[i] == 'S' || str[i] == 'E')
-			flag = 1;
-		if ((str[i] == '0' || str[i] == '1'))
-			flag1 = 1;
-		if (str[i] != 'N' && str[i] != 'W' && str[i] != 'S' && str[i] != 'E'
-			&& str[i] != '0' && str[i] != '1' && str[i] != ' ' && str[i] != '\n')
-				return (0);
-		if (str[i])
-			i++;
+		if (ft_find(data->data[c], 'N') || ft_find(data->data[c], 'S') 
+			|| ft_find(data->data[c], 'E') || ft_find(data->data[c], 'W'))
+		{
+			t.player++;
+			data->direction = ft_put_direction(data->data[c]);
+		}
+		if (!ft_find(data->data[c], 'N') && !ft_find(data->data[c], 'S') 
+			&& !ft_find(data->data[c], 'E') && !ft_find(data->data[c], 'W')
+			&& !ft_find(data->data[c], '1') && !ft_find(data->data[c], '0')
+			&& !ft_find(data->data[c], ' ') && !ft_find(data->data[c], '\n'))
+			return (printf("here\n"), 0);
+		c++;
 	}
-	if (flag == 1 && flag1 == 1)
-		return (1);
-	else if (flag == 0 && flag1 == 1)
-		return (1);
+	if (t.player == 1 && ft_check_map_borders(data, t.line)
+		&& ft_borders_utils(data, t.line))
+		return (printf("got here\n"), 1);
 	else
-		return (0);
+		return (printf("test111\n"), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 09:45:29 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/17 09:33:14 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:30:06 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_free_list(t_list *lst)
 	}
 }
 
-t_list *ft_new_nod(char *str)
+t_list	*ft_new_nod(char *str)
 {
 	t_list	*new;
 
@@ -83,8 +83,8 @@ t_list	*ft_get_map(int fd)
 		{
 			break ;
 		}
-	 	lst = ft_add_list(lst, str);
- 		free(str);
+		lst = ft_add_list(lst, str);
+		free(str);
 	}
 	return (lst);
 }

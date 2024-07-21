@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 08:32:43 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/16 09:27:48 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:38:37 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,9 @@
 
 void	ft_free_data_utils(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	// while (data && data->data && data->data[i])
-	// {
-	// 	free(data->data[i]);
-	// 	i++;		
-	// }
-	i = 0;
-	// while (data && data->data && data->map[i])
-	// {
-	// 	free(data->map[i]);
-	// 	i++;		
-	// }
 	if (data->path->east)
 		free(data->path->east);
 	if (data->path->north)

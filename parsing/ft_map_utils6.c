@@ -6,16 +6,16 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:41:50 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 09:46:54 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:02:51 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int ft_my_strl2(char *str)
+int	ft_my_strl2(char *str)
 {
-	int i;
-	int k;
+	int	i;
+	int	k;
 
 	i = 0;
 	k = 0;
@@ -32,10 +32,11 @@ int ft_my_strl2(char *str)
 	return (i);
 }
 
-int ft_chr(char *str, char c)
+int	ft_chr(char *str, char c)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (str && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	if (str[i] == '\n')
@@ -53,8 +54,10 @@ int	ft_is_surounded(t_data *data, int count)
 		i = 0;
 		while (data->data[count][i])
 		{
-			if (data->data[count][i] == ' ' && ((i > 0 && data->data[count][i - 1] == '0')
-				|| (ft_strlen(data->data[count]) >= i && data->data[count][i + 1] == '0')))
+			if (data->data[count][i] == ' ' && 
+				((i > 0 && data->data[count][i - 1] == '0')
+				|| (ft_strlen(data->data[count]) >= i 
+				&& data->data[count][i + 1] == '0')))
 				return (0);
 			i++;
 		}

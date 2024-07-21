@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 15:46:30 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:21:51 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,22 @@ typedef struct s_rgba
 	int32_t	g;
 	int32_t	b;	
 }			t_rgba;
+
+typedef struct s_utils
+{
+	int	prev_line;
+	int	line;
+	int i;
+	int j;
+	int player;
+}			t_utils;
+
+typedef struct s_nrm
+{
+	int	i;
+	int	flag;
+	int	flag1;
+}			t_nrm;
 
 typedef struct s_map_utils
 {
@@ -462,7 +478,7 @@ int		ft_num(char *str);
 int		is_alpha(char c);
 void	ft_free_array(char **ar);
 int		ft_check_color(char *str, t_data *data);
-int		ft_find_char(char *str, char c);
+int		ft_find(char *str, char c);
 int		ft_put_direction(char *str);
 int		ft_get_last_line(t_data *data, int count);
 int		ft_size(char *str);
@@ -492,4 +508,6 @@ int		ft_check_range(char *str, t_data *data, int flag);
 int		ft_is_num(char *str, t_data *data);
 int		inside_map_validity(t_data *data, int line);
 int		ft_map_valid_urils(int line, t_data *data, int a);
+int		ft_check_parse1(t_data *data, int i, int count, t_parse t);
+int		ft_check_parse_utils(t_data *data, int count, int i);
 #endif

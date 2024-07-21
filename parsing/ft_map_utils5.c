@@ -6,13 +6,13 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:39:53 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 10:56:38 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:00:59 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int ft_size_map(t_data *data, int i)
+int	ft_size_map(t_data *data, int i)
 {
 	int	j;
 	int	count;
@@ -21,16 +21,16 @@ int ft_size_map(t_data *data, int i)
 	count = 0;
 	while (data->data[j])
 	{
-		if (ft_find_char(data->data[j], '0') || ft_find_char(data->data[j], '1'))
+		if (ft_find(data->data[j], '0') || ft_find(data->data[j], '1'))
 			count++;
 		j++;
 	}
 	return (count);
 }
 
-int ft_my_strl(char *str)
+int	ft_my_strl(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str && str[i])
@@ -42,11 +42,10 @@ int ft_my_strl(char *str)
 	return (i);
 }
 
-
 int	is_there(char *str, char *str1)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -64,14 +63,14 @@ int	is_there(char *str, char *str1)
 
 int	ft_my_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str && str[i])
 		i++;
 	if (i > 0)
 		i--;
-	while ( i > 0 && str[i] && (str[i] != '1' || str[i] != '0'))
+	while (i > 0 && str[i] && (str[i] != '1' || str[i] != '0'))
 		i--;
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:21:25 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 09:23:44 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:39:09 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**ft_to_2d(t_list *list)
 		tmp = tmp->next;
 	}
 	p[i] = NULL;
-	return (p);	
+	return (p);
 }
 
 int	my_strcmp(char *str, char *str1)

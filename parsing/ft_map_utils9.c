@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:05:15 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 12:13:35 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:21:10 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	ft_check_parse_utils1(t_data *data, int count, int a, int i)
 {
-	int kk;
-	int ii;
+	int	kk;
+	int	ii;
 
 	kk = 0;
 	a = 0;
 	while (data->data[a])
 	{
 		if (is_there(data->data[a], "NO ") || is_there(data->data[a], "SO ")
-		|| is_there(data->data[a], "WE ") || is_there(data->data[a], "EA ") 
-		|| is_there(data->data[a], "F ") || is_there(data->data[a], "C "))
+			|| is_there(data->data[a], "WE ") || is_there(data->data[a], "EA ") 
+			|| is_there(data->data[a], "F ") || is_there(data->data[a], "C "))
 			kk++;
 		a++;
 	}
@@ -39,10 +39,19 @@ int	ft_check_parse_utils1(t_data *data, int count, int a, int i)
 	return (1);
 }
 
-int ft_check_parse_utils(t_data *data, int count, int i)
+int	ft_check_parse_util1(t_data *data, int i)
 {
-	int a;
-	int kk;
+	if (!ft_map_validity(data, i) || !ft_borders(data, i)
+		|| ft_size_map(data, i) < 2 || !inside_map_validity(data, i)
+		|| !ft_is_surounded(data, i) || !ft_is_strange(data, i))
+		return (printf("invalid map\n"), 0);
+	return (1);
+}
+
+int	ft_check_parse_utils(t_data *data, int count, int i)
+{
+	int	a;
+	int	kk;
 
 	if (!ft_check_parse_utils1(data, count, a, i))
 		return (0);
@@ -50,35 +59,34 @@ int ft_check_parse_utils(t_data *data, int count, int i)
 	while (data->data[i])
 	{
 		if (is_there(data->data[i], "NO ") || is_there(data->data[i], "SO ")
-		|| is_there(data->data[i], "WE ") || is_there(data->data[i], "EA ") 
-		|| is_there(data->data[i], "F ") || is_there(data->data[i], "C "))
+			|| is_there(data->data[i], "WE ") || is_there(data->data[i], "EA ") 
+			|| is_there(data->data[i], "F ") || is_there(data->data[i], "C "))
 			kk++;
 		if (kk == 6)
 		{
 			i++;
-			break;
+			break ;
 		}
 		i++;
 	}
-	while (data->data[i] && !ft_find_char(data->data[i], '1') && !ft_find_char(data->data[i], '0'))
+	while (!ft_find(data->data[i], '1') && !ft_find(data->data[i], '0'))
 		i++;
-	if (!ft_map_validity(data, i) || !ft_borders(data, i) || ft_size_map(data, i) < 2  
-		|| !inside_map_validity(data, i) || !ft_is_surounded(data, i) || !ft_is_strange(data, i))
-		return (printf("invalid map\n"), 0);
+	if (!ft_check_parse_util1(data, i))
+		return (0);
 	return (printf("test\n"), 1);
 }
 
 int	ft_nrm_if(t_data *data, int i, int count)
 {
 	if (!ft_strcmp2(data->data[i], "NO ") && !ft_strcmp2(data->data[i], "SO ")
-	&& !ft_strcmp2(data->data[i], "\n") && !ft_strcmp2(data->data[i], "WE ")
-	&& !ft_strcmp2(data->data[i], "EA ") && !ft_strcmp2(data->data[i], "F ") 
-	&& !ft_strcmp2(data->data[i], "C ") && count < 6)
+		&& !ft_strcmp2(data->data[i], "\n") && !ft_strcmp2(data->data[i], "WE ")
+		&& !ft_strcmp2(data->data[i], "EA ") && !ft_strcmp2(data->data[i], "F ")
+		&& !ft_strcmp2(data->data[i], "C ") && count < 6)
 		return (0);
 	return (1);
 }
 
-int ft_check_parse1(t_data *data, int i, int count, t_parse t)
+int	ft_check_parse1(t_data *data, int i, int count, t_parse t)
 {
 	t.flag = 0;
 	if (my_strcmp(data->data[i], "NO ") || my_strcmp(data->data[i], "SO ")
@@ -103,26 +111,4 @@ int ft_check_parse1(t_data *data, int i, int count, t_parse t)
 	if (!ft_nrm_if(data, i, count))
 		return (1);
 	return (0);
-}
-
-int	ft_check_parse(t_data *data)
-{
-	int	i;
-	t_parse t;
-	int	count;
-
-	(1) && (t.flag = 0, i = 0, count = 0);
-	while (data && data->data[i] &&(ft_strcmp(data->data[i], "\n")
-			|| ft_strcmp(data->data[i], " ")))
-		i++;
-	t.k = i + 5;
-	while (data->data[i])
-	{
-		if (ft_check_parse1(data, i, count, t))
-			break;
-		i++;
-	}
-	if (!ft_check_parse_utils(data, count, i))
-		return (0);
-	return (1);
 }

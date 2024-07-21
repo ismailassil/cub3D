@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:25:59 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 09:27:25 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:39:58 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_count_semi(char *str)
 
 int	ft_check_num(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str && str[i + 1] && str[i + 1] != ',')
@@ -53,7 +53,8 @@ int	ft_num(char *str)
 		return (0); 
 	while (str && str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != '+' && str[i] != '-')
+		if ((str[i] < '0' || str[i] > '9') 
+			&& str[i] != ' ' && str[i] != '+' && str[i] != '-')
 			return (printf("from here\n"), 0);
 		i++;
 	}
@@ -62,12 +63,12 @@ int	ft_num(char *str)
 
 int	is_alpha(char c)
 {
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));	
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
-void ft_free_array(char **ar)
+void	ft_free_array(char **ar)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ar && ar[i])

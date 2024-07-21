@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:11:25 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 10:19:51 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:03:32 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	ft_check_path(char *str, t_data *data)
 
 int	ft_is_strange_utils(t_data *data, int count, int i)
 {
-	int kk;
+	int	kk;
 
 	kk = 0;
 	while (count > 0 && data->data[count])
@@ -107,8 +107,8 @@ int	ft_is_strange_utils(t_data *data, int count, int i)
 
 int	ft_is_strange(t_data *data, int count)
 {
-	int i;
-	int k;
+	int	i;
+	int	k;
 
 	i = 0;
 	k = count;
@@ -117,7 +117,8 @@ int	ft_is_strange(t_data *data, int count)
 		i = ft_strlen(data->data[count + 1]) - 1;
 		while (i >= 0 && data->data[count + 1][i])
 		{
-			if (data->data[count + 1][i] == '0' && i >= ft_strlen(data->data[count]) - 1)
+			if (data->data[count + 1][i] == '0' 
+				&& i >= ft_strlen(data->data[count]) - 1)
 				return (printf("data = %s\n", data->data[count]), 0);
 			i--;
 		}
@@ -128,4 +129,3 @@ int	ft_is_strange(t_data *data, int count)
 		return (0);
 	return (1);
 }
-
