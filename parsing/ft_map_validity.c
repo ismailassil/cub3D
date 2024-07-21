@@ -6,11 +6,46 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:36:35 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 18:42:34 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 19:52:40 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_remove_line(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		if (str[i] == '\n')
+			str[i] = '\0';
+		i++;
+	}
+}
+
+void	ft_put_map(t_data *data, int i)
+{
+	int	count;
+	int	j;
+
+	count = 0;
+	j = i;
+	while (data->data[j++])
+		count++;
+	data->map = malloc((count + 1) * sizeof(char **));
+	if (!data->map)
+		exit(FAIL);
+	count = 0;
+	while (data->data[i])
+	{
+		data->map[count] = data->data[i];
+		ft_remove_line(data->map[count]);
+		(1) && (i++, count++);
+	}
+	data->map[count] = NULL;
+}
 
 int	ft_check_parse(t_data *data)
 {
@@ -31,6 +66,7 @@ int	ft_check_parse(t_data *data)
 	}
 	if (!ft_check_parse_utils(data, count, i))
 		return (0);
+	ft_put_map(data, i);
 	return (1);
 }
 

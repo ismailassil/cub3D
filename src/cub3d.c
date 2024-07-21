@@ -6,11 +6,19 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:32 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 18:19:26 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 20:28:32 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_trim_textures(t_data *data)
+{
+	data->path->north[ft_strlen(data->path->north) - 1] = '\0';
+	data->path->south[ft_strlen(data->path->south) - 1] = '\0';
+	data->path->west[ft_strlen(data->path->west) - 1] = '\0';
+	data->path->east[ft_strlen(data->path->east) - 1] = '\0';
+}
 
 int	ft_parsing(int fd, t_data *cube, t_list *file_input)
 {
@@ -31,6 +39,7 @@ int	ft_parsing(int fd, t_data *cube, t_list *file_input)
 		(free(cube->data), free(cube));
 		return (1);
 	}
+	ft_trim_textures(cube);
 	close(fd);
 	return (0);
 }

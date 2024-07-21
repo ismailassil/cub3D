@@ -6,15 +6,14 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:31:03 by iassil            #+#    #+#             */
-/*   Updated: 2024/06/02 09:38:55 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 20:55:36 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_mlx_error(t_cube *cube)
+void	ft_mlx_error(void)
 {
-	mlx_close_window(cube->mlx);
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
 	exit(EXIT_FAILURE);
 }

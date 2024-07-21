@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:03:19 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/26 17:11:44 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 19:58:16 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ void	ft_walls_projection(t_cube *cube)
 	float	ray_angle;
 	int		strip_id;
 
-	strip_id = -1;
+	strip_id = 0;
 	ray_angle = cube->player.rot_angle - (cube->player.fov_angle / 2);
 	ft_draw_floor_and_ceiling(cube);
-	while (++strip_id < WIDTH)
+	while (strip_id < WIDTH)
 	{
 		ray = ft_get_distance(cube, ray_angle);
 		ft_3dprojection(cube, ray, strip_id);
 		ray_angle += cube->player.fov_angle / WIDTH;
+		strip_id++;
 	}
 }
 

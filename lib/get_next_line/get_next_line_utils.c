@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:30:29 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/07 16:15:32 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:51:11 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/get_next_line.h"
+#include "../../include/get_next_line.h"
 
 size_t	_ft_strlen_(char *str)
 {

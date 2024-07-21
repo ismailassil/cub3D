@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:22:30 by iassil            #+#    #+#             */
-/*   Updated: 2024/06/02 18:40:25 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 20:58:32 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 void	ft_load_wall_textures(t_cube *cube)
 {
-	// cube->textures.north = mlx_load_png(cube->info->path->north);
-	cube->textures.north = mlx_load_png("./textures/walls/hitler.png");
+	cube->textures.north = mlx_load_png(cube->info->path->north);
 	if (!cube->textures.north)
 		(p_error("North texture failed to load", NULL, 1), exit(FAIL));
-	// cube->textures.south = mlx_load_png(cube->info->path->south);
-	cube->textures.south = mlx_load_png("./textures/walls/nazi.png");
+	cube->textures.south = mlx_load_png(cube->info->path->south);
 	if (!cube->textures.south)
 		(p_error("South texture failed to load", NULL, 1), exit(FAIL));
-	// cube->textures.west = mlx_load_png(cube->info->path->west);
-	cube->textures.west = mlx_load_png("./textures/walls/wall.png");
+	cube->textures.west = mlx_load_png(cube->info->path->west);
 	if (!cube->textures.west)
 		(p_error("West texture failed to load", NULL, 1), exit(FAIL));
-	// cube->textures.east = mlx_load_png(cube->info->path->east);
-	cube->textures.east = mlx_load_png("./textures/walls/eagle.png");
+	cube->textures.east = mlx_load_png(cube->info->path->east);
 	if (!cube->textures.east)
 		(p_error("East texture failed to load", NULL, 1), exit(FAIL));
 }
@@ -60,7 +56,11 @@ void	ft_load_weapon_textures(t_cube *cube)
 		path = ft_get_path(i + 1, "./textures/csgo/");
 		cube->textures.weapon[i] = mlx_load_png(path);
 		if (!cube->textures.weapon[i])
+		{
+			ft_free_parsing(cube->info, cube->file_input);
+			free(cube);
 			(p_error(path, " - Failed to load", 1), exit(1));
+		}
 		free(path);
 		i++;
 	}
@@ -77,7 +77,11 @@ void	ft_load_bar_textures(t_cube *cube)
 		path = ft_get_path(i, "./textures/bar/");
 		cube->textures.bar[i] = mlx_load_png(path);
 		if (!cube->textures.bar[i])
+		{
+			ft_free_parsing(cube->info, cube->file_input);
+			free(cube);
 			(p_error(path, " - Failed to load", 1), exit(1));
+		}
 		free(path);
 		i++;
 	}

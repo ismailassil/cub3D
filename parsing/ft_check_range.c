@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:14:49 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:44:39 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 20:50:05 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ long long	ft_check_range_utils(char *str, int i, int z, long long t)
 	while (str && (str[i] == ' '))
 		i++;
 	if (str[i] == '\0')
-		return (printf("got here\n"), -1337);
+		return (-1337);
 	ft_check_range_util(&z, str[i], &i);
 	while (str && str[i])
 	{

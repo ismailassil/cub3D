@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 18:23:51 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 20:55:50 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -340,7 +340,7 @@ void		ft_key_hook(mlx_key_data_t keydata, void *param);
 void		ft_loop_hook(void *param);
 void		ft_close_hook(void *param);
 void		ft_destroy_cube(t_cube *cube);
-void		ft_mlx_error(t_cube *cube);
+void		ft_mlx_error(void);
 
 /*	Player Movements functions	*/
 void		ft_move_player(t_cube *cube);
@@ -491,5 +491,7 @@ int			inside_map_validity(t_data *data, int line);
 int			ft_map_valid_urils(int line, t_data *data, int a);
 int			ft_check_parse1(t_data *data, int i, int count, t_parse t);
 int			ft_check_parse_utils(t_data *data, int count, int i);
+
+void		ft_free_parsing(t_data *data, t_list *file_input);
 
 #endif

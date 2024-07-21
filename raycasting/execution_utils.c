@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 18:47:51 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 20:55:59 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,30 @@ void	ft_init_mlx_window(t_cube *cube)
 	ft_load_wall_textures(cube);
 	ft_load_weapon_textures(cube);
 	ft_load_bar_textures(cube);
-	cube->mlx = mlx_init(WIDTH, HEIGHT, "Wolfenstein", false);
+	cube->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!cube->mlx)
-		(ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2), exit(FAIL));
+	{
+		ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
+		ft_free_parsing(cube->info, cube->file_input);
+		free(cube);
+		exit(1);
+	}
 	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
 	if (!cube->img)
-		ft_mlx_error(cube);
+	{
+		mlx_close_window(cube->mlx);
+		ft_free_parsing(cube->info, cube->file_input);
+		free(cube);
+		ft_mlx_error();
+	}
 	if (mlx_image_to_window(cube->mlx, cube->img, 0, 0) < 0)
-		ft_mlx_error(cube);
+	{
+		mlx_delete_image(cube->mlx, cube->img);
+		mlx_close_window(cube->mlx);
+		ft_free_parsing(cube->info, cube->file_input);
+		free(cube);
+		ft_mlx_error();
+	}
 }
 
 void	ft_get_window_data(t_cube *data)
@@ -36,9 +52,9 @@ void	ft_get_window_data(t_cube *data)
 	x = 0;
 	y = 0;
 	width = 0;
-	while (data->info->data && data->info->data[y])
+	while (data->info->map && data->info->map[y])
 	{
-		width = ft_strlen(data->info->data[y]);
+		width = ft_strlen(data->info->map[y]);
 		if (width > x)
 			x = width;
 		y++;
@@ -77,8 +93,7 @@ void	ft_initialize_data(t_cube *cube)
 	cube->player.turn_direction = 0;
 	cube->player.ud_direction = 0;
 	cube->player.lr_direction = 0;
-	// cube->player.rot_angle = ft_check_pl_direction(cube->info->direction);
-	cube->player.rot_angle = (3.0 * M_PI) / 2.0;
+	cube->player.rot_angle = ft_check_pl_direction(cube->info->direction);
 	cube->player.rotation_speed = ROT_SPEED * (M_PI / 180);
 	cube->player.fov_angle = 60 * (M_PI / 180);
 	cube->player.reload = 0;
