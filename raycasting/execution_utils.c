@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/06/05 22:33:41 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:47:51 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	ft_get_window_data(t_cube *data)
 	x = 0;
 	y = 0;
 	width = 0;
-	while (data->info->map && data->info->map[y])
+	while (data->info->data && data->info->data[y])
 	{
-		width = ft_strlen(data->info->map[y]);
+		width = ft_strlen(data->info->data[y]);
 		if (width > x)
 			x = width;
 		y++;

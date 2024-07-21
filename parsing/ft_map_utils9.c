@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:05:15 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:42:55 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:43:24 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	ft_check_parse1(t_data *data, int i, int count, t_parse t)
 	{
 		t.flag = 1;
 		if (!ft_check_path(data->data[i], data))
-			return (p_error("Texture", 0, 1), 0);
+			return (0);
 		(1) && (t.k = i, count++);
 	}
 	if (count == 6)
@@ -103,7 +103,7 @@ int	ft_check_parse1(t_data *data, int i, int count, t_parse t)
 	{
 		t.flag = 1;
 		if (!ft_check_color(data->data[i], data))
-			return (p_error("Color", 0, 1), 0);
+			return (0);
 		(1) && (count++, t.k = i);
 	}
 	if (count == 6)

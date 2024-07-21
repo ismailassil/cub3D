@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:36:35 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 18:31:17 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:42:34 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_check_parse(t_data *data)
 	t.k = i + 5;
 	while (data->data[i])
 	{
-		if (!ft_check_parse1(data, i, count, t))
+		if (ft_check_parse1(data, i, count, t))
 			break ;
 		i++;
 	}
