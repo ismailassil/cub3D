@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:26 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 11:24:37 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 14:24:09 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_chek_borders_utils(t_data *data, int last_line, int i)
 		int a = last_line;
 		while (a != 0 && data->data[a - 1])
 		{
-			if (data->data[a - 1] && k <= ft_my_strlen(data->data[a - 1]) && (data->data[a - 1][k] == '0'
+			if (data->data[a - 1] && k < ft_my_strlen(data->data[a - 1]) && (data->data[a - 1][k] == '0'
 			|| data->data[a - 1][k] == 'N' || data->data[a - 1][k] == 'S'
 			|| data->data[a - 1][k] == 'E' || data->data[a - 1][k] == 'W'))
 				return(0);
@@ -88,7 +88,7 @@ int	ft_chek_borders(t_data *data, int last_line, int a, int i)
 		while (data->data[last_line][i])
 		{
 			if (!ft_chek_borders_utils(data, last_line, i))
-				return (0);
+				return (printf("heretest\n"), 0);
 			if (i <= ft_my_strl2(data->data[last_line - 1]) && data->data[last_line][i] == ' '
 				&& data->data[last_line - 1] && (data->data[last_line - 1][i] == '0'
 				|| data->data[last_line - 1][i] == 'N'  || data->data[last_line - 1][i] == 'S'
@@ -115,17 +115,17 @@ int	ft_check_map_borders(t_data *data, int count)
 	while (data->data[last_line][i] == ' ')
 		i--;
 	if (data->data[last_line][i] == '\n')
-		return (0);
+		return (printf("test1\n"),0);
 	if (!ft_find_char(data->data[count], '1') && !ft_find_char(data->data[count], ' ')
 		&& !ft_find_char(data->data[count], '\n'))
-		return (0);
+		return (printf("test2\n"),0);
 	i = 0;
 	if (!ft_check_borders_utils(data, count, i))
-		return (0);
+		return (printf("test3\n"),0);
 	i = 0;
 	if (!ft_chek_borders(data, last_line, a, i))
-		return (0);
+		return (printf("test4\n"),0);
 	if (!ft_check3(data, last_line))
-		return (0);
+		return (printf("test5\n"),0);
 	return (1);
 }

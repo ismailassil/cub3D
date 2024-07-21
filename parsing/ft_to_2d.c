@@ -6,24 +6,14 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:37:35 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 12:14:55 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:17:40 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-
-int	ft_is_num(char *str, t_data *data)
+int	ft_is_num_utils(char **ar, int w, int i)
 {
-	int		i;
-	char	**ar;
-	char	**ar1;
-	int		w;
-
-	1 && (i = 1, w = 0);
-	while (str && (str[i] == ' '))
-		i++;
-	ar = ft_split(&str[i], ',');
 	if (!ar)
 		return (0);
 	while (w <= 2)
@@ -40,7 +30,15 @@ int	ft_is_num(char *str, t_data *data)
 			return (ft_free_array(ar),0);
 		w++;
 	}
-	w = 0;
+	return (1);
+}
+
+int	ft_is_num_utils2(int w, t_data *data, char **ar, char *str)
+{
+	int k;
+	int i;
+
+
 	while (w <= 2)
 	{
 		if (w == 2)
@@ -51,7 +49,7 @@ int	ft_is_num(char *str, t_data *data)
 			if (i != 0 && ar[w][i - 1] == '\n')
 				ar[w][i - 1] = '\0';
 		}
-		int k = 0;
+		k = 0;
 		while (str && (str[k] == ' '))
 			k++;
 		if (str && str[k] == 'C')
@@ -62,55 +60,23 @@ int	ft_is_num(char *str, t_data *data)
 			return (printf("got here"),ft_free_array(ar), 0);
 		w++;
 	}
-	return (ft_free_array(ar),1);
+	return (1);
 }
 
-
-int	inside_map_validity(t_data *data, int line)
+int	ft_is_num(char *str, t_data *data)
 {
-	int	k;
-	int a;
-	int	i;
+	int		i;
+	int		k;
+	char	**ar;
+	int		w;
 
-	k = 0;
-	i = 0;
-	line++;
-	a = 0;
-	while (data->data[line])
-	{
-		if (line != 0 && ft_my_strl2(data->data[line]) > ft_my_strl2(data->data[line - 1]))
-		{
-			k = ft_my_strl2(data->data[line - 1]);
-			i = ft_my_strl2(data->data[line]);
-			a  = 0;
-			int ss = i - k + 1;
-			if (i == 0 && k == 0)
-				return (printf("hhhh\n"), 0);
-			while (k < i && a != ss)
-			{
-				if (data->data[line][i] == '0')
-					return (printf("hhhh1\n"), 0);
-				i--;
-				a++;
-			}
-			return (1);
-		}
-		if (line != 0 && ft_my_strl2(data->data[line]) < ft_my_strl2(data->data[line - 1]))
-		{
-			a = 0;
-			k = ft_my_strl2(data->data[line - 1]);
-			i = ft_my_strl2(data->data[line]);
-			if (i == 0 && k == 0)
-				return (printf("hhhh2\n"), 0);
-			while (i < k && a != i)
-			{
-				if (data->data[line - 1][k] == '0')
-					return (printf("hhhh3\n"), 0);
-				k--;
-				a++;
-			}
-		}
-		line++;
-	}
-	return (1);
+	1 && (i = 1, w = 0);
+	while (str && (str[i] == ' '))
+		i++;
+	ar = ft_split(&str[i], ',');
+	if (!ft_is_num_utils(ar, w, i))
+		return (0);
+	if (!ft_is_num_utils2(w, data, ar, str))
+		return (0);
+	return (ft_free_array(ar),1);
 }

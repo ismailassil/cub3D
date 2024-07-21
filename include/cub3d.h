@@ -6,7 +6,7 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/19 12:15:15 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:46:30 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,14 @@ typedef struct s_map_utils
 	int	l;
 	int last;
 }			t_map_utils;
+
+typedef struct s_validity
+{
+	int	k;
+	int ss;
+	int a;
+	int	i;
+}			t_validity;
 
 typedef struct s_prase
 {
@@ -480,4 +488,8 @@ int		ft_is_strange_utils(t_data *data, int count, int i);
 int		ft_is_strange(t_data *data, int count);
 int		inside_map_validity(t_data *data, int line);
 int		ft_check_range(char *str, t_data *data, int flag);
+int		ft_check_range(char *str, t_data *data, int flag);
+int		ft_is_num(char *str, t_data *data);
+int		inside_map_validity(t_data *data, int line);
+int		ft_map_valid_urils(int line, t_data *data, int a);
 #endif

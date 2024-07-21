@@ -6,11 +6,21 @@
 /*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:14:49 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/19 12:21:40 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:35:37 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	ft_check_range_util(int *z, char c, int *i)
+{
+	if (c == '-' || c == '+')
+	{
+		if (c == '-')
+			*z = -1;
+		*i += 1;
+	}
+}
 
 long long	ft_check_range_utils(char *str, int i, int z, long long t)
 {
@@ -18,12 +28,7 @@ long long	ft_check_range_utils(char *str, int i, int z, long long t)
 		i++;
 	if (str[i] == '\0')
 		return (printf("got here\n"), -1337);
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			z = -1;
-		i++;
-	}
+	ft_check_range_util(&z, str[i], &i);
 	while (str && str[i])
 	{
 		if (str[i] == ' ')
@@ -43,6 +48,30 @@ long long	ft_check_range_utils(char *str, int i, int z, long long t)
 	return (t);
 }
 
+void	ft_assign_data(int flag, int *a, t_data *data, long long t)
+{
+	if (flag == 0)
+	{
+		if (*a == 0)
+			data->ceiling.red = t;
+		else if (*a == 1)
+			data->ceiling.green = t;
+		else if (*a == 2)
+			data->ceiling.blue = t;
+		*a += 1;
+	}
+	if (flag == 1)
+	{
+		if (*a == 0)
+			data->floor.red = t;
+		else if (*a == 1)
+			data->floor.green = t;
+		else if (*a == 2)
+			data->floor.blue = t;
+		*a += 1;
+	}
+}
+
 int	ft_check_range(char *str, t_data *data, int flag)
 {
 	int			i;
@@ -54,26 +83,7 @@ int	ft_check_range(char *str, t_data *data, int flag)
 	t = ft_check_range_utils(str, i, z, t);
 	if (t == -1337)	
 	 return (0);
-	if (flag == 0)
-	{
-		if (a == 0)
-			data->ceiling.red = t;
-		else if (a == 1)
-			data->ceiling.green = t;
-		else if (a == 2)
-			data->ceiling.blue = t;
-		a++;
-	}
-	if (flag == 1)
-	{
-		if (a == 0)
-			data->floor.red = t;
-		else if (a == 1)
-			data->floor.green = t;
-		else if (a == 2)
-			data->floor.blue = t;
-		a++;
-	}
+	ft_assign_data(flag, &a, data, t);
 	if (a == 3)
 		a = 0;
 	return (1);
