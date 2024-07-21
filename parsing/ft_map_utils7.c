@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils7.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:11:25 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:03:32 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:39:50 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	ft_is_strange_utils(t_data *data, int count, int i)
 		while (i >= 0 && data->data[count - 1][i])
 		{
 			if (data->data[count - 1][i] == '0' && i >= kk)
-				return (printf("data 33 = %s\n", data->data[count - 1]), 0);
+				return (0);
 			i--;
 		}
 		count++;
@@ -117,9 +117,9 @@ int	ft_is_strange(t_data *data, int count)
 		i = ft_strlen(data->data[count + 1]) - 1;
 		while (i >= 0 && data->data[count + 1][i])
 		{
-			if (data->data[count + 1][i] == '0' 
+			if (data->data[count + 1][i] == '0'
 				&& i >= ft_strlen(data->data[count]) - 1)
-				return (printf("data = %s\n", data->data[count]), 0);
+				return (0);
 			i--;
 		}
 		count++;

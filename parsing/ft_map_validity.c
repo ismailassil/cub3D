@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_validity.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:36:35 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:26:34 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:31:17 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_check_parse(t_data *data)
 	t.k = i + 5;
 	while (data->data[i])
 	{
-		if (ft_check_parse1(data, i, count, t))
+		if (!ft_check_parse1(data, i, count, t))
 			break ;
 		i++;
 	}
@@ -47,11 +47,11 @@ int	ft_map_valid_urils(int line, t_data *data, int a)
 		k = ft_my_strl2(data->data[line - 1]);
 		i = ft_my_strl2(data->data[line]);
 		if (i == 0 && k == 0)
-			return (printf("hhhh2\n"), 0);
+			return (0);
 		while (i < k && a != i)
 		{
 			if (data->data[line - 1][k] == '0')
-				return (printf("hhhh3\n"), 0);
+				return (0);
 			k--;
 			a++;
 		}
@@ -73,11 +73,11 @@ int	inside_map_validity(t_data *data, int line)
 			t.i = ft_my_strl2(data->data[line]));
 			(1) && (t.a = 0, t.ss = t.i - t.k + 1);
 			if (t.i == 0 && t.k == 0)
-				return (printf("hhhh\n"), 0);
+				return (0);
 			while (t.k < t.i && t.a != t.ss)
 			{
 				if (data->data[line][t.i] == '0')
-					return (printf("hhhh1\n"), 0);
+					return (0);
 				(1) && (t.i--, t.a++);
 			}
 			return (1);

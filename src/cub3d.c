@@ -3,59 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:32 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/17 11:06:12 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:19:26 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-// void leaks()
-// {
-//     fclose(gfp);
-//     system("leaks cub3d");
-//     usleep(1000 * 100 *10000);
-// }
-
-// void	leaks()
-// {
-// 	system("leaks cub3d");	
-// }
+int	ft_parsing(int fd, t_data *cube, t_list *file_input)
+{
+	cube->path->east = NULL;
+	cube->path->north = NULL;
+	cube->path->west = NULL;
+	cube->path->south = NULL;
+	file_input = ft_get_map(fd);
+	if (!file_input)
+		return (close(fd), free(cube->path), free(cube), 1);
+	cube->data = ft_to_2d(file_input);
+	if (!cube->data)
+		return (close(fd), ft_free_list(file_input), free(cube->path), free(cube), 1);
+	if (!ft_check_parse(cube))
+	{
+		close(fd);
+		(ft_free_data(&file_input), ft_free_data_utils(cube));
+		(free(cube->data), free(cube));
+		return (1);
+	}
+	close(fd);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
 	int		fd;
-	t_data	*data;
+	t_data	*cube;
+	t_list	*file_input;
 
-	// gfp = fopen("leaks", "w");
-	// atexit(leaks);
-	data = malloc(sizeof(t_data));
-	if (!data)
+	cube = malloc(sizeof(t_data));
+	if (!cube)
 		return (1);
-	data->path = malloc(sizeof(t_path));
-	if (!data->path)
-		return (free(data), 1);
-	data->path->east = NULL;
-	data->path->north = NULL;
-	data->path->west = NULL;
-	data->path->south = NULL;
+	cube->path = malloc(sizeof(t_path));
+	if (!cube->path)
+		return (free(cube), 1);
+	fd = ft_open_file(av[1], cube);
 	if (ft_check_input_file(ac, av))
-		return (free(data->path), free(data), 1);
-	fd = ft_open_file(av[1]);
-	t_list *tmp = ft_get_map(fd);
-	if (!tmp)
-		return (close(fd), free(data->path), free(data), 1);
-	data->data = ft_to_2d(tmp);
-	if (!data->data)
-		return (close(fd), ft_free_list(tmp), free(data->path), free(data), 1);
-	if (!ft_check_parse(data))
-		return (close(fd), ft_free_data(&tmp),ft_free_data_utils(data),free(data->data), free(data), 1);
-	// ft_free_data_utils(data);
-	// free(data->data);
-	// ft_free_data(&tmp);
-	// free(data);
-	// close(fd);
-	ft_execute(data);
+		return (free(cube->path), free(cube), 1);
+	if (ft_parsing(fd, cube, file_input))
+		return (1);
+	ft_execute(cube, file_input);
 }

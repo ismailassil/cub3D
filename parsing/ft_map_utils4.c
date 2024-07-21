@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:32:09 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:00:38 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:38:25 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_check2(t_data *data, int count)
 
 	k = 0;
 	i = ft_my_strl2(data->data[count]);
-	if (data->data[count + 1] && 
-		(ft_strlen (data->data[count]) < ft_strlen(data->data[count + 1])))
+	if (data->data[count + 1]
+		&& (ft_strlen (data->data[count]) < ft_strlen(data->data[count + 1])))
 	{
 		k = ft_my_strl2(data->data[count + 1]);
 		while (k > i)
@@ -41,7 +41,7 @@ int	ft_check3(t_data *data, int count)
 	k = 0;
 	count--;
 	i = ft_my_strl2(data->data[count]);
-	if (data->data[count + 1] 
+	if (data->data[count + 1]
 		&& (ft_strlen(data->data[count]) > ft_strlen(data->data[count + 1])))
 	{
 		k = ft_my_strl2(data->data[count + 1]);
@@ -64,7 +64,7 @@ int	ft_borders_utils1(t_data *data, int count)
 	a = 0;
 	while (data->data[kk][a])
 	{
-		if (data->data[kk][a] != '1' 
+		if (data->data[kk][a] != '1'
 			&& data->data[kk][a] != ' ' && data->data[kk][a] != '\n')
 			return (0);
 		a++;
@@ -108,22 +108,22 @@ int	ft_map_validity(t_data	*data, int c)
 	(1) && (t.player = 0, t.j = 0, t.i = 0, t.line = c);
 	while (data->data && data->data[c])
 	{
-		if (ft_find(data->data[c], 'N') || ft_find(data->data[c], 'S') 
+		if (ft_find(data->data[c], 'N') || ft_find(data->data[c], 'S')
 			|| ft_find(data->data[c], 'E') || ft_find(data->data[c], 'W'))
 		{
 			t.player++;
 			data->direction = ft_put_direction(data->data[c]);
 		}
-		if (!ft_find(data->data[c], 'N') && !ft_find(data->data[c], 'S') 
+		if (!ft_find(data->data[c], 'N') && !ft_find(data->data[c], 'S')
 			&& !ft_find(data->data[c], 'E') && !ft_find(data->data[c], 'W')
 			&& !ft_find(data->data[c], '1') && !ft_find(data->data[c], '0')
 			&& !ft_find(data->data[c], ' ') && !ft_find(data->data[c], '\n'))
-			return (printf("here\n"), 0);
+			return (0);
 		c++;
 	}
 	if (t.player == 1 && ft_check_map_borders(data, t.line)
 		&& ft_borders_utils(data, t.line))
-		return (printf("got here\n"), 1);
+		return (1);
 	else
-		return (printf("test111\n"), 0);
+		return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 17:21:51 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:23:51 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define CUB3D_H
 # include "get_next_line.h"
 # include "libft.h"
-# include "stdbool.h"
+# include <stdbool.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <sys/fcntl.h>
 # include <math.h>
 # include <float.h>
-# include "/Users/ybellakr/MLX42/include/MLX42/MLX42.h"
+# include "/Users/iassil/.MLX42/include/MLX42/MLX42.h"
 # define SUCCESS		0
 # define FAIL			1
 # define NO				1
@@ -50,25 +50,6 @@
 # define BAR			218
 # define HEART			41
 # define TURN			1
-// #include <libc.h>
-
-// FILE*gfp;
-
-// static void *__malloc(size_t size, int line, const char *file)
-// {
-//     void *ptr = malloc(size);
-//     fprintf(gfp, "dct[%p] = ['malloc', '%p', %i, '%s']\n", ptr, ptr, line, file);fflush(gfp);
-//     return (ptr);
-// }
-
-
-// static void __free(void *ptr, int line, const char *file)
-// {
-//     fprintf(gfp, "dct[%p] = ['free', '%p', %i, '%s']\n", ptr, ptr, line, file);fflush(gfp);
-//     free(ptr);
-// }
-// #define malloc(x) __malloc(x, __LINE__, __FILE__)
-// #define free(x) __free(x, __LINE__, __FILE__)
 
 typedef struct s_rgba
 {
@@ -82,39 +63,39 @@ typedef struct s_utils
 {
 	int	prev_line;
 	int	line;
-	int i;
-	int j;
-	int player;
-}			t_utils;
+	int	i;
+	int	j;
+	int	player;
+}		t_utils;
 
 typedef struct s_nrm
 {
 	int	i;
 	int	flag;
 	int	flag1;
-}			t_nrm;
+}		t_nrm;
 
 typedef struct s_map_utils
 {
 	int	k;
-	int j;
+	int	j;
 	int	l;
-	int last;
-}			t_map_utils;
+	int	last;
+}		t_map_utils;
 
 typedef struct s_validity
 {
 	int	k;
-	int ss;
-	int a;
+	int	ss;
+	int	a;
 	int	i;
-}			t_validity;
+}		t_validity;
 
 typedef struct s_prase
 {
 	int	flag;
-	int k;
-}			t_parse;
+	int	k;
+}		t_parse;
 
 typedef struct s_path
 {
@@ -129,14 +110,14 @@ typedef struct s_colorss
 	int	blue;
 	int	red;
 	int	green;
-} t_colorss;
+}		t_colorss;
 
 typedef struct s_colors
 {
 	int	blue;
 	int	red;
 	int	green;
-}			t_colors;
+}		t_colors;
 
 typedef struct s_line
 {
@@ -184,7 +165,7 @@ typedef struct s_tools
 	int			current_y;
 	int			move_step;
 	uint32_t	color;
-}			t_tools;
+}				t_tools;
 
 typedef struct s_grid
 {
@@ -303,6 +284,7 @@ typedef struct s_textures
 typedef struct s_cube
 {
 	t_data			*info;
+	t_list			*file_input;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	t_player		player;
@@ -347,11 +329,11 @@ void		ft_map(t_data *info);
 
 /*	Check input		*/
 bool		ft_check_input_file(int ac, char **av);
-int			ft_open_file(char *file);
+int			ft_open_file(char *file, t_data *cube);
 
 /*	Main functions	*/
 void		ft_parse(int fd, t_data *cube);
-void		ft_execute(t_data *cube);
+void		ft_execute(t_data *info, t_list *file_input);
 
 /*	MLX functions	*/
 void		ft_key_hook(mlx_key_data_t keydata, void *param);
@@ -409,7 +391,6 @@ float		ft_get_point_to_point_distance(float x1, float y1, \
 				float x2, float y2);
 
 /*	Raycasting utils functions	*/
-void		ft_get_window_data(t_cube *cube);
 void		ft_fill_square(t_cube *cube, int x, int y, int color);
 void		ft_fill_pixel_player(t_cube *cube, int color);
 void		ft_draw_line_of_view(t_cube *cube, int color);
@@ -459,55 +440,56 @@ void		ft_free_map(char ***map);
 //////////////////////////////////////////////
 void		ft_print_map(char **map);
 //////////////////////////////////////////////
-//parsing
-t_list	*ft_get_map(int fd);
-char	**ft_to_2d(t_list *list);
-int		ft_check_parse(t_data *data);
-int		ft_my_strlen(char *str);
-int		ft_my_strl2(char *str);
-void	ft_free_data_utils(t_data *data);
-void	ft_free_list(t_list *tmp);
-int		ft_size_list(t_list	*lst);
-char	**ft_to_2d(t_list *list);
-int		my_strcmp(char *str, char *str1);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_strcmp2(char *s1, char *s2);
-int		ft_count_semi(char *str);
-int		ft_check_num(char *str);
-int		ft_num(char *str);
-int		is_alpha(char c);
-void	ft_free_array(char **ar);
-int		ft_check_color(char *str, t_data *data);
-int		ft_find(char *str, char c);
-int		ft_put_direction(char *str);
-int		ft_get_last_line(t_data *data, int count);
-int		ft_size(char *str);
-int		ft_is_num(char *str, t_data *data);
-int		ft_find_chr(char *str);
-int		ft_map_validity(t_data	*data, int count);
-int		ft_borders_utils(t_data *data, int count);
-int		ft_check3(t_data *data, int count);
-int		ft_check2(t_data *data, int count);
-int		ft_check_map_borders(t_data *data, int count);
-int		ft_size_map(t_data *data, int i);
-int		ft_my_strl(char *str);
-int		is_there(char *str, char *str1);
-int		ft_my_strlen(char *str);
-int		ft_my_strl2(char *str);
-int		ft_chr(char *str, char c);
-int		ft_is_surounded(t_data *data, int count);
-int		ft_borders(t_data *data, int i);
-int		ft_put_path(t_data *data, char *str, int j);
-int		ft_check_path_utils(t_data *data, char *str, int i);
-int		ft_check_path(char *str, t_data *data);
-int		ft_is_strange_utils(t_data *data, int count, int i);
-int		ft_is_strange(t_data *data, int count);
-int		inside_map_validity(t_data *data, int line);
-int		ft_check_range(char *str, t_data *data, int flag);
-int		ft_check_range(char *str, t_data *data, int flag);
-int		ft_is_num(char *str, t_data *data);
-int		inside_map_validity(t_data *data, int line);
-int		ft_map_valid_urils(int line, t_data *data, int a);
-int		ft_check_parse1(t_data *data, int i, int count, t_parse t);
-int		ft_check_parse_utils(t_data *data, int count, int i);
+/*	Parsing		*/
+t_list		*ft_get_map(int fd);
+char		**ft_to_2d(t_list *list);
+int			ft_check_parse(t_data *data);
+int			ft_my_strlen(char *str);
+int			ft_my_strl2(char *str);
+void		ft_free_data_utils(t_data *data);
+void		ft_free_list(t_list *tmp);
+int			ft_size_list(t_list	*lst);
+char		**ft_to_2d(t_list *list);
+int			my_strcmp(char *str, char *str1);
+int			ft_strcmp(char *s1, char *s2);
+int			ft_strcmp2(char *s1, char *s2);
+int			ft_count_semi(char *str);
+int			ft_check_num(char *str);
+int			ft_num(char *str);
+int			is_alpha(char c);
+void		ft_free_array(char **ar);
+int			ft_check_color(char *str, t_data *data);
+int			ft_find(char *str, char c);
+int			ft_put_direction(char *str);
+int			ft_get_last_line(t_data *data, int count);
+int			ft_size(char *str);
+int			ft_is_num(char *str, t_data *data);
+int			ft_find_chr(char *str);
+int			ft_map_validity(t_data	*data, int count);
+int			ft_borders_utils(t_data *data, int count);
+int			ft_check3(t_data *data, int count);
+int			ft_check2(t_data *data, int count);
+int			ft_check_map_borders(t_data *data, int count);
+int			ft_size_map(t_data *data, int i);
+int			ft_my_strl(char *str);
+int			is_there(char *str, char *str1);
+int			ft_my_strlen(char *str);
+int			ft_my_strl2(char *str);
+int			ft_chr(char *str, char c);
+int			ft_is_surounded(t_data *data, int count);
+int			ft_borders(t_data *data, int i);
+int			ft_put_path(t_data *data, char *str, int j);
+int			ft_check_path_utils(t_data *data, char *str, int i);
+int			ft_check_path(char *str, t_data *data);
+int			ft_is_strange_utils(t_data *data, int count, int i);
+int			ft_is_strange(t_data *data, int count);
+int			inside_map_validity(t_data *data, int line);
+int			ft_check_range(char *str, t_data *data, int flag);
+int			ft_check_range(char *str, t_data *data, int flag);
+int			ft_is_num(char *str, t_data *data);
+int			inside_map_validity(t_data *data, int line);
+int			ft_map_valid_urils(int line, t_data *data, int a);
+int			ft_check_parse1(t_data *data, int i, int count, t_parse t);
+int			ft_check_parse_utils(t_data *data, int count, int i);
+
 #endif

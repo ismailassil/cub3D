@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_to_2d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:37:35 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:31:16 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:51:30 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_is_num_utils2(int w, t_data *data, char **ar, char *str)
 		else
 			k = 1;
 		if (!ft_check_range(ar[w], data, k))
-			return (printf("got here"), ft_free_array(ar), 0);
+			return (ft_free_array(ar), 0);
 		w++;
 	}
 	return (1);

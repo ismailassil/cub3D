@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_range.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:14:49 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:00:44 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:44:39 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ int	ft_find_chr(char *str)
 		(1) && (t.flag = 0, t.flag = 0);
 		if (str[0] == '\n')
 			return (1);
-		if (str[t.i] == 'N' || str[t.i] == 'W' 
+		if (str[t.i] == 'N' || str[t.i] == 'W'
 			|| str[t.i] == 'S' || str[t.i] == 'E')
 			t.flag = 1;
 		if ((str[t.i] == '0' || str[t.i] == '1'))
 			t.flag1 = 1;
-		if (str[t.i] != 'N' && str[t.i] != 'W' && str[t.i] != 'S' 
-			&& str[t.i] != 'E' && str[t.i] != '0' && str[t.i] != '1' 
+		if (str[t.i] != 'N' && str[t.i] != 'W' && str[t.i] != 'S'
+			&& str[t.i] != 'E' && str[t.i] != '0' && str[t.i] != '1'
 			&& str[t.i] != ' ' && str[t.i] != '\n')
 			return (0);
 		t.i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils6.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:41:50 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:02:51 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:39:08 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	ft_is_surounded(t_data *data, int count)
 		i = 0;
 		while (data->data[count][i])
 		{
-			if (data->data[count][i] == ' ' && 
-				((i > 0 && data->data[count][i - 1] == '0')
-				|| (ft_strlen(data->data[count]) >= i 
+			if (data->data[count][i] == ' '
+				&& ((i > 0 && data->data[count][i - 1] == '0')
+				|| (ft_strlen(data->data[count]) >= i
 				&& data->data[count][i + 1] == '0')))
 				return (0);
 			i++;
@@ -74,14 +74,14 @@ int	ft_borders(t_data *data, int i)
 	while (data->data[i][t.j])
 	{
 		if (data->data[i][t.j] == '0')
-			return (printf("from here\n"), 0);
+			return (0);
 		t.j++;
 	}
 	t.j = 0;
 	while (data->data[t.last][t.j])
 	{
 		if (data->data[t.last][t.j] == '0')
-			return (printf("from here1\n"), 0);
+			return (0);
 		t.j++;
 	}
 	while (data->data[i])
@@ -89,7 +89,7 @@ int	ft_borders(t_data *data, int i)
 		t.k = ft_my_strl(data->data[i]);
 		t.l = ft_my_strl2(data->data[i]);
 		if (data->data[i][t.k] != '1' || data->data[i][t.l] != '1')
-			return (printf("from here 2\n"), 0);
+			return (0);
 		i++;
 	}
 	return (1);

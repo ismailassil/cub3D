@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 09:45:29 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:30:06 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:51:14 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_list	*ft_get_map(int fd)
 	lst = NULL;
 	str = get_next_line(fd);
 	if (!str)
-		return (perror("empty file"), NULL);
+		return (p_error("Empty file", 0, 1), NULL);
 	lst = ft_add_list(lst, str);
 	if (!lst)
 		return (free(str), NULL);

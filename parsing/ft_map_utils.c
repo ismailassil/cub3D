@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:21:25 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 16:39:09 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:43:45 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ char	**ft_to_2d(t_list *list)
 
 	tmp = list;
 	p = malloc((ft_size_list(list) + 1) * sizeof(char *));
-	i = 0;
 	if (!p)
 		return (NULL);
+	i = 0;
 	while (tmp)
 	{
 		p[i++] = tmp->line;

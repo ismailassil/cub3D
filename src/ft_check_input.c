@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_input.c                                   :+:      :+:    :+:   */
+/*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:44:27 by iassil            #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:56 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 17:56:29 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	ft_check_input_file(int ac, char **av)
 	return (false);
 }
 
-int	ft_open_file(char *file)
+int	ft_open_file(char *file, t_data *cube)
 {
 	int	fd;
 
@@ -36,6 +36,8 @@ int	ft_open_file(char *file)
 		p_error(file, ": ", 0);
 		perror(NULL);
 		close(fd);
+		free(cube->path);
+		free(cube);
 		exit(FAIL);
 	}
 	return (fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:25:59 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 16:39:58 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:45:28 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_check_num(char *str)
 			;
 		else
 			return (0);
-		i++; 
+		i++;
 	}
 	return (1);
 }
@@ -50,12 +50,12 @@ int	ft_num(char *str)
 
 	i = 0;
 	if (str[i] == '\0')
-		return (0); 
+		return (0);
 	while (str && str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') 
+		if ((str[i] < '0' || str[i] > '9')
 			&& str[i] != ' ' && str[i] != '+' && str[i] != '-')
-			return (printf("from here\n"), 0);
+			return (0);
 		i++;
 	}
 	return (1);

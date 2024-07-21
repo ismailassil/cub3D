@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils8.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:26 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:13:20 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:40:58 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_check_borders_utils1(t_data *data, int count, int i)
 		a = count;
 		while (data->data[a + 1])
 		{
-			if (data->data[a + 1] && k <= ft_my_strlen(data->data[a + 1]) 
+			if (data->data[a + 1] && k <= ft_my_strlen(data->data[a + 1])
 				&& (data->data[a + 1][k] == '0'
 				|| data->data[a + 1][k] == 'N' || data->data[a + 1][k] == 'S'
 				|| data->data[a + 1][k] == 'E' || data->data[a + 1][k] == 'W'))
@@ -52,7 +52,7 @@ int	ft_check_borders_utils(t_data *data, int c, int i)
 			if (!ft_check_borders_utils1(data, c, i))
 				return (0);
 			else if (data->data[c][i] == ' ' && data->data[c + 1]
-				&& i <= ft_my_strl2(data->data[c + 1]) 
+				&& i <= ft_my_strl2(data->data[c + 1])
 				&& (data->data[c + 1][i] == '0' || data->data[c + 1][i] == 'N'
 				|| data->data[c + 1][i] == 'S' || data->data[c + 1][i] == 'E'
 				|| data->data[c + 1][i] == 'W'))
@@ -101,15 +101,15 @@ int	ft_chek_borders(t_data *data, int last, int a, int i)
 		while (data->data[last][i])
 		{
 			if (!ft_chek_borders_utils(data, last, i))
-				return (printf("heretest\n"), 0);
+				return (0);
 			if (i <= ft_my_strl2(data->data[last - 1])
 				&& data->data[last][i] == ' ' && data->data[last - 1]
 				&& (data->data[last - 1][i] == '0'
-				|| data->data[last - 1][i] == 'N' 
+				|| data->data[last - 1][i] == 'N'
 				|| data->data[last - 1][i] == 'S'
 				|| data->data[last - 1][i] == 'E'
 				|| data->data[last - 1][i] == 'W'))
-				return (printf("here2?%s\n", data->data[last]), 0);
+				return (0);
 			i++;
 		}
 		last--;
@@ -131,17 +131,17 @@ int	ft_check_map_borders(t_data *data, int count)
 	while (data->data[last_line][i] == ' ')
 		i--;
 	if (data->data[last_line][i] == '\n')
-		return (printf("test1\n"), 0);
+		return (0);
 	if (!ft_find(data->data[count], '1') && !ft_find(data->data[count], ' ')
 		&& !ft_find(data->data[count], '\n'))
-		return (printf("test2\n"), 0);
+		return (0);
 	i = 0;
 	if (!ft_check_borders_utils(data, count, i))
-		return (printf("test3\n"), 0);
+		return (0);
 	i = 0;
 	if (!ft_chek_borders(data, last_line, a, i))
-		return (printf("test4\n"), 0);
+		return (0);
 	if (!ft_check3(data, last_line))
-		return (printf("test5\n"), 0);
+		return (0);
 	return (1);
 }

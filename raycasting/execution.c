@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:05:10 by iassil            #+#    #+#             */
-/*   Updated: 2024/06/02 13:51:54 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:23:28 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,28 @@ void	mousefunc(double xpos, double ypos, void *param)
 	cube->player.turn_direction = 0;
 }
 
-void	ft_execute(t_data *info)
+void	ft_free_parsing(t_data *data, t_list *file_input)
+{
+	ft_free_data_utils(data);
+	free(data->data);
+	ft_free_data(&file_input);
+	free(data);
+}
+
+void	ft_execute(t_data *info, t_list *f_input)
 {
 	t_cube	*cube;
 
 	cube = malloc(sizeof(t_cube));
-	ft_check_allocation(cube);
-	info = malloc(sizeof(t_data));
-	ft_check_allocation(info);
-	/****To be deleted****/
-	ft_map(info);
+	if (!cube)
+	{
+		ft_free_parsing(info, f_input);
+		p_error("Allocation Failed", 0, 1);
+		return ;
+	}
 	cube->info = info;
+	cube->file_input = f_input;
 	ft_get_window_data(cube);
-	/********************/
 	ft_init_mlx_window(cube);
 	ft_initialize_data(cube);
 	mlx_key_hook(cube->mlx, ft_key_hook, cube);
