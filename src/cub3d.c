@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:32 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/22 10:04:48 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 11:44:53 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ int	ft_parsing(int fd, t_data *cube, t_list *file_input)
 	return (0);
 }
 
-// void	leaks(void)
-// {
-// 	system("leaks cub3d");
-// }
-void	leaks()
+void	leaks(void)
 {
-	fclose(gfp);
 	system("leaks cub3d");
-	usleep(1000 * 100 *10000);
 }
+// void	leaks()
+// {
+// 	fclose(gfp);
+// 	system("leaks cub3d");
+// 	usleep(1000 * 100 *10000);
+// }
 
 
 int	main(int ac, char **av)
@@ -63,7 +63,7 @@ int	main(int ac, char **av)
 	t_data	*cube;
 	t_list	*file_input;
 
-	gfp = fopen("leaks.t", "w");
+	// gfp = fopen("leaks.t", "w");
 	atexit(leaks);
 	// atexit(leaks);
 	file_input = NULL;

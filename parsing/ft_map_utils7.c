@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils7.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:11:25 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/22 09:49:18 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 12:26:02 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int	ft_put_path(t_data *data, char *str, int j)
 {
-	if (my_strcmp(str, "NO "))
+	if (my_strcmp(str, "NO ") && data->path->north == NULL)
 	{
 		data->path->north = ft_strdup(&str[j]);
 		if (!data->path->north)
 			return (0);
 	}
-	else if (my_strcmp(str, "SO "))
+	else if (my_strcmp(str, "SO ") && data->path->south == NULL)
 	{
 		data->path->south = ft_strdup(&str[j]);
 		if (!data->path->south)
 			return (0);
 	}
-	else if (my_strcmp(str, "WE "))
+	else if (my_strcmp(str, "WE ") && data->path->west == NULL)
 	{
 		data->path->west = ft_strdup(&str[j]);
 		if (!data->path->west)
 			return (0);
 	}
-	else if (my_strcmp(str, "EA "))
+	else if (my_strcmp(str, "EA ") && data->path->east == NULL)
 	{
 		data->path->east = ft_strdup(&str[j]);
 		if (!data->path->east)
@@ -106,21 +106,36 @@ int	ft_is_strange_utils(t_data *data, int count, int i)
 	return (1);
 }
 
+int	ft_my_strlen1(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+		i++;
+	if (i > 0)
+		i--;
+	while (i > 0 && str[i] && (str[i] != '1' && str[i] != '0'))
+		i--;
+	return (i);
+}
+
 int	ft_is_strange(t_data *data, int count)
 {
-	unsigned long	i;
-	int				k;
+	int	i;
+	int	k;
+	int	aa;
 
 	i = 0;
 	k = count;
 	while (data->data[count + 1])
 	{
-		i = ft_strlen(data->data[count + 1]) - 1;
+		i = ft_my_strlen1(data->data[count + 1]);
+		aa = ft_my_strlen1(data->data[count]);
 		while (i >= 0 && data->data[count + 1][i])
 		{
-			if (data->data[count + 1][i] == '0'
-				&& i >= ft_strlen(data->data[count]) - 1)
-				return (0);
+			if (data->data[count + 1][i] == '0' && i > aa)
+					return (0);
 			i--;
 		}
 		count++;

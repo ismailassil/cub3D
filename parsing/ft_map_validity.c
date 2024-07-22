@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_validity.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:36:35 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/22 09:17:05 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 11:49:44 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	ft_check_parse(t_data *data)
 	t.k = i + 5;
 	while (data->data[i])
 	{
-		if (ft_check_parse1(data, i, count, t) == -1337)
+		if (ft_check_parse1(data, i, &count, t) == -1337)
 			return (0);
-		if (ft_check_parse1(data, i, count, t))
+		if (ft_check_parse1(data, i, &count, t))
 			break ;
 		i++;
 	}

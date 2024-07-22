@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils9.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:05:15 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/22 09:50:21 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 11:54:44 by ybellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_check_parse_utils1(t_data *data, int count, int a, int i)
 
 	kk = 0;
 	a = 0;
+	i++;
 	while (data->data[a])
 	{
 		if (is_there(data->data[a], "NO ") || is_there(data->data[a], "SO ")
@@ -27,7 +28,7 @@ int	ft_check_parse_utils1(t_data *data, int count, int a, int i)
 			kk++;
 		a++;
 	}
-	if (count > 6 || kk != 6)
+	if (count > 12 || kk != 6)
 		return (p_error("Duplicate Element", 0, 1), 0);
 	ii = ++i;
 	while (data->data[ii])
@@ -44,7 +45,7 @@ int	ft_check_parse_util1(t_data *data, int i)
 	if (!ft_map_validity(data, i) || !ft_borders(data, i)
 		|| ft_size_map(data) < 2 || !inside_map_validity(data, i)
 		|| !ft_is_surounded(data, i) || !ft_is_strange(data, i))
-		return (p_error("Invalid map", 0, 1), 0);
+		return (0);
 	return (1);
 }
 
@@ -83,11 +84,11 @@ int	ft_nrm_if(t_data *data, int i, int count)
 		&& !ft_strcmp2(data->data[i], "\n") && !ft_strcmp2(data->data[i], "WE ")
 		&& !ft_strcmp2(data->data[i], "EA ") && !ft_strcmp2(data->data[i], "F ")
 		&& !ft_strcmp2(data->data[i], "C ") && count < 6)
-		return (0);
+		return (printf("%s =%d=\n", data->data[i], count), 0);
 	return (1);
 }
 
-int	ft_check_parse1(t_data *data, int i, int count, t_parse t)
+int	ft_check_parse1(t_data *data, int i, int *count, t_parse t)
 {
 	t.flag = 0;
 	if (my_strcmp(data->data[i], "NO ") || my_strcmp(data->data[i], "SO ")
@@ -96,20 +97,20 @@ int	ft_check_parse1(t_data *data, int i, int count, t_parse t)
 		t.flag = 1;
 		if (!ft_check_path(data->data[i], data))
 			return (-1337);
-		(1) && (t.k = i, count++);
+		(1) && (t.k = i, *count += 1);
 	}
-	if (count == 6)
+	if (*count == 12)
 		return (1);
 	else if (my_strcmp(data->data[i], "F ") || my_strcmp(data->data[i], "C "))
 	{
 		t.flag = 1;
 		if (!ft_check_color(data->data[i], data))
 			return (-1337);
-		(1) && (count++, t.k = i);
+		(1) && (*count += 1, t.k = i);
 	}
-	if (count == 6)
+	if (*count == 12)
 		return (1);
-	if (!ft_nrm_if(data, i, count))
-		return (1);
+	if (!ft_nrm_if(data, i, *count))
+		return (-1337);
 	return (0);
 }
