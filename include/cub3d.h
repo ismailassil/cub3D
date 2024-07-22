@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/22 12:40:20 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 18:21:26 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,34 +50,6 @@
 # define BAR			218
 # define HEART			41
 # define TURN			1
-
-/******************** */
-#include <libc.h>
-
-FILE	*gfp;
-
-static void	*__malloc(size_t size, int line, const char *file)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	fprintf(gfp, "dct[%p] = ['malloc', '%p', %i, '%s']\n", 
-		ptr, ptr, line, file);
-	fflush(gfp);
-	return (ptr);
-}
-
-static void	__free(void *ptr, int line, const char *file)
-{
-	fprintf(gfp, "dct[%p] = ['free', '%p', %i, '%s']\n",
-		ptr, ptr, line, file);
-	fflush(gfp);
-	free(ptr);
-}
-/**/
-# define malloc(x) __malloc(x, __LINE__, __FILE__)
-# define free(x) __free(x, __LINE__, __FILE__)
-/******************** */
 
 typedef struct s_rgba
 {

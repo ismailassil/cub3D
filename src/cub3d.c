@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:32 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/22 17:55:59 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 18:21:32 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,12 @@ int	ft_parsing(int fd, t_data *cube, t_list **file_input)
 	return (0);
 }
 
-// void	leaks(void)
-// {
-// 	system("leaks cub3d");
-// }
-
-void	leaks()
-{
-	fclose(gfp);
-	system("leaks cub3d");
-}
-
-
 int	main(int ac, char **av)
 {
 	int		fd;
 	t_data	*cube;
 	t_list	*file_input;
 
-	gfp = fopen("leaks.t", "w");
-	atexit(leaks);
 	file_input = NULL;
 	cube = malloc(sizeof(t_data));
 	if (!cube)

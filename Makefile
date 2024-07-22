@@ -6,13 +6,13 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/07/22 12:36:57 by iassil           ###   ########.fr        #
+#    Updated: 2024/07/22 18:21:37 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
-# CC			+=	-Wall -Wextra -Werror
-# CC			+=	-fsanitize=address -g
+CC			+=	-Wall -Wextra -Werror
+CC			+=	-fsanitize=address -g
 MLX			=	/Users/$(USER)/.MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 MLX			+=	-framework Cocoa -framework OpenGL -framework IOKit
 INCLUDE		=	-I./lib/MLX42
