@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:09:39 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 20:55:59 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 09:44:49 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,27 @@
 void	ft_init_mlx_window(t_cube *cube)
 {
 	ft_load_wall_textures(cube);
+	/**** BONUS PART */
 	ft_load_weapon_textures(cube);
 	ft_load_bar_textures(cube);
+	/*****************/
 	cube->mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", false);
 	if (!cube->mlx)
 	{
 		ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
-		ft_free_parsing(cube->info, cube->file_input);
-		free(cube);
-		exit(1);
+		(ft_fr_all_text(cube), ft_mlx_error());
 	}
 	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
 	if (!cube->img)
 	{
 		mlx_close_window(cube->mlx);
-		ft_free_parsing(cube->info, cube->file_input);
-		free(cube);
-		ft_mlx_error();
+		(ft_fr_all_text(cube), ft_mlx_error());
 	}
 	if (mlx_image_to_window(cube->mlx, cube->img, 0, 0) < 0)
 	{
 		mlx_delete_image(cube->mlx, cube->img);
 		mlx_close_window(cube->mlx);
-		ft_free_parsing(cube->info, cube->file_input);
-		free(cube);
-		ft_mlx_error();
+		(ft_fr_all_text(cube), ft_mlx_error());
 	}
 }
 

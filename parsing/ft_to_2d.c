@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:37:35 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:51:30 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 09:46:19 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	ft_is_num_utils2(int w, t_data *data, char **ar, char *str)
 int	ft_is_num(char *str, t_data *data)
 {
 	int		i;
-	int		k;
 	char	**ar;
 	int		w;
 

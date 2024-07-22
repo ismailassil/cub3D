@@ -6,13 +6,13 @@
 #    By: iassil <iassil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 21:44:18 by iassil            #+#    #+#              #
-#    Updated: 2024/07/21 18:26:23 by iassil           ###   ########.fr        #
+#    Updated: 2024/07/22 10:04:54 by iassil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
 # CC			+=	-Wall -Wextra -Werror
-CC			+=	-fsanitize=address -g
+# CC			+=	-fsanitize=address -g
 MLX			=	/Users/$(USER)/.MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 MLX			+=	-framework Cocoa -framework OpenGL -framework IOKit
 INCLUDE		=	-I./lib/MLX42
@@ -37,7 +37,7 @@ EXEC_FILES	=	colors.c			execution_utils.c		minimap.c			\
 				get_distance.c		mlx.c					raycasting.c		\
 				execution.c			get_distance_utils.c	mlx_destroy.c		\
 				animation.c			textures.c				raycasting_utils.c	\
-				utils.c
+				utils.c				free_func.c
 
 UTILS_FILES	=	t_list.c			t_tools.c
 

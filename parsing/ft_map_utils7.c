@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:11:25 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:39:50 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 09:49:18 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	ft_put_path(t_data *data, char *str, int j)
 
 int	ft_check_path_utils(t_data *data, char *str, int i)
 {
+	(void) data;
 	if (str[i] == '.' || str[i] == '/')
 	{
 		i++;
@@ -107,8 +108,8 @@ int	ft_is_strange_utils(t_data *data, int count, int i)
 
 int	ft_is_strange(t_data *data, int count)
 {
-	int	i;
-	int	k;
+	unsigned long	i;
+	int				k;
 
 	i = 0;
 	k = count;

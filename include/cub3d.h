@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 20:55:50 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 10:04:20 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,34 @@
 # define BAR			218
 # define HEART			41
 # define TURN			1
+
+/******************** */
+#include <libc.h>
+
+FILE	*gfp;
+
+static void	*__malloc(size_t size, int line, const char *file)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	fprintf(gfp, "dct[%p] = ['malloc', '%p', %i, '%s']\n", 
+		ptr, ptr, line, file);
+	fflush(gfp);
+	return (ptr);
+}
+
+static void	__free(void *ptr, int line, const char *file)
+{
+	fprintf(gfp, "dct[%p] = ['free', '%p', %i, '%s']\n",
+		ptr, ptr, line, file);
+	fflush(gfp);
+	free(ptr);
+}
+/**/
+# define malloc(x) __malloc(x, __LINE__, __FILE__)
+# define free(x) __free(x, __LINE__, __FILE__)
+/******************** */
 
 typedef struct s_rgba
 {
@@ -470,12 +498,12 @@ int			ft_borders_utils(t_data *data, int count);
 int			ft_check3(t_data *data, int count);
 int			ft_check2(t_data *data, int count);
 int			ft_check_map_borders(t_data *data, int count);
-int			ft_size_map(t_data *data, int i);
+int			ft_size_map(t_data *data);
 int			ft_my_strl(char *str);
 int			is_there(char *str, char *str1);
 int			ft_my_strlen(char *str);
 int			ft_my_strl2(char *str);
-int			ft_chr(char *str, char c);
+int			ft_chr(char *str);
 int			ft_is_surounded(t_data *data, int count);
 int			ft_borders(t_data *data, int i);
 int			ft_put_path(t_data *data, char *str, int j);
@@ -492,6 +520,12 @@ int			ft_map_valid_urils(int line, t_data *data, int a);
 int			ft_check_parse1(t_data *data, int i, int count, t_parse t);
 int			ft_check_parse_utils(t_data *data, int count, int i);
 
+/* Free Functions	*/
+void		ft_fr_all_text(t_cube *cube);
+void		ft_fr_all(t_cube *cube);
+void		ft_destroy_weapon_texture(t_textures *texture);
+void		ft_destroy_bar_texture(t_textures *texture);
+void		ft_fr_wtxt(t_cube *cube, int i);
 void		ft_free_parsing(t_data *data, t_list *file_input);
 
 #endif

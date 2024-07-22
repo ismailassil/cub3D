@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:31:03 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 20:55:36 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 09:36:14 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,15 @@ void	ft_mlx_error(void)
 
 void	ft_destroy_cube(t_cube *cube)
 {
-	int	i;
-
-	i = 0;
-	// while (cube->info->data && cube->info->data[i])
-	// 	free(cube->info->data[i++]);
-	// free(cube->info->data);
-	// free(cube->info);
-	i = 0;
-	while (i < SECND)
-		mlx_delete_texture(cube->textures.weapon[i++]);
-	i = 0;
-	while (i < BAR)
-		mlx_delete_texture(cube->textures.bar[i++]);
-	mlx_delete_texture(cube->textures.north);
-	mlx_delete_texture(cube->textures.east);
-	mlx_delete_texture(cube->textures.west);
-	mlx_delete_texture(cube->textures.south);
 	mlx_delete_image(cube->mlx, cube->img);
 	mlx_terminate(cube->mlx);
+	ft_fr_all_text(cube);
 }
 
 void	ft_exit(t_cube *cube)
 {
-	mlx_delete_texture(cube->textures.north);
-	mlx_delete_texture(cube->textures.east);
-	mlx_delete_texture(cube->textures.west);
-	mlx_delete_texture(cube->textures.south);
 	mlx_delete_image(cube->mlx, cube->img);
 	mlx_terminate(cube->mlx);
+	ft_fr_all_text(cube);
 	exit(1);
 }

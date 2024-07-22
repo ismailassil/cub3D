@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:41:50 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:39:08 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 09:47:32 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_my_strl2(char *str)
 	return (i);
 }
 
-int	ft_chr(char *str, char c)
+int	ft_chr(char *str)
 {
 	int	i;
 
@@ -56,7 +56,7 @@ int	ft_is_surounded(t_data *data, int count)
 		{
 			if (data->data[count][i] == ' '
 				&& ((i > 0 && data->data[count][i - 1] == '0')
-				|| (ft_strlen(data->data[count]) >= i
+				|| ((int)ft_strlen(data->data[count]) >= i
 				&& data->data[count][i + 1] == '0')))
 				return (0);
 			i++;

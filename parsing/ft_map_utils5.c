@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils5.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:39:53 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:00:59 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:46:29 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	ft_size_map(t_data *data, int i)
+int	ft_size_map(t_data *data)
 {
 	int	j;
 	int	count;

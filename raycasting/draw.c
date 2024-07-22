@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 21:42:43 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 21:00:38 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 09:50:56 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 uint32_t	ft_get_colors(t_colors cl)
 {
-	// printf("red [%d], green [%d], blue [%d]\n", cl.red, cl.green, cl.blue);
 	return (rgba(cl.red, cl.green, cl.blue, MC));
 }
 
@@ -23,7 +22,6 @@ void	ft_draw_floor_and_ceiling(t_cube *cube)
 	int			x;
 	int			y;
 	uint32_t	color;
-	t_colors	cl;
 
 	color = ft_get_colors(cube->info->ceiling);
 	y = 0;

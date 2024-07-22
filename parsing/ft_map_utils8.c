@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:21:26 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 17:40:58 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 09:49:42 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ int	ft_check_borders_utils1(t_data *data, int count, int i)
 
 int	ft_check_borders_utils(t_data *data, int c, int i)
 {
-	int	k;
-	int	a;
-
 	while (data->data && data->data[c + 1])
 	{
 		i = 0;

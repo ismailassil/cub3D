@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:14:49 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/07/21 20:50:05 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 09:14:18 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ long long	ft_check_range_utils(char *str, int i, int z, long long t)
 			else if (str[i] != '\0')
 				return (-1337);
 		}
-		(1) && (i++, t = t * 10 + str[i] - 48);
+		(1) && (t = t * 10 + str[i] - 48, i++);
 	}
 	t = t * z;
 	if (t < 0 || t > 255)
