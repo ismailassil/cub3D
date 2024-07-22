@@ -2,7 +2,7 @@ NO                 ./textures/walls/hitler.png
 SO            ./textures/walls/nazi.png
 EA                  ./textures/walls/wall.png
 WE                ./textures/walls/eagle.png
-F 200,10,21
+F 200,10,211
 C 15,99,11
 
 

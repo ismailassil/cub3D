@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:22:30 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/22 09:30:03 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 17:57:24 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_load_weapon_textures(t_cube *cube)
 		cube->textures.weapon[i] = mlx_load_png(path);
 		if (!cube->textures.weapon[i])
 		{
-			while (--i)
+			while (i--)
 				mlx_delete_texture(cube->textures.weapon[i]);
 			ft_fr_wtxt(cube, 4);
 			ft_fr_all(cube);
@@ -93,7 +93,7 @@ void	ft_load_bar_textures(t_cube *cube)
 		if (!cube->textures.bar[i])
 		{
 			ft_destroy_weapon_texture(&cube->textures);
-			while (--i)
+			while (i--)
 				mlx_delete_texture(cube->textures.bar[i]);
 			ft_fr_wtxt(cube, 4);
 			ft_fr_all(cube);

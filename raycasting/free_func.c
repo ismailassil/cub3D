@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:30:10 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/22 09:33:07 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 12:40:35 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_fr_all_text(t_cube *cube)
 
 void	ft_fr_all(t_cube *cube)
 {
-	ft_free_parsing(cube->info, cube->file_input);
+	ft_free_parsing(cube->info, &cube->file_input);
 	free(cube);	
 }
 

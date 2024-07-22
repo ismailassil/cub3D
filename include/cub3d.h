@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/22 11:29:14 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:40:20 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/fcntl.h>
 # include <math.h>
 # include <float.h>
-# include "/Users/ybellakr/MLX42/include/MLX42/MLX42.h"
+# include "/Users/iassil/.MLX42/include/MLX42/MLX42.h"
 # define SUCCESS		0
 # define FAIL			1
 # define NO				1
@@ -52,31 +52,31 @@
 # define TURN			1
 
 /******************** */
-// #include <libc.h>
+#include <libc.h>
 
-// FILE	*gfp;
+FILE	*gfp;
 
-// static void	*__malloc(size_t size, int line, const char *file)
-// {
-// 	void	*ptr;
+static void	*__malloc(size_t size, int line, const char *file)
+{
+	void	*ptr;
 
-// 	ptr = malloc(size);
-// 	fprintf(gfp, "dct[%p] = ['malloc', '%p', %i, '%s']\n", 
-// 		ptr, ptr, line, file);
-// 	fflush(gfp);
-// 	return (ptr);
-// }
+	ptr = malloc(size);
+	fprintf(gfp, "dct[%p] = ['malloc', '%p', %i, '%s']\n", 
+		ptr, ptr, line, file);
+	fflush(gfp);
+	return (ptr);
+}
 
-// static void	__free(void *ptr, int line, const char *file)
-// {
-// 	fprintf(gfp, "dct[%p] = ['free', '%p', %i, '%s']\n",
-// 		ptr, ptr, line, file);
-// 	fflush(gfp);
-// 	free(ptr);
-// }
-// /**/
-// # define malloc(x) __malloc(x, __LINE__, __FILE__)
-// # define free(x) __free(x, __LINE__, __FILE__)
+static void	__free(void *ptr, int line, const char *file)
+{
+	fprintf(gfp, "dct[%p] = ['free', '%p', %i, '%s']\n",
+		ptr, ptr, line, file);
+	fflush(gfp);
+	free(ptr);
+}
+/**/
+# define malloc(x) __malloc(x, __LINE__, __FILE__)
+# define free(x) __free(x, __LINE__, __FILE__)
 /******************** */
 
 typedef struct s_rgba
@@ -361,7 +361,7 @@ int			ft_open_file(char *file, t_data *cube);
 
 /*	Main functions	*/
 void		ft_parse(int fd, t_data *cube);
-void		ft_execute(t_data *info, t_list *file_input);
+void		ft_execute(t_data *info, t_list **file_input);
 
 /*	MLX functions	*/
 void		ft_key_hook(mlx_key_data_t keydata, void *param);
@@ -526,6 +526,6 @@ void		ft_fr_all(t_cube *cube);
 void		ft_destroy_weapon_texture(t_textures *texture);
 void		ft_destroy_bar_texture(t_textures *texture);
 void		ft_fr_wtxt(t_cube *cube, int i);
-void		ft_free_parsing(t_data *data, t_list *file_input);
+void		ft_free_parsing(t_data *data, t_list **file_input);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:05:10 by iassil            #+#    #+#             */
-/*   Updated: 2024/07/21 18:23:28 by iassil           ###   ########.fr       */
+/*   Updated: 2024/07/22 12:52:53 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,16 @@ void	mousefunc(double xpos, double ypos, void *param)
 	cube->player.turn_direction = 0;
 }
 
-void	ft_free_parsing(t_data *data, t_list *file_input)
+void	ft_free_parsing(t_data *data, t_list **file_input)
 {
 	ft_free_data_utils(data);
 	free(data->data);
-	ft_free_data(&file_input);
+	ft_free_data(file_input);
+	free(data->map);
 	free(data);
 }
 
-void	ft_execute(t_data *info, t_list *f_input)
+void	ft_execute(t_data *info, t_list **f_input)
 {
 	t_cube	*cube;
 
@@ -49,7 +50,7 @@ void	ft_execute(t_data *info, t_list *f_input)
 		return ;
 	}
 	cube->info = info;
-	cube->file_input = f_input;
+	cube->file_input = *f_input;
 	ft_get_window_data(cube);
 	ft_init_mlx_window(cube);
 	ft_initialize_data(cube);
