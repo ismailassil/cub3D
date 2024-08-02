@@ -17,7 +17,7 @@ Features
 
 # Configuration
 
-The game uses .cub files for map configuration. A basic .cub file includes:
+The game uses `.cub` files for map configuration. A basic `.cub` file includes:
 
 - Map layout: Represents walls and open spaces
 - Textures: Paths to wall textures
