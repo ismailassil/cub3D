@@ -40,7 +40,6 @@ C 225,30,0
 1111111111
 ```
 
-
 ### Useful Resources
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
