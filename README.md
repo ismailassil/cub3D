@@ -1,3 +1,5 @@
+# Cub3D
+
 Cub3D is a graphical project in the 42 curriculum, inspired by the classic first-person shooter, Wolfenstein 3D. The goal of this project is to create a simple 3D game using ray-casting techniques. It's an introduction to the world of computer graphics and game development, allowing students to explore the concepts of ray-casting, textures, and basic game mechanics.
 Features
 
@@ -7,13 +9,13 @@ Features
 - Mini-map: Included a mini-map to give a bird's eye view of the map.
 - Configurable: Game settings and map layout are easily configurable via a .cub file.
 
-Controls
+# Controls
 
     W/A/S/D: Move forward/left/backward/right
     Left Arrow/Right Arrow: Rotate the camera view
     ESC: Exit the game
 
-Configuration
+# Configuration
 
 The game uses .cub files for map configuration. A basic .cub file includes:
 
