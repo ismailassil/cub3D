@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/08/01 11:37:27 by iassil           ###   ########.fr       */
+/*   Updated: 2024/08/08 16:36:42 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <sys/fcntl.h>
 # include <math.h>
-# include "/Users/iassil/.MLX42/include/MLX42/MLX42.h"
+# include "../../MLX/MLX42.h"
 # define SUCCESS		0
 # define FAIL			1
 # define NO				1
@@ -34,7 +34,7 @@
 # define HEIGHT			1080
 # define PLAYER_PX		10
 # define PLAYER_SPEED	10
-# define ROT_SPEED		10
+# define ROT_SPEED		3
 # define LINE			80
 # define NUM_RAYS		WIDTH
 # define TILE			64
