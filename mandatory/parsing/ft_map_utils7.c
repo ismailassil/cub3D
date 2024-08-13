@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils7.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 10:11:25 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/08/01 10:02:25 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:48:07 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int	ft_put_path(t_data *data, char *str, int j)
 {
-	if (my_strc1(str, "NO ") && data->path->north == NULL)
+	if (skipspace_strcmp(str, "NO ") && data->path->north == NULL)
 	{
 		data->path->north = ft_strdup(&str[j]);
 		if (!data->path->north)
 			return (0);
 	}
-	else if (my_strc1(str, "SO ") && data->path->south == NULL)
+	else if (skipspace_strcmp(str, "SO ") && data->path->south == NULL)
 	{
 		data->path->south = ft_strdup(&str[j]);
 		if (!data->path->south)
 			return (0);
 	}
-	else if (my_strc1(str, "WE ") && data->path->west == NULL)
+	else if (skipspace_strcmp(str, "WE ") && data->path->west == NULL)
 	{
 		data->path->west = ft_strdup(&str[j]);
 		if (!data->path->west)
 			return (0);
 	}
-	else if (my_strc1(str, "EA ") && data->path->east == NULL)
+	else if (skipspace_strcmp(str, "EA ") && data->path->east == NULL)
 	{
 		data->path->east = ft_strdup(&str[j]);
 		if (!data->path->east)

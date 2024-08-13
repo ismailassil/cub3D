@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_utils9.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:05:15 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/08/01 09:19:25 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:49:08 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ int	ft_nrm_if(t_data *data, int i, int count)
 int	ft_check_parse1(t_data **data, int i, int *count, t_parse t)
 {
 	t.flag = 0;
-	if (my_strc1((*data)->data[i], "NO ") || my_strc1((*data)->data[i], "SO ")
-		|| my_strc1((*data)->data[i], "WE ")
-		|| my_strc1((*data)->data[i], "EA "))
+	if (skipspace_strcmp((*data)->data[i], "NO ")
+		|| skipspace_strcmp((*data)->data[i], "SO ")
+		|| skipspace_strcmp((*data)->data[i], "WE ")
+		|| skipspace_strcmp((*data)->data[i], "EA "))
 	{
 		t.flag = 1;
 		if (!ft_check_path((*data)->data[i], *data))
@@ -105,8 +106,8 @@ int	ft_check_parse1(t_data **data, int i, int *count, t_parse t)
 	}
 	if (*count == 12)
 		return (1);
-	else if (my_strc1((*data)->data[i], "F ")
-		|| my_strc1((*data)->data[i], "C "))
+	else if (skipspace_strcmp((*data)->data[i], "F ")
+		|| skipspace_strcmp((*data)->data[i], "C "))
 	{
 		t.flag = 1;
 		if (!ft_check_color((*data)->data[i], *data))

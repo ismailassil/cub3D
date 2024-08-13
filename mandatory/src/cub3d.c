@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:32 by iassil            #+#    #+#             */
-/*   Updated: 2024/08/01 11:35:54 by iassil           ###   ########.fr       */
+/*   Updated: 2024/08/13 21:56:18 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,19 @@ int	ft_parsing(int fd, t_data *cube, t_list **file_input)
 	*file_input = ft_get_map(fd);
 	if (!*file_input)
 		return (close(fd), free(cube->path), free(cube), 1);
+	close(fd);
 	cube->data = ft_to_2d(*file_input);
 	if (!cube->data)
-	{
-		(close(fd), ft_free_list(*file_input), free(cube->path), free(cube));
-		return (1);
-	}
+		return (ft_free_list(*file_input), free(cube->path), free(cube), 1);
 	if (!ft_check_parse(cube))
 	{
-		close(fd);
-		ft_free_data(file_input);
-		ft_free_data_utils(cube);
-		free(cube->data);
+		(ft_free_data(file_input), ft_free_data_utils(cube), free(cube->data));
 		if (cube->map)
 			free(cube->map);
 		free(cube);
 		return (1);
 	}
 	ft_trim_textures(cube);
-	close(fd);
 	return (0);
 }
 

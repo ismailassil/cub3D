@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:04:01 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/08/01 10:38:57 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:48:07 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ int	ft_duplicate(t_data *data)
 	(1) && (t.i = 0, t.c = 0, t.f = 0, t.ea = 0, t.no = 0, t.so = 0, t.we = 0);
 	while (data->data[t.i])
 	{
-		if (my_strc1(data->data[t.i], "F "))
+		if (skipspace_strcmp(data->data[t.i], "F "))
 			t.f++;
-		if (my_strc1(data->data[t.i], "C "))
+		if (skipspace_strcmp(data->data[t.i], "C "))
 			t.c++;
-		if (my_strc1(data->data[t.i], "NO "))
+		if (skipspace_strcmp(data->data[t.i], "NO "))
 			t.no++;
-		if (my_strc1(data->data[t.i], "SO "))
+		if (skipspace_strcmp(data->data[t.i], "SO "))
 			t.so++;
-		if (my_strc1(data->data[t.i], "EA "))
+		if (skipspace_strcmp(data->data[t.i], "EA "))
 			t.ea++;
-		if (my_strc1(data->data[t.i], "WE "))
+		if (skipspace_strcmp(data->data[t.i], "WE "))
 			t.we++;
 		t.i++;
 	}

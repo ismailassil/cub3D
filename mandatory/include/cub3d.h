@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:30:46 by iassil            #+#    #+#             */
-/*   Updated: 2024/08/08 16:36:42 by iassil           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:48:07 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -499,7 +499,7 @@ int			ft_map_valid_urils(int line, t_data *data, int a);
 int			ft_check_parse1(t_data **data, int i, int *count, t_parse t);
 int			ft_check_parse_utils(t_data *data, int count, int i);
 int			my_strcmp1(char *str, char *str1);
-int			my_strc1(char *str, char *str1);
+int			skipspace_strcmp(char *str, char *str1);
 int			ft_strcmp3(char *str, char c);
 int			ft_duplicate(t_data *data);
 int			ft_find1(char *str);

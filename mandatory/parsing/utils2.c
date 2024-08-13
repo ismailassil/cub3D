@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellakr <ybellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:38:49 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/08/01 10:39:01 by ybellakr         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:48:07 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	my_strc1(char *str, char *str1)
+int	skipspace_strcmp(char *str, char *str1)
 {
 	int	i;
 	int	j;

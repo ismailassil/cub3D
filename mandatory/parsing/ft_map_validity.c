@@ -6,7 +6,7 @@
 /*   By: iassil <iassil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:36:35 by ybellakr          #+#    #+#             */
-/*   Updated: 2024/08/01 11:25:09 by iassil           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:58:48 by iassil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ void	ft_put_map(t_data *data, int i)
 
 int	ft_check_parse(t_data *data)
 {
-	int		i;
 	t_parse	t;
+	int		i;
 	int		count;
+	int		return_check;
 
 	(1) && (t.flag = 0, i = 0, count = 0);
 	while (data && data->data[i] && (ft_strcmp(data->data[i], "\n")
@@ -60,9 +61,11 @@ int	ft_check_parse(t_data *data)
 	t.k = i + 5;
 	while (data->data[i])
 	{
-		if (ft_check_parse1(&data, i, &count, t) == -1337)
+		return_check = 0;
+		return_check = ft_check_parse1(&data, i, &count, t);
+		if (return_check == -1337)
 			return (0);
-		if (ft_check_parse1(&data, i, &count, t))
+		if (return_check)
 			break ;
 		i++;
 	}
